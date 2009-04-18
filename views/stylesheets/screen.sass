@@ -1,2 +1,21 @@
+@import compass/reset.sass
+@import blueprint/screen.sass
+
++blueprint
+
 body
   :color green
+  :font-family "Lucida Grande", sans-serif
+  
+#container
+  +container
+  
+  #header, #footer
+    +column(24, true)  
+  
+  #content
+    +column(16)
+  
+  #sidebar
+    +column(8, true)
+  
