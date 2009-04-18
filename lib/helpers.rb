@@ -23,4 +23,8 @@ helpers do
   alias_method :textilize_inline, :textilize_without_paragraph
   alias_method :ti, :textilize_without_paragraph
   
+  def page_title
+    @page_title ||= ti "Matt Puchlerz -- Designer & Web Developer"
+  end
+  
 end
