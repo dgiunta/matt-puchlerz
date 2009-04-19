@@ -31,5 +31,5 @@ def load_or_require(file)
 end
 
 %w[ lib app ].each do |dir| 
-  Dir["#{dir}/*.rb"].each { |file| load_or_require file }
+  Dir.glob("#{dir}/**/*.rb").sort.each { |file| load_or_require file }
 end
