@@ -23,11 +23,13 @@ end
 
 
 # 
-# Load application files
+# Load lib and app files
 # 
 
 def load_or_require(file)
   (Sinatra::Application.environment == :development) ? load(file) : require(file)
 end
 
-Dir["lib/*.rb"].each { |file| load_or_require file }
+%w[ lib app ].each do |dir| 
+  Dir["#{dir}/*.rb"].each { |file| load_or_require file }
+end
