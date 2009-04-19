@@ -1,13 +1,19 @@
 !!! Strict
-%html
+%html{html_attrs}
+
   %head
-    %title= page_title
-    %link{ :rel => "shortcut icon", :href => "/favicon.ico", :type => "image/x-icon"}
+    %title
+      = page_title
+    %meta{ :'http-equiv' => "Content-Type", :content => "text/html; charset=utf-8" }
+    %link{ :rel => "shortcut icon", :href => "/favicon.ico", :type => "image/x-icon" }
     %link{ :rel => 'stylesheet', :href => '/stylesheets/screen.css', :type => 'text/css', :media => 'screen, projection' }
+
   %body
     #container
       #header
-        %h1= page_title
+        %h1
+          = page_title
       = yield
       #footer
-        %p= ti "(c) 2009 Matt Puchlerz"
+        :textile
+          (c) #{Time.now.year} Matt Puchlerz
