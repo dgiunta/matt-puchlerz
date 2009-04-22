@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'sinatra'
+require 'active_support'
 require 'haml'
 gem 'chriseppstein-compass', '~> 0.4'
 require 'compass'

@@ -1,6 +1,23 @@
 module Sinatra
-  
   module Templates
+    
+    # Implementation of Rails-like partial templates for the Sinatra framework.
+    # Adapted from: http://github.com/psyche/sinatra-partials
+    def partial(template, *args)
+      options = args.extract_options!
+      options.merge!(:layout => false)
+      path = template.to_s.split(File::SEPARATOR)
+      object = path[-1].to_sym
+      path[-1] = "_#{path[-1]}"
+      template = File.join(path).to_sym
+      if collection = options.delete(:collection)
+        collection.inject([]) do |buffer, member|
+            buffer << haml(template, options.merge(:layout => false, :locals => {object => member}))
+        end.join("\n")
+      else
+        haml(template, options)
+      end
+    end
     
     private        
     
@@ -16,5 +33,4 @@ module Sinatra
     end
     
   end
-  
 end
