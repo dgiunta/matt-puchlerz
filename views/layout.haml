@@ -9,11 +9,27 @@
     / %link{ :rel => 'stylesheet', :href => '/stylesheets/screen.css', :type => 'text/css', :media => 'screen, projection' }
 
   %body
-    #container
-      #header
-        %h1
-          = page_title
-      = yield
-      #footer
+    #container.section
+      #header.header
+        - if true
+          %h1#page-title
+            = page_title
+        - else
+          %p#page-title
+            = page_title
+      #nav.nav
+        %ul
+          %li
+            %a{ :href => '#biography' } 
+              Biography
+          %li
+            %a{ :href => '#work' } 
+              Work
+          %li
+            %a{ :href => '#contact' } 
+              Contact
+      #content.section
+        = yield
+      #footer.footer
         :textile
-          (c) #{Time.now.year} Matt Puchlerz
+          (c) 2004 - #{Time.now.year} Matt Puchlerz
