@@ -3,16 +3,20 @@ module Sinatra
     
     # Implementation of Rails-like partial templates for the Sinatra framework.
     # Adapted from: http://github.com/psyche/sinatra-partials
-    def partial(template, *args)
-      options = args.extract_options!
+    # 
+    # TODO: Abstract this a little more to render any type of partial. Initially 
+    # thinking it'd be nice to have #haml_partial, #erb_partial, etc...
+    def partial(template, options)
       options.merge!(:layout => false)
-      path = template.to_s.split(File::SEPARATOR)
-      object = path[-1].to_sym
+      
+      path     = template.to_s.split(File::SEPARATOR)
+      object   = path[-1].to_sym
       path[-1] = "_#{path[-1]}"
       template = File.join(path).to_sym
+      
       if collection = options.delete(:collection)
         collection.inject([]) do |buffer, member|
-            buffer << haml(template, options.merge(:layout => false, :locals => {object => member}))
+          buffer << haml(template, options.merge(:locals => {object => member}))
         end.join("\n")
       else
         haml(template, options)
