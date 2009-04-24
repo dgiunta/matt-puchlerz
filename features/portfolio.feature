@@ -3,14 +3,16 @@ Feature: Portfolio
   As a designer and developer
   I want to display completed works
   
+  @current
   Scenario: Accessing the portfolio page
     Given I am a user
-    When I click on the "Portfolio" link within the main navigation
-    Then I should visit the "portfolio" page
+      And I am on the home page
+    When I follow "Works"
+    Then I should be on the portfolio page
     
   Scenario Outline: Viewing a listing of completed works
     Given I am a user
-      And I am on the "portfolio" page
+      And I am on the portfolio page
     When the page loads
     Then I should see "<elements>"
     
@@ -22,9 +24,9 @@ Feature: Portfolio
       
   Scenario Outline: Accessing the work details page
     Given I am a user
-      And I am on the "portfolio" page
-    When I click on "<elements>" of a specific work
-    Then I should visit the "work details" page
+      And I am on the portfolio page
+    When I press "<elements>" of a specific work
+    Then I should be on work details
   
     Examples:
     | elements            |
@@ -33,7 +35,7 @@ Feature: Portfolio
 
   Scenario Outline: Viewing the details of a single work
     Given I am a user
-      And I am on the "work details" page
+      And I am on the work details page
     When the page loads
     Then I should see "<elements>"
     

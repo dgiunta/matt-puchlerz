@@ -1,3 +1,3 @@
-When /^I click on "([^\"]*)" of a specific work$/ do |element|
+When /^I press "([^\"]*)" of a specific work$/ do |element|
   pending
 end
