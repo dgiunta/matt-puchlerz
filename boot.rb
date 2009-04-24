@@ -13,6 +13,8 @@ require 'RedCloth'
 # 
 
 configure do
+    
+  set :root, File.dirname(__FILE__)
   
   Compass.configuration do |config|
     config.project_path = File.dirname __FILE__
