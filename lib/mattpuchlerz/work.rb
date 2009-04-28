@@ -1,13 +1,14 @@
 module MattPuchlerz
   class Work
     
-    def description
-    end
+    attr_accessor :description, :images, :title
     
-    def images
+    def initialize
+      @images = []
     end
-    
-    def title
+        
+    def viewable?
+      !title.blank? and !description.blank? and !images.blank?
     end
     
   end
