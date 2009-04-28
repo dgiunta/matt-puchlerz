@@ -1,5 +1,4 @@
 module MattPuchlerz
-  
   class Work
     
     def description
@@ -12,5 +11,4 @@ module MattPuchlerz
     end
     
   end
-  
 end
