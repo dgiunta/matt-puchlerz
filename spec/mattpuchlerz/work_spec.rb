@@ -53,18 +53,18 @@ describe MattPuchlerz::Work do
   context "automatically setting attributes via options passed during initialization" do
     
     it "should set the title when passing in a title" do
-      @work = MattPuchlerz::Work.new(:title => 'I am the title')
+      @work = MattPuchlerz::Work.new :title => 'I am the title'
       @work.title.should == 'I am the title'
     end
     
     it "should set the description when passing in a description" do
-      @work = MattPuchlerz::Work.new(:description => 'I am the description')
+      @work = MattPuchlerz::Work.new :description => 'I am the description'
       @work.description.should == 'I am the description'
     end
     
     it "should set the images when passing in images" do
-      @work = MattPuchlerz::Work.new(:description => 'I am the description')
-      @work.description.should == 'I am the description'
+      @work = MattPuchlerz::Work.new :images => ['image1.jpg', 'image2.jpg']
+      @work.images.should == ['image1.jpg', 'image2.jpg']
     end
     
   end
