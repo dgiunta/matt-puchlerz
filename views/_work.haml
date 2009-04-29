@@ -1,1 +1,7 @@
-%li= work
+%h3.title
+  = work.title
+.description
+  :textile
+    #{ work.description }
+%ul.images
+  = partial :work_image, :collection => work.images
