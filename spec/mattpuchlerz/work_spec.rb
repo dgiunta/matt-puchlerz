@@ -83,7 +83,6 @@ describe MattPuchlerz::Work do
       @work.slug = ''
       @work.title = 'This is the title.'
       @work.description = 'This is the description.'
-      @work.images << 'image1.jpg'
       @work.should_not be_viewable
     end
     
