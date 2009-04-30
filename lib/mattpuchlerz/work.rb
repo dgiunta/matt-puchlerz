@@ -2,9 +2,9 @@ module MattPuchlerz
   
   class Work
     
-    IMAGE_DIR = File.join('public', 'images', 'works')
+    IMAGE_DIR = File.join('images', 'works')
     
-    attr_reader :description, :images, :slug, :title
+    attr_reader :description, :slug, :title
     
     def initialize(options = {})
       @images = []
@@ -20,7 +20,7 @@ module MattPuchlerz
     def images
       return @images if slug.blank? or !@images.blank?
       
-      path = File.expand_path( File.join( Sinatra::Application.root, IMAGE_DIR, slug, "*.{gif,jpg,png}" ) )
+      path = File.expand_path( File.join( Sinatra::Application.public, IMAGE_DIR, slug, "*.{gif,jpg,png}" ) )
       @images = Dir.glob(path).map { |i| File.basename(i) }.sort
     end
         
