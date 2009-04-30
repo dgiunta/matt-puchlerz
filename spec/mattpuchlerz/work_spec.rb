@@ -41,6 +41,11 @@ describe MattPuchlerz::Work do
       @work.slug.should == 'who_do_i_look_like_2-u_an_awesome_slug'
     end
     
+    it "should be able to find images after setting the slug" do
+      @work.slug = "test_slug"
+      @work.images.should == [ 'Avatar.png', 'ScreenClean.jpg', 'The Optical Illusion Kid.gif' ]
+    end
+    
     it "should be able to set a title" do
       @work.title = 'I am the title'
       @work.title.should == 'I am the title'
@@ -51,15 +56,14 @@ describe MattPuchlerz::Work do
       @work.description.should == 'I am the description'
     end
     
-    it "should be able to add images" do
-      @work.images << 'image1.jpg'
-      @work.images << 'image2.jpg'
-      @work.images.should == [ 'image1.jpg', 'image2.jpg' ]
-    end
-    
   end
   
   context "automatically setting attributes via options passed during initialization" do
+    
+    it "should set the slug when passing in a slug" do
+      @work = MattPuchlerz::Work.new :slug => 'Mr. Slug'
+      @work.slug.should == 'mr_slug'
+    end
     
     it "should set the title when passing in a title" do
       @work = MattPuchlerz::Work.new :title => 'I am the title'
@@ -71,16 +75,11 @@ describe MattPuchlerz::Work do
       @work.description.should == 'I am the description'
     end
     
-    it "should set the images when passing in images" do
-      @work = MattPuchlerz::Work.new :images => ['image1.jpg', 'image2.jpg']
-      @work.images.should == ['image1.jpg', 'image2.jpg']
-    end
-    
   end
   
   context "determining readiness for viewing" do
     
-    it "should not be viewable when it is missing a slug" do
+    it "should not be viewable when its slug is blank" do
       @work.slug = ''
       @work.title = 'This is the title.'
       @work.description = 'This is the description.'
@@ -88,34 +87,31 @@ describe MattPuchlerz::Work do
       @work.should_not be_viewable
     end
     
-    it "should not be viewable when it is missing a title" do
-      @work.slug = 'mr_slug'
+    it "should not be viewable when its title is blank" do
+      @work.slug = 'test_slug'
       @work.title = ''
       @work.description = 'This is the description.'
-      @work.images << 'image1.jpg'
       @work.should_not be_viewable
     end
     
-    it "should not be viewable when it is missing a description" do
-      @work.slug = 'mr_slug'
+    it "should not be viewable when its description is blank" do
+      @work.slug = 'test_slug'
       @work.title = 'This is the title.'
       @work.description = ''
-      @work.images << 'image1.jpg'
       @work.should_not be_viewable
     end
     
     it "should not be viewable when it has 0 images" do
-      @work.slug = 'mr_slug'
+      @work.slug = 'There is no way that the work will have any images under this slug'
       @work.title = 'This is the title.'
       @work.description = 'This is the description.'
       @work.should_not be_viewable
     end
     
     it "should be viewable when it has a slug, title, description, and 1 or more images" do
-      @work.slug = 'mr_slug'
+      @work.slug = 'test_slug'
       @work.title = 'This is the title.'
       @work.description = 'This is the description.'
-      @work.images << 'image1.jpg'
       @work.should be_viewable
     end
     
