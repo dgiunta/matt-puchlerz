@@ -1,3 +1,30 @@
+require 'rubygems'
+require 'sinatra'
+require 'active_support/core_ext/blank'
+require 'RedCloth'
+
+
+
+# 
+# Helpers
+# 
+
+helpers do
+  
+  def page_title
+    @page_title ||= "Matt Puchlerz -- Designer & Web Developer"
+  end
+  
+end
+
+
+
+# 
+# Routes
+# 
+
+# use_in_file_templates!
+
 get '/' do
   @works = []
   @works << MattPuchlerz::Work.new(
@@ -17,9 +44,4 @@ get '/' do
   
   @works = @works.select{ |w| w.viewable? }
   haml :index
-end
-
-get '/stylesheets/screen.css' do
-  content_type 'text/css', :charset => 'utf-8'
-  sass :"stylesheets/screen", :sass => Compass.sass_engine_options
 end
