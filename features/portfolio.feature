@@ -1,7 +1,7 @@
 Feature: Portfolio
   In order to exemplify my skills and proven track-record
   As a designer and developer
-  I want to display completed works
+  I want to display selected works
   
   @current
   Scenario: Accessing the portfolio page
