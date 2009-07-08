@@ -62,43 +62,43 @@ describe MattPuchlerz::Work do
     
   end
   
-  # context "determining readiness for viewing" do
-  #   
-  #   it "should not be viewable when its slug is blank" do
-  #     @work.slug = ''
-  #     @work.title = 'This is the title.'
-  #     @work.description = 'This is the description.'
-  #     @work.should_not be_viewable
-  #   end
-  #   
-  #   it "should not be viewable when its title is blank" do
-  #     @work.slug = 'test_slug'
-  #     @work.title = ''
-  #     @work.description = 'This is the description.'
-  #     @work.should_not be_viewable
-  #   end
-  #   
-  #   it "should not be viewable when its description is blank" do
-  #     @work.slug = 'test_slug'
-  #     @work.title = 'This is the title.'
-  #     @work.description = ''
-  #     @work.should_not be_viewable
-  #   end
-  #   
-  #   it "should not be viewable when it has 0 images" do
-  #     @work.slug = 'There is no way that the work will have any images under this slug'
-  #     @work.title = 'This is the title.'
-  #     @work.description = 'This is the description.'
-  #     @work.should_not be_viewable
-  #   end
-  #   
-  #   it "should be viewable when it has a slug, title, description, and 1 or more images" do
-  #     @work.slug = 'test_slug'
-  #     @work.title = 'This is the title.'
-  #     @work.description = 'This is the description.'
-  #     @work.should be_viewable
-  #   end
-  #   
-  # end
+  context "determining readiness for viewing" do
+    
+    it "should not be viewable when its slug is blank" do
+      @work.slug = ''
+      @work.title = 'This is the title.'
+      @work.description = 'This is the description.'
+      @work.should_not be_viewable
+    end
+    
+    it "should not be viewable when its title is blank" do
+      @work.slug = 'test_slug'
+      @work.title = ''
+      @work.description = 'This is the description.'
+      @work.should_not be_viewable
+    end
+    
+    it "should not be viewable when its description is blank" do
+      @work.slug = 'test_slug'
+      @work.title = 'This is the title.'
+      @work.description = ''
+      @work.should_not be_viewable
+    end
+    
+    it "should not be viewable when it has 0 images" do
+      @work.slug = 'There is no way that the work will have any images under this slug'
+      @work.title = 'This is the title.'
+      @work.description = 'This is the description.'
+      @work.should_not be_viewable
+    end
+    
+    it "should be viewable when it has a slug, title, description, and 1 or more images" do
+      @work.slug = 'test_slug'
+      @work.title = 'This is the title.'
+      @work.description = 'This is the description.'
+      @work.should be_viewable
+    end
+    
+  end
       
 end
