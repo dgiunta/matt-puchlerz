@@ -11,19 +11,19 @@
 
   %body
   
-    %section#page_container
+    %section#document_container
   
-      %header#page_header
+      %header#document_header
         - if true
-          %h1#page_title
+          %h1#document_title
             :textileinline
               #{ page_title }
         - else
-          %p#page_title
+          %p#document_title
             :textileinline
               #{ page_title }
   
-      %nav#page_navigation
+      %nav#document_navigation
         %ul
           %li
             %a{ :href => '#biography' } 
@@ -35,9 +35,9 @@
             %a{ :href => '#contact' } 
               Contact
   
-      %section#page_content
+      %section#document_content
         = yield
   
-      %footer#page_footer
+      %footer#document_footer
         :textile
           (c) 2004 - #{ Time.now.year } Matt Puchlerz

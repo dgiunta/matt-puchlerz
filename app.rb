@@ -59,6 +59,6 @@ get '/' do
     :images      => ['image3.jpg', 'image3a.jpg', 'image3b.jpg']
   )
   
-  @works = @works.select{ |w| w.viewable? }
+  # @works = @works.select{ |w| w.viewable? }
   haml :index
 end
