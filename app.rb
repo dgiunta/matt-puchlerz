@@ -46,6 +46,7 @@ end
 # 
 
 get '/' do
-  @works = []
+  @works = MattPuchlerz::Work.all
+  puts @works.inspect
   haml :index
 end

@@ -11,19 +11,19 @@ Feature: Portfolio
     
   @current
   Scenario: Viewing a listing of completed works
-    Given I am a user
-    And I am on the portfolio page
-    And the following works exist:
+    Given the following works exist:
       | title        | slug         | description                                       |
       | Awesome Work | awesome_work | This was something I did back when I was awesome. |
       | Untitled     | untitled     | Never was sure what to call this one.             |
-      | $%*!         | bad_word     | If you have nothing good to say...                |
+      | $%*!         | bad_word     | If you've got nothing good to say...                |
+    And I am a user
+    And I am on the portfolio page
     Then I should see "Works"
     And I should see the following works:
       | title        | slug         | description                                       |
       | Awesome Work | awesome_work | This was something I did back when I was awesome. |
       | Untitled     | untitled     | Never was sure what to call this one.             |
-      | $%*!         | bad_word     | If you have nothing good to say...                |
+      | $%*!         | bad_word     | If you’ve got nothing good to say…                |
       
   Scenario Outline: Accessing the work details page
     Given I am a user
