@@ -1,7 +1,16 @@
 require 'rubygems'
 require 'sinatra'
 require 'active_support/core_ext/blank'
+require 'haml'
 require 'RedCloth'
+
+def load_or_require(file)
+  (Sinatra::Application.environment == :development) ? load(file) : require(file)
+end
+
+Dir.glob("lib/**/*.rb").each { |file| load_or_require file }
+
+set :root, File.dirname(__FILE__)
 
 
 
