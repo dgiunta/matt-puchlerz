@@ -20,6 +20,9 @@ configure do
 
   set :root, ROOT
   
+  DataMapper.setup :default, "sqlite3://#{ ROOT }/db/#{ Sinatra::Application.environment }.sqlite3"
+  DataMapper.auto_upgrade!
+  
 end
 
 
