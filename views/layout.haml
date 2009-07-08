@@ -1,26 +1,29 @@
-!!! Strict
-%html{html_attrs}
+!!!
+%html
 
   %head
     %title
       :textileinline
-        #{page_title}
+        #{ page_title }
     %meta{ :'http-equiv' => "Content-Type", :content => "text/html; charset=utf-8" }
-    %link{ :rel => "shortcut icon", :href => "/favicon.ico", :type => "image/x-icon" }
+    / %link{ :rel => "shortcut icon", :href => "/favicon.ico", :type => "image/x-icon" }
     / %link{ :rel => 'stylesheet', :href => '/stylesheets/screen.css', :type => 'text/css', :media => 'screen, projection' }
 
   %body
-    #container.section
-      #header.header
+  
+    %section#page_container
+  
+      %header#page_header
         - if true
-          %h1#page-title
+          %h1#page_title
             :textileinline
-              #{page_title}
+              #{ page_title }
         - else
-          %p#page-title
+          %p#page_title
             :textileinline
-              #{page_title}
-      #nav.nav
+              #{ page_title }
+  
+      %nav#page_navigation
         %ul
           %li
             %a{ :href => '#biography' } 
@@ -31,8 +34,10 @@
           %li
             %a{ :href => '#contact' } 
               Contact
-      #content.section
+  
+      %section#page_content
         = yield
-      #footer.footer
+  
+      %footer#page_footer
         :textile
-          (c) 2004 - #{Time.now.year} Matt Puchlerz
+          (c) 2004 - #{ Time.now.year } Matt Puchlerz

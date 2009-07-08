@@ -10,7 +10,17 @@ end
 
 Dir.glob("lib/**/*.rb").each { |file| load_or_require file }
 
-set :root, File.dirname(__FILE__)
+
+
+# 
+# Configuration
+#
+
+configure do
+
+  set :root, File.dirname(__FILE__)
+  
+end
 
 
 
@@ -31,8 +41,6 @@ end
 # 
 # Routes
 # 
-
-# use_in_file_templates!
 
 get '/' do
   @works = []

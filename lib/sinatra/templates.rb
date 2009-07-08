@@ -32,6 +32,7 @@ module Sinatra
     def render_haml(template, data, options, &block)
       options[:options] ||= {}
       options[:options][:attr_wrapper] ||= '"'
+      options[:options][:format] ||= :html5
       engine = ::Haml::Engine.new(data, options[:options])
       engine.render(self, options[:locals] || {}, &block)
     end
