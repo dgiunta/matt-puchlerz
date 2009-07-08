@@ -6,13 +6,26 @@ module MattPuchlerz
     
     include DataMapper::Resource
     
+    IMAGE_DIR = File.join('images', 'works') unless defined?(IMAGE_DIR)
+    
     property :id,          Serial
     property :slug,        String
     property :title,       String
     property :description, String
     
     def images
-      []
+      if slug.nil?
+        return []
+      elsif not @images.nil?
+        return @images
+      end
+      
+      path = File.expand_path( File.join( Sinatra::Application.public, IMAGE_DIR, attribute_get(:slug), "*.{gif,jpg,png}" ) )
+      @images = Dir.glob(path).map { |i| File.basename(i) }.sort
+    end
+    
+    def slug=(slug)
+      attribute_set :slug, slug.to_s.strip.downcase.gsub(/[^\w\-\ ]/, '').gsub(' ', '_')
     end
     
     def viewable?

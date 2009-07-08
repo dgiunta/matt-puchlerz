@@ -38,30 +38,30 @@ describe MattPuchlerz::Work do
     
   end
   
-  # context "when setting the work's values" do
-  #   
-  #   it "should be able to set a slug, which converts/strips any non-alphanumerics, underscores, or hyphens" do
-  #     @work.slug = %Q{ Who do I 'look' like 2-U, an "awesome" slug!? }
-  #     @work.slug.should == 'who_do_i_look_like_2-u_an_awesome_slug'
-  #   end
-  #   
-  #   it "should be able to find images after setting the slug" do
-  #     @work.slug = "test_slug"
-  #     @work.images.should == [ 'Avatar.png', 'ScreenClean.jpg', 'The Optical Illusion Kid.gif' ]
-  #   end
-  #   
-  #   it "should be able to set a title" do
-  #     @work.title = 'I am the title'
-  #     @work.title.should == 'I am the title'
-  #   end
-  #   
-  #   it "should be able to set a description" do
-  #     @work.description = 'I am the description'
-  #     @work.description.should == 'I am the description'
-  #   end
-  #   
-  # end
-  # 
+  context "when setting the work's values" do
+    
+    it "should be able to set a slug, which converts/strips any non-alphanumerics, underscores, or hyphens" do
+      @work.slug = %Q{ Who do I 'look' like 2-U, an "awesome" slug!? }
+      @work.slug.should == 'who_do_i_look_like_2-u_an_awesome_slug'
+    end
+    
+    it "should be able to find images after setting the slug" do
+      @work.slug = "test_slug"
+      @work.images.should == [ 'Avatar.png', 'ScreenClean.jpg', 'The Optical Illusion Kid.gif' ]
+    end
+    
+    it "should be able to set a title" do
+      @work.title = 'I am the title'
+      @work.title.should == 'I am the title'
+    end
+    
+    it "should be able to set a description" do
+      @work.description = 'I am the description'
+      @work.description.should == 'I am the description'
+    end
+    
+  end
+  
   # context "automatically setting attributes via options passed during initialization" do
   #   
   #   it "should set the slug when passing in a slug" do
