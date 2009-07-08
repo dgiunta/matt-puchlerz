@@ -2,7 +2,7 @@ module MattPuchlerz
   
   class Work
     
-    IMAGE_DIR = File.join('images', 'works')
+    IMAGE_DIR = File.join('images', 'works') unless defined?(IMAGE_DIR)
     
     attr_reader :description, :slug, :title
     
