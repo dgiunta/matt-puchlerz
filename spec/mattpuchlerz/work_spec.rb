@@ -38,7 +38,7 @@ describe MattPuchlerz::Work do
     
   end
   
-  context "when setting the work's values" do
+  context "when setting attributes of the work" do
     
     it "should be able to set a slug, which converts/strips any non-alphanumerics, underscores, or hyphens" do
       @work.slug = %Q{ Who do I 'look' like 2-U, an "awesome" slug!? }
@@ -62,25 +62,6 @@ describe MattPuchlerz::Work do
     
   end
   
-  # context "automatically setting attributes via options passed during initialization" do
-  #   
-  #   it "should set the slug when passing in a slug" do
-  #     @work = MattPuchlerz::Work.new :slug => 'Mr. Slug'
-  #     @work.slug.should == 'mr_slug'
-  #   end
-  #   
-  #   it "should set the title when passing in a title" do
-  #     @work = MattPuchlerz::Work.new :title => 'I am the title'
-  #     @work.title.should == 'I am the title'
-  #   end
-  #   
-  #   it "should set the description when passing in a description" do
-  #     @work = MattPuchlerz::Work.new :description => 'I am the description'
-  #     @work.description.should == 'I am the description'
-  #   end
-  #   
-  # end
-  # 
   # context "determining readiness for viewing" do
   #   
   #   it "should not be viewable when its slug is blank" do
