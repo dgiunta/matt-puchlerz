@@ -1,14 +1,15 @@
+require 'haml'
+
 module Haml
   module Filters
     
-    module TextileInline  
-      include Haml::Filters::Base
-      include Haml::Filters::Textile
+    module TextileInline
+      include Base
       
       def render(text)
-        textiled = super(text)
-        if textiled[0..2] == "<p>" then textiled = textiled[3..-1] end
-        if textiled[-4..-1] == "</p>" then textiled = textiled[0..-5] end
+        textiled = Textile.render(text)
+        textiled = textiled[3..-1] if textiled[0..2] == "<p>"
+        textiled = textiled[0..-5] if textiled[-4..-1] == "</p>"
         textiled
       end
     end
