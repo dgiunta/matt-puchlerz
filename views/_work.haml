@@ -1,7 +1,8 @@
 .work
   %h3.title
-    :textileinline
-      #{ work.title }
+    %a{ :href => "/works/#{ work.id }" }
+      :textileinline
+        #{ work.title }
   .description
     :textile
       #{ work.description }

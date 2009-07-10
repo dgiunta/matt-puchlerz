@@ -8,7 +8,7 @@ def load_or_require(file)
   (Sinatra::Application.environment == :development) ? load(file) : require(file)
 end
 
-Dir.glob('lib/**/*.rb').each { |file| load_or_require file }
+Dir.glob("#{ ROOT }/lib/**/*.rb").each { |file| load_or_require file }
 
 
 
@@ -47,6 +47,10 @@ end
 
 get '/' do
   @works = MattPuchlerz::Work.all
-  puts @works.inspect
   haml :index
+end
+
+get '/works/:id' do
+  @work = MattPuchlerz::Work.get params[:id]
+  haml :work_show
 end
