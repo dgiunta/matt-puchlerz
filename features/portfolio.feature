@@ -24,7 +24,6 @@ Feature: Portfolio
       | Untitled     | untitled     | Never was sure what to call this one.             |
       | $%*!         | bad_word     | If you’ve got nothing good to say…                |
       
-  @current
   Scenario: Accessing the work details page
     Given the following works exist:
       | title        | slug         | description                                       |
@@ -34,17 +33,18 @@ Feature: Portfolio
     When I follow "Awesome Work"
     Then I should be on the work show page
 
-  Scenario Outline: Viewing the details of a single work
-    Given I am a user
-    And I am on the work details page
-    When the page loads
-    Then I should see "<elements>"
-    
-    Examples:
-    | elements                           |
-    | the title of the work              |
-    | the description of the work        |
-    | one of more images of the work     |
-    | one or more tags labeling the work |
+  @current
+  Scenario: Viewing the details of a single work
+    Given the following works exist:
+      | title        | slug         | description                                       |
+      | Awesome Work | awesome_work | This was something I did back when I was awesome. |
+    And I am a user
+    And I am on the work show page
+    Then I should see the following:
+      | elements                                          |
+      | Awesome Work                                      |
+      | This was something I did back when I was awesome. |
+      # | one of more images of the work     |
+      # | one or more tags labeling the work |
   
   
