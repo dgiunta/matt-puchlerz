@@ -30,6 +30,7 @@ module Sinatra
     # TODO: Figure out a way to not completely override the method. Tried using 
     # alias_method but couldn't get rid of the "stack level too deep" error.
     def render_haml(template, data, options, &block)
+      @current_page ||= template
       options[:options] ||= {}
       options[:options][:attr_wrapper] ||= '"'
       options[:options][:format] ||= :html5
