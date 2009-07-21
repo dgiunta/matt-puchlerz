@@ -9,12 +9,12 @@
     %link{ :rel => "shortcut icon", :href => "/images/favicon.ico", :type => "image/x-icon" }
     / %link{ :rel => 'stylesheet', :href => '/stylesheets/screen.css', :type => 'text/css', :media => 'screen, projection' }
 
-  %body
+  %body{ :id => @current_page }
   
     %section#document_container
   
       %header#document_header
-        - if true
+        - if @current_page == :index
           %h1#document_title
             :textileinline
               #{ page_title }
@@ -23,17 +23,14 @@
             :textileinline
               #{ page_title }
   
-      %nav#document_navigation
-        %ul
+      %nav
+        %ul#site_navigation
           %li
-            %a{ :href => '#biography' } 
-              Biography
+            %a{ :href => '/' } 
+              Home
           %li
-            %a{ :href => '#works' } 
-              Works
-          %li
-            %a{ :href => '#contact' } 
-              Contact
+            %a{ :href => '/contact' } 
+              Contact          
   
       %section#document_content
         = yield
