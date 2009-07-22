@@ -2,7 +2,7 @@
   %header
     %h1
       :textileinline
-        #{ @work.title }
+        #{ @work.title if false }
   .description
     :textile
-      #{ @work.description }
+      #{ @work.description if false }

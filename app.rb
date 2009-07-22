@@ -3,6 +3,7 @@ ROOT = File.expand_path File.dirname(__FILE__) unless defined?(ROOT)
 
 require 'rubygems'
 require 'sinatra'
+require 'sinatra/rest'
 
 def load_or_require(file)
   (Sinatra::Application.environment == :development) ? load(file) : require(file)
@@ -54,3 +55,6 @@ get '/works/:id' do
   @work = MattPuchlerz::Work.get params[:id]
   haml :work_show
 end
+
+Work = MattPuchlerz::Work unless defined?(Work)
+rest Work, :namespace => '/admin'
