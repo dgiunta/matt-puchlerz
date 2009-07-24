@@ -11,7 +11,7 @@ module Sinatra
     
     def read_config(filename)
       super
-      @config.each_value { |hash| hash[:url] = @namespace + hash[:url] }
+      @config.each_value { |hash| hash[:url] = @namespace + hash[:url] } if @namespace
     end
     
   end
