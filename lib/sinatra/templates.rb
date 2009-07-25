@@ -6,8 +6,8 @@ module Sinatra
     # 
     # TODO: Abstract this a little more to render any type of partial. Initially 
     # thinking it'd be nice to have #haml_partial, #erb_partial, etc...
-    def partial(template, options)
-      options.merge!(:layout => false)
+    def partial(template, options = {}, locals = {})
+      options.merge! :layout => false
       
       path     = template.to_s.split(File::SEPARATOR)
       object   = path[-1].to_sym
@@ -16,7 +16,7 @@ module Sinatra
       
       if collection = options.delete(:collection)
         collection.inject([]) do |buffer, member|
-          buffer << haml(template, options.merge(:locals => {object => member}))
+          buffer << haml( template, options, locals.merge( object => member ) )
         end.join("\n")
       else
         haml(template, options)
@@ -27,15 +27,13 @@ module Sinatra
     
     # Changes a few of the default options passed to Haml.
     # 
-    # TODO: Figure out a way to not completely override the method. Tried using 
-    # alias_method but couldn't get rid of the "stack level too deep" error.
-    def render_haml(template, data, options, &block)
+    # TODO: Figure out a way to not completely override the method.
+    def render_haml(template, data, options, locals, &block)
       @current_page ||= template
       options[:options] ||= {}
       options[:options][:attr_wrapper] ||= '"'
       options[:options][:format] ||= :html5
-      engine = ::Haml::Engine.new(data, options[:options])
-      engine.render(self, options[:locals] || {}, &block)
+      ::Haml::Engine.new(data, options).render(self, locals, &block)
     end
     
   end
