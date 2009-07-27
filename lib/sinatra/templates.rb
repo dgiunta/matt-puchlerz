@@ -30,9 +30,9 @@ module Sinatra
     # TODO: Figure out a way to not completely override the method.
     def render_haml(template, data, options, locals, &block)
       @current_page ||= template
-      options[:options] ||= {}
-      options[:options][:attr_wrapper] ||= '"'
-      options[:options][:format] ||= :html5
+      options ||= {}
+      options[:attr_wrapper] ||= '"'
+      options[:format] ||= :html5
       ::Haml::Engine.new(data, options).render(self, locals, &block)
     end
     
