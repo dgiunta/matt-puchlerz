@@ -1,16 +1,14 @@
-# Note the application's root for convenience
+# Note the application's root directory for convenience
 ROOT = File.expand_path File.dirname(__FILE__) unless defined?(ROOT)
 
 require 'rubygems'
 require 'sinatra'
 require 'sinatra/rest'
 
-def load_or_require(file)
-  (Sinatra::Application.environment == :development) ? load(file) : require(file)
-end
+# Require everything in the lib directory
+Dir.glob("#{ ROOT }/lib/**/*.rb").each { |file| require file }
 
-Dir.glob("#{ ROOT }/lib/**/*.rb").each { |file| load_or_require file }
-
+# Make it easier to work within my namespace
 include MattPuchlerz
 
 
