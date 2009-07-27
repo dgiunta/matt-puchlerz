@@ -1,1 +1,29 @@
-%h1 Works index
+%h1 Work Index
+
+%nav
+  %ul#crud_navigation
+    %li
+      %strong
+        Work Index
+    %li
+      %a{ :href => '/admin/works/new' }
+        New Work
+
+%table
+  %thead
+    %tr
+      %th
+        ID
+      %th
+        Title
+      %th
+        Slug
+  %tbody
+    - @works.each do |work|
+      %tr
+        %td
+          = work.id
+        %td
+          = work.title
+        %td
+          = work.slug

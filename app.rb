@@ -11,6 +11,8 @@ end
 
 Dir.glob("#{ ROOT }/lib/**/*.rb").each { |file| load_or_require file }
 
+include MattPuchlerz
+
 
 
 # 
@@ -47,14 +49,18 @@ end
 # 
 
 get '/' do
-  @works = MattPuchlerz::Work.all
+  @works = Work.all
   haml :index
 end
 
-get '/works/:id' do
-  @work = MattPuchlerz::Work.get params[:id]
-  haml :work_show
-end
+rest Work, :routes => :show
 
-Work = MattPuchlerz::Work unless defined?(Work)
-rest Work, :namespace => '/admin'
+unless Sinatra::Application.environment == :production
+  
+  get '/admin' do
+    redirect '/admin/works'
+  end
+  
+  rest Work, :namespace => '/admin', :layout => :admin
+  
+end
