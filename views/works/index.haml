@@ -6,10 +6,13 @@
       %strong
         Work Index
     %li
-      %a{ :href => '/admin/works/new' }
+      %a{ :href => url_for_works_new }
         New Work
 
-%table
+%p.count
+  = "#{ @works.length } Works Total"
+
+%table{ :border => 1 }
   %thead
     %tr
       %th

@@ -3,9 +3,27 @@
 %nav
   %ul#crud_navigation
     %li
-      %a{ :href => '/admin/works' }
+      %a{ :href => url_for_works_index }
         Work Index
     %li
       %strong
         New Work
 
+%form{ :action => url_for_works_index, :method => :post }
+  %dl
+    %dt
+      Title
+    %dd
+      %input{ :type => 'text', :name => 'title' }
+  %dl
+    %dt
+      Slug
+    %dd
+      %input{ :type => 'text', :name => 'slug' }
+  %dl
+    %dt
+      Description
+    %dd
+      %textarea{ :name => 'description', :cols => 45, :rows => 15 }
+  %p.submit
+    %input{ :type => 'submit', :value => 'Save Work' }
