@@ -19,7 +19,7 @@ module Sinatra
           buffer << haml( template, options, locals.merge( object => member ) )
         end.join("\n")
       else
-        haml(template, options)
+        haml(template, options, locals)
       end
     end
     
