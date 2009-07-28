@@ -9,7 +9,7 @@ module MattPuchlerz
     IMAGE_DIR = File.join('images', 'works') unless defined?(IMAGE_DIR)
     
     property :id,          Serial
-    property :description, String
+    property :description, Text
     property :slug,        String
     property :title,       String
     
