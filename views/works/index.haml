@@ -10,7 +10,9 @@
         New Work
 
 %p.count
-  = "#{ @works.length } Works Total"
+  %strong
+    = @works.length
+  Total
 
 %table{ :border => 1 }
   %thead

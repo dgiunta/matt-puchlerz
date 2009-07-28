@@ -59,6 +59,6 @@ unless Sinatra::Application.environment == :production
     redirect '/admin/works'
   end
   
-  rest Work, :namespace => '/admin', :layout => :admin
+  rest Work, :layout => :admin, :namespace => '/admin'
   
 end
