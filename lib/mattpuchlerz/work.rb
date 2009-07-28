@@ -10,7 +10,7 @@ module MattPuchlerz
     
     property :id,          Serial
     property :description, Text
-    property :slug,        String
+    property :slug,        Slug
     property :title,       String
     
     def images
@@ -20,7 +20,13 @@ module MattPuchlerz
         return @images
       end
       
-      path = File.expand_path( File.join( Sinatra::Application.public, IMAGE_DIR, attribute_get(:slug), "*.{gif,jpg,png}" ) )
+      path = File.expand_path( File.join( 
+        Sinatra::Application.public, 
+        IMAGE_DIR, 
+        attribute_get(:slug), 
+        "*.{gif,jpg,png}" 
+      ))
+      
       @images = Dir.glob(path).map { |i| File.basename(i) }.sort
     end
     
