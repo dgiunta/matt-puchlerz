@@ -11,10 +11,9 @@ module Sinatra
     # thinking it'd be nice to have #haml_partial, #erb_partial, etc...
     # 
     def partial(template, options = {}, locals = {})
-      
       path     = template.to_s.split(File::SEPARATOR)
       object   = path[-1].to_sym
-      path[-1] = "_#{path[-1]}"
+      path[-1] = "_#{ path[-1] }"
       template = File.join(path).to_sym
       
       if collection = options.delete(:collection)
@@ -22,7 +21,7 @@ module Sinatra
           # Not sure why, but the options local gets reset with every iteration
           # so we need to set :layout to false every time.
           options[:layout] = false
-          locals[object] = member
+          locals[object]   = member
           buffer << haml(template, options, locals)
         end.join("\n")
       else
