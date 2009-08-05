@@ -7,4 +7,4 @@
     :textile
       #{ work.description }
   %ul.images
-    = partial :work_image, :collection => work.images
+    = partial :work_image, { :collection => work.images }, { :work => work }
