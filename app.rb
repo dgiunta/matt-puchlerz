@@ -19,7 +19,8 @@ include MattPuchlerz
 
 configure do
 
-  set :root, ROOT
+  set :root, ROOT  
+  set :haml, { :attr_wrapper => '"', :format => :html5 }
   
   DataMapper.setup :default, "sqlite3://#{ ROOT }/db/#{ Sinatra::Application.environment }.sqlite3"
   DataMapper.auto_upgrade!
