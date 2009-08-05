@@ -47,7 +47,11 @@ describe MattPuchlerz::Work do
     
     it "should be able to find images after setting the slug" do
       @work.slug = "test_slug"
-      @work.images.should == [ 'Avatar.png', 'ScreenClean.jpg', 'The Optical Illusion Kid.gif' ]
+      @work.images.should == [ 
+        '/images/works/test_slug/Avatar.png', 
+        '/images/works/test_slug/ScreenClean.jpg', 
+        '/images/works/test_slug/The+Optical+Illusion+Kid.gif' 
+      ]
     end
     
     it "should be able to set a title" do

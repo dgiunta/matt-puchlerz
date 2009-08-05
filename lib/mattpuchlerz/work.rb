@@ -1,5 +1,6 @@
 require 'datamapper'
 require 'active_support/core_ext/blank'
+require 'rack/utils'
 
 module MattPuchlerz
   class Work
@@ -20,14 +21,18 @@ module MattPuchlerz
         return @images
       end
       
-      path = File.expand_path( File.join( 
+      pattern = File.expand_path( File.join( 
         Sinatra::Application.public, 
         IMAGE_DIR, 
         attribute_get(:slug), 
         "*.{gif,jpg,png}" 
       ))
       
-      @images = Dir.glob(path).map { |i| File.basename(i) }.sort
+      @images = Dir.glob(pattern).map do |path| 
+        path.sub! Sinatra::Application.public, ''
+        path = Rack::Utils.escape(path)
+        path.gsub! '%2F', '/'
+      end.sort
     end
     
     def slug=(slug)
