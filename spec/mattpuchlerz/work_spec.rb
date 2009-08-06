@@ -17,7 +17,7 @@ describe MattPuchlerz::Work do
       before(:all) do
         @work1 = MattPuchlerz::Work.make
         @work2 = MattPuchlerz::Work.make
-        @work3 = MattPuchlerz::Work.make :slug => 'no way that this is going to be viewable'
+        @work3 = MattPuchlerz::Work.make :slug => 'no way that this is going to exist or be viewable'
       end
       
       it "should be able to find viewable works" do
