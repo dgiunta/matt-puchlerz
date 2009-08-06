@@ -48,7 +48,7 @@ end
 # 
 
 get '/' do
-  @works = Work.all
+  @works = Work.viewable
   haml :index
 end
 

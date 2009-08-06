@@ -9,10 +9,10 @@ When /^I press "([^\"]*)" of a specific work$/ do |element|
   pending
 end
 
-Then /^I should see the following works:$/ do |table|
+Then /^I (should|should not) see the following works:$/ do |boolean, table|
   table.hashes.each do |attributes|
-    Then %Q{I should see "#{ attributes['title'] }"}
+    Then %Q{I #{ boolean } see "#{ attributes['title'] }"}
     # Then %Q{I should see "#{ attributes['slug'] }"}
-    Then %Q{I should see "#{ attributes['description'] }"}
+    Then %Q{I #{ boolean } see "#{ attributes['description'] }"}
   end
 end

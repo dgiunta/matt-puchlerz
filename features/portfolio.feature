@@ -11,23 +11,27 @@ Feature: Portfolio
     
   Scenario: Viewing a listing of completed works
     Given the following works exist:
-      | title        | slug         | description                                       |
-      | Awesome Work | awesome_work | This was something I did back when I was awesome. |
-      | Untitled     | untitled     | Never was sure what to call this one.             |
-      | $%*!         | bad_word     | If you've got nothing good to say...                |
+      | title           | slug            | description                                              |
+      | Awesome Work    | test1           | This was something I did back when I was awesome.        |
+      | Untitled        | test2           | Never was sure what to call this one.                    |
+      | $%*!            | test3           | If you've got nothing good to say...                     |
+      | Unviewable Work | unviewable_work | As this slug wont have images, it should not be viewable |
     And I am a user
     And I am on the portfolio page
     Then I should see "Works"
     And I should see the following works:
-      | title        | slug         | description                                       |
-      | Awesome Work | awesome_work | This was something I did back when I was awesome. |
-      | Untitled     | untitled     | Never was sure what to call this one.             |
-      | $%*!         | bad_word     | If you’ve got nothing good to say…                |
+      | title           | slug            | description                                              |
+      | Awesome Work    | test1           | This was something I did back when I was awesome.        |
+      | Untitled        | test2           | Never was sure what to call this one.                    |
+      | $%*!            | test3           | If you’ve got nothing good to say…                       |
+	And I should not see the following works:
+      | title           | slug            | description                                              |
+	  | Unviewable Work | unviewable_work | As this slug wont have images, it should not be viewable |
       
   Scenario: Accessing the work details page
     Given the following works exist:
-      | title        | slug         | description                                       |
-      | Awesome Work | awesome_work | This was something I did back when I was awesome. |
+      | title        | slug  | description                                       |
+      | Awesome Work | test1 | This was something I did back when I was awesome. |
     And I am a user
     And I am on the portfolio page
     When I follow "Awesome Work"
@@ -36,8 +40,8 @@ Feature: Portfolio
   @current
   Scenario: Viewing the details of a single work
     Given the following works exist:
-      | title        | slug         | description                                       |
-      | Awesome Work | awesome_work | This was something I did back when I was awesome. |
+      | title        | slug  | description                                       |
+      | Awesome Work | test1 | This was something I did back when I was awesome. |
     And I am a user
     And I am on the work show page
     Then I should see the following:
