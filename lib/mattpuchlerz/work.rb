@@ -42,6 +42,10 @@ module MattPuchlerz
     def viewable?
       not slug.blank? and not title.blank? and not description.blank? and not images.blank?
     end
+    
+    def self.viewable
+      all.select { |work| work.viewable? }
+    end
         
   end
 end
