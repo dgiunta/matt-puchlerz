@@ -23,6 +23,7 @@
         Title
       %th
         Slug
+      %th
   %tbody
     - @works.each do |work|
       %tr
@@ -32,3 +33,6 @@
           = work.title
         %td
           = work.slug
+        %td
+          %a{ :href => url_for_works_edit(work) }
+            Edit
