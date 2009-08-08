@@ -34,5 +34,10 @@
         %td
           = work.slug
         %td
+          %a{ :href => url_for_works_show(work) }
+            Show
           %a{ :href => url_for_works_edit(work) }
             Edit
+          %a{ :href => url_for_works_destroy(work) }
+            Delete
+          

@@ -1,0 +1,29 @@
+%h1 Show Work
+
+%nav
+  %ul#crud_navigation
+    %li
+      %a{ :href => url_for_works_index }
+        Work Index
+    %li
+      %strong
+        Show Work
+    %li
+      %a{ :href => url_for_works_edit(@work) }
+        Edit Work
+
+%dl
+  %dt
+    Title
+  %dd
+    = @work.title
+%dl
+  %dt
+    Slug
+  %dd
+    = @work.slug
+%dl
+  %dt
+    Description
+  %dd
+    = @work.description
