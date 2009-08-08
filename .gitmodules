@@ -1,0 +1,3 @@
+[submodule "vendor/dm-more"]
+	path = vendor/dm-more
+	url = git://github.com/datamapper/dm-more.git
