@@ -1,4 +1,5 @@
-require 'datamapper'
+require 'dm-core'
+require 'dm-types'
 require 'active_support/core_ext/blank'
 require 'rack/utils'
 
