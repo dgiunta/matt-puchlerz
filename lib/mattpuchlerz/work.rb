@@ -9,6 +9,10 @@ module MattPuchlerz
   class Work
     
     include DataMapper::Resource
+    
+    # The dm-is-list gem utilizes transactions, and 
+    # for some reason, the transaction code isn't 
+    # being included into Resource automatically.
     include DataMapper::Transaction::Resource
     
     IMAGE_DIR = File.join('images', 'works') unless defined?(IMAGE_DIR)
