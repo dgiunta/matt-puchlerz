@@ -1,5 +1,7 @@
 require 'dm-core'
+require 'dm-migrations'
 require 'dm-types'
+require 'dm-is-list'
 require 'active_support/core_ext/blank'
 require 'rack/utils'
 
@@ -7,6 +9,7 @@ module MattPuchlerz
   class Work
     
     include DataMapper::Resource
+    include DataMapper::Transaction::Resource
     
     IMAGE_DIR = File.join('images', 'works') unless defined?(IMAGE_DIR)
     
@@ -14,6 +17,8 @@ module MattPuchlerz
     property :description, Text
     property :slug,        Slug
     property :title,       String
+    
+    is :list
     
     def images
       if slug.blank?

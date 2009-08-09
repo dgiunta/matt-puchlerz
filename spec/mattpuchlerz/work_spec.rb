@@ -55,6 +55,14 @@ describe MattPuchlerz::Work do
       it "should have an #images method" do
         @work.should respond_to(:images)
       end
+      
+      it "should have a #position method" do
+        @work.should respond_to(:position)
+      end
+
+      it "should have a #move method" do
+        @work.should respond_to(:move)
+      end
 
       it "should have 0 images" do
         @work.should have(0).images
@@ -90,6 +98,16 @@ describe MattPuchlerz::Work do
       it "should be able to set a description" do
         @work.description = 'I am the description'
         @work.description.should == 'I am the description'
+      end
+      
+      it "should be able to move its position within the list" do
+        work1 = MattPuchlerz::Work.make
+        work2 = MattPuchlerz::Work.make
+        work1.position.should < work2.position
+
+        work1.move(:down)
+        work2.reload
+        work1.position.should > work2.position
       end
 
     end
