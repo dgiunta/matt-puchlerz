@@ -24,6 +24,8 @@
       %th
         Slug
       %th
+        Description
+      %th
         Viewable
       %th
         Actions
@@ -36,6 +38,8 @@
           = work.title
         %td
           = work.slug
+        %td
+          = "#{ work.description[0..50] }&hellip;"
         %td
           = boolean_html work.viewable?
         %td
