@@ -115,22 +115,22 @@ end
 ###
 
 Then /^I (should|should not) see the following:$/ do |boolean, table|
-  table.hashes.each do |attributes|
-    attributes.values.each do |value|
+  table.hashes.each do |row|
+    row.values.each do |value|
       Then %Q{I #{boolean} see "#{value}"}
     end
   end
 end
 
 Then /^I should see the following tags:$/ do |table|
-  table.hashes.each do |attributes|
-    response.should have_tag( attributes['tag'] )
+  table.hashes.each do |row|
+    response.should have_tag( row['tag'] )
   end
 end
 
 Then /^I should see the following fields and values:$/ do |table|
-  table.hashes.each do |attributes|
-    attributes.each do |field, value|
+  table.hashes.each do |row|
+    row.each do |field, value|
       Then %Q{the "#{field}" field should contain "#{value}"}
     end
   end

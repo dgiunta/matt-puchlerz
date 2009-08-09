@@ -1,6 +1,6 @@
 Given /^the following works exist:$/ do |table|
-  table.hashes.each do |attributes|
-    work = MattPuchlerz::Work.new attributes
+  table.hashes.each do |row|
+    work = MattPuchlerz::Work.new row
     work.save
   end
 end
@@ -10,9 +10,9 @@ When /^I press "([^\"]*)" of a specific work$/ do |element|
 end
 
 Then /^I (should|should not) see the following works:$/ do |boolean, table|
-  table.hashes.each do |attributes|
-    Then %Q{I #{ boolean } see "#{ attributes['title'] }"}
-    # Then %Q{I should see "#{ attributes['slug'] }"}
-    Then %Q{I #{ boolean } see "#{ attributes['description'] }"}
+  table.hashes.each do |row|
+    Then %Q{I #{ boolean } see "#{ row['title'] }"}
+    # Then %Q{I should see "#{ row['slug'] }"}
+    Then %Q{I #{ boolean } see "#{ row['description'] }"}
   end
 end
