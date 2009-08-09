@@ -6,3 +6,5 @@
   .description
     :textile
       #{ @work.description }
+  %ul.images
+    = partial :'works/work_image', :collection => @work.images
