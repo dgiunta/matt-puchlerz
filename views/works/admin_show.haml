@@ -17,13 +17,21 @@
     Title
   %dd
     = @work.title
+
 %dl
   %dt
     Slug
   %dd
     = @work.slug
+
 %dl
   %dt
     Description
   %dd
     = @work.description
+
+%dl
+  %dt Images
+  %dd
+    %ul.images
+      = partial :'works/work_image', :collection => @work.images
