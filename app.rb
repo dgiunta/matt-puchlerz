@@ -63,6 +63,12 @@ end
 
 rest Work, :routes => :show
 
+
+
+# 
+# Non-Production Routes
+# 
+
 unless Sinatra::Application.environment == :production
   
   get '/admin' do
