@@ -35,8 +35,8 @@ end
 
 helpers do
   
-  def page_title
-    @page_title ||= 'Matt Puchlerz -- Designer & Web Developer'
+  def boolean_html(bool)
+    bool ? '<span class="true">Yes</span>' : '<span class="false">No</span>'
   end
   
   def list_position_buttons(arr)
@@ -46,6 +46,10 @@ helpers do
       { :position => 'down',   :text => 'Move Down',      :if => arr.length - 1 },
       { :position => 'bottom', :text => 'Move to Bottom', :if => arr.length - 1 }
     ]
+  end
+  
+  def page_title
+    @page_title ||= 'Matt Puchlerz -- Designer & Web Developer'
   end
   
 end

@@ -24,6 +24,8 @@
       %th
         Slug
       %th
+        Viewable
+      %th
         Actions
   %tbody
     - @works.each_with_index do |work, i|
@@ -34,6 +36,8 @@
           = work.title
         %td
           = work.slug
+        %td
+          = boolean_html work.viewable?
         %td
           %ul
             %li
