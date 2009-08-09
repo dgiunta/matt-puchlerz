@@ -78,11 +78,14 @@ unless Sinatra::Application.environment == :production
     
     after do |route|
       super
-      case @position
-        when 'top';    @work.move :top
-        when 'up';     @work.move :up
-        when 'down';   @work.move :down
-        when 'bottom'; @work.move :bottom
+      if @position
+        case @position
+          when 'top';    @work.move :top
+          when 'up';     @work.move :up
+          when 'down';   @work.move :down
+          when 'bottom'; @work.move :bottom
+        end
+        redirect url_for_works_index
       end
     end
     
