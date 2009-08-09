@@ -18,26 +18,43 @@
   %thead
     %tr
       %th
-        ID
+        Position
       %th
         Title
       %th
         Slug
       %th
+        Actions
   %tbody
-    - @works.each do |work|
+    - @works.each_with_index do |work, i|
       %tr
         %td
-          = work.id
+          = work.position
         %td
           = work.title
         %td
           = work.slug
         %td
-          %a{ :href => url_for_works_show(work) }
-            Show
-          %a{ :href => url_for_works_edit(work) }
-            Edit
-          %a{ :href => url_for_works_destroy(work) }
-            Delete
-          
+          %ul
+            %li
+              %a{ :href => url_for_works_show(work) }
+                Show
+            %li
+              %a{ :href => url_for_works_edit(work) }
+                Edit
+            %li
+              %form{ :action => url_for_works_destroy(work), :method => :post }
+                %div
+                  %input{ :type => :hidden, :name => '_method', :value => 'delete' }
+                  %input{ :type => :submit, :value => 'Delete' }
+          %ul.position
+            - list_position_buttons(@works).each do |button|
+              %li
+                %form{ :action => url_for_works_show(work), :method => :post }
+                  %div
+                    %input{ :type => :hidden, :name => '_method', :value => 'put' }
+                    %input{ :type => :hidden, :name => 'position', :value => button[:position] }
+                    - if i == button[:if]
+                      %input{ :type => :submit, :value => button[:text], :disabled => true }
+                    - else
+                      %input{ :type => :submit, :value => button[:text] }

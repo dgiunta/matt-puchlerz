@@ -39,6 +39,15 @@ helpers do
     @page_title ||= 'Matt Puchlerz -- Designer & Web Developer'
   end
   
+  def list_position_buttons(arr)
+    [
+      { :position => 'top',    :text => 'Move to Top',    :if => 0              },
+      { :position => 'up',     :text => 'Move Up',        :if => 0              },
+      { :position => 'down',   :text => 'Move Down',      :if => arr.length - 1 },
+      { :position => 'bottom', :text => 'Move to Bottom', :if => arr.length - 1 }
+    ]
+  end
+  
 end
 
 
@@ -60,6 +69,23 @@ unless Sinatra::Application.environment == :production
     redirect '/admin/works'
   end
   
-  rest Work, :layout => :admin, :namespace => '/admin'
-  
+  rest Work, :layout => :admin, :namespace => '/admin' do
+
+    before do |route|
+      @position = params.delete 'position'
+      super
+    end
+    
+    after do |route|
+      super
+      case @position
+        when 'top';    @work.move :top
+        when 'up';     @work.move :up
+        when 'down';   @work.move :down
+        when 'bottom'; @work.move :bottom
+      end
+    end
+    
+  end
+    
 end

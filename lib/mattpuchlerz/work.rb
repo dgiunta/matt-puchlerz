@@ -24,6 +24,9 @@ module MattPuchlerz
     
     is :list
     
+    # default order
+    default_scope(:default).update :order => [ :position ]
+    
     def images
       if slug.blank?
         return []
