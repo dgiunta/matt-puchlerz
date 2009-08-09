@@ -65,7 +65,10 @@ get '/' do
   haml :index
 end
 
-rest Work, :routes => :show
+get '/works/:slug' do |slug|
+  @work = Work.first :slug => slug
+  haml :'works/show'
+end
 
 
 

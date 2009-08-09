@@ -8,7 +8,7 @@ module NavigationHelpers
     when /the portfolio page/
       '/'
     when /the work show page/
-      "/works/#{ MattPuchlerz::Work.first.id }"
+      "/works/#{ MattPuchlerz::Work.first.slug }"
     else
       raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
         "Now, go and add a mapping in features/support/paths.rb"
