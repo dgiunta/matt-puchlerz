@@ -5,7 +5,7 @@ module NavigationHelpers
     case page_name
     when /the home page/
       '/'
-    when /the portfolio page/
+    when /the works index page/
       '/'
     when /the work show page/
       "/works/#{ MattPuchlerz::Work.first.slug }"
