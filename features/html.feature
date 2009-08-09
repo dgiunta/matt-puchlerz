@@ -11,3 +11,10 @@ Feature: HTML
       | head  |
       | title |
       | body  |
+
+  Scenario: Default page title
+    Given I am on the home page
+    Then the title should be "Matt Puchlerz — Designer & Web Developer"
+  
+  
+  

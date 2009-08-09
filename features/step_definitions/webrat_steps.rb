@@ -136,6 +136,10 @@ Then /^I should see the following fields and values:$/ do |table|
   end
 end
 
+Then /^the title should be "([^\"]*)"$/ do |content|
+  response.should have_tag( 'title', { :content => content } )
+end
+
 Then /^I should see (\d+) "([^\"]*)" links?$/ do |number, content|
   response.should have_tag( 'a', { :content => content, :count => number.to_i } )
 end
