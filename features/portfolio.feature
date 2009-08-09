@@ -49,6 +49,3 @@ Feature: Portfolio
       | Awesome Work                                      |
       | This was something I did back when I was awesome. |
       # | one of more images of the work     |
-      # | one or more tags labeling the work |
-  
-  
