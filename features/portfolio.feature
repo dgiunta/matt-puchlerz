@@ -37,7 +37,6 @@ Feature: Portfolio
     When I follow "Awesome Work"
     Then I should be on the work show page
 
-  @current
   Scenario: Viewing the details of a single work
     Given the following works exist:
       | title         | slug  | description                                       |
@@ -50,3 +49,17 @@ Feature: Portfolio
       | Awesome Title                                     |
       | This was something I did back when I was awesome. |
       # | one of more images of the work     |
+
+  Scenario: Viewing a non-viewable work
+    Given the following works exist:
+      | title           | slug            | description                                              |
+      | Unviewable Work | unviewable_work | As this work wont have images, it should not be viewable |
+    And I am a user
+    And I am on the work show page
+    Then I should get a 404 response code
+
+  @current
+  Scenario: Viewing a non-existent work
+    Given I am a user
+    And I am on the blank work show page
+    Then I should get a 404 response code

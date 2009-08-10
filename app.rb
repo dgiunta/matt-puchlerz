@@ -71,6 +71,7 @@ end
 
 get '/works/:slug' do |slug|
   @work = Work.first :slug => slug
+  throw :halt, [ 404, 'Not Found' ] if @work.nil? or not @work.viewable?
   @page_title = "#{ @work.title } -- A Work by Matt Puchlerz"
   haml :'works/show'
 end

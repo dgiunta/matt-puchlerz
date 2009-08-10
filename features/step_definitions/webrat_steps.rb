@@ -147,3 +147,7 @@ end
 Then /^I should see (\d+) "([^\"]*)" buttons?$/ do |number, content|
   response.should have_tag( 'input', { :type => 'submit', :value => content, :count => number.to_i } )
 end
+
+Then /^I should get a (\d+) response code$/ do |code|
+  response.status.should == code.to_i
+end
