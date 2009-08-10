@@ -49,7 +49,11 @@ helpers do
   end
   
   def page_title
-    @page_title ||= 'Matt Puchlerz -- Designer & Web Developer'
+    @page_title ||= site_name
+  end
+  
+  def site_name
+    'Matt Puchlerz -- Designer & Web Developer'
   end
   
 end
@@ -67,7 +71,7 @@ end
 
 get '/works/:slug' do |slug|
   @work = Work.first :slug => slug
-  @page_title = "#{ @work.title } -- a work by Matt Puchlerz"
+  @page_title = "#{ @work.title } -- A Work by Matt Puchlerz"
   haml :'works/show'
 end
 
