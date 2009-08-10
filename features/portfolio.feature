@@ -40,12 +40,13 @@ Feature: Portfolio
   @current
   Scenario: Viewing the details of a single work
     Given the following works exist:
-      | title        | slug  | description                                       |
-      | Awesome Work | test2 | This was something I did back when I was awesome. |
+      | title         | slug  | description                                       |
+      | Awesome Title | test2 | This was something I did back when I was awesome. |
     And I am a user
     And I am on the work show page
+    Then the title should be "Awesome Title — a work by Matt Puchlerz"
     Then I should see the following:
       | elements                                          |
-      | Awesome Work                                      |
+      | Awesome Title                                     |
       | This was something I did back when I was awesome. |
       # | one of more images of the work     |

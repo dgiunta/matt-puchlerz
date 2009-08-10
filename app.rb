@@ -67,6 +67,7 @@ end
 
 get '/works/:slug' do |slug|
   @work = Work.first :slug => slug
+  @page_title = "#{ @work.title } -- a work by Matt Puchlerz"
   haml :'works/show'
 end
 
