@@ -75,6 +75,7 @@ module MattPuchlerz
         path.sub! Sinatra::Application.public, ''
         path = Rack::Utils.escape(path)
         path.gsub! '%2F', '/'
+        path
       end.sort
     end
         
