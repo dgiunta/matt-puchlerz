@@ -14,7 +14,7 @@ describe MattPuchlerz::Work do
     
     context "finding works" do
       
-      before(:all) do
+      before :all do
         @work1 = MattPuchlerz::Work.make
         @work2 = MattPuchlerz::Work.make
         @work3 = MattPuchlerz::Work.make :slug => 'no way that this is going to exist or be viewable'
@@ -128,28 +128,36 @@ describe MattPuchlerz::Work do
     context "determining readiness for viewing" do
       
       it "should not be viewable when its slug is blank" do
-        @work = MattPuchlerz::Work.make :slug => ''
-        @work.should_not be_viewable
+        work = MattPuchlerz::Work.make :slug => ''
+        work.should_not be_viewable
       end
 
       it "should not be viewable when its title is blank" do
-        @work = MattPuchlerz::Work.make :title => ''
-        @work.should_not be_viewable
+        work = MattPuchlerz::Work.make :title => ''
+        work.should_not be_viewable
       end
 
       it "should not be viewable when its description is blank" do
-        @work = MattPuchlerz::Work.make :description => ''
-        @work.should_not be_viewable
+        work = MattPuchlerz::Work.make :description => ''
+        work.should_not be_viewable
       end
 
       it "should not be viewable when it has 0 images" do
-        @work = MattPuchlerz::Work.make :slug => 'There is no way the work will have any images under this crazy slug'
-        @work.should_not be_viewable
+        work = MattPuchlerz::Work.make
+        work.should_receive(:images).and_return(nil)
+        work.should_not be_viewable
+      end
+
+      it "should not be viewable when it has no thumbnail image" do
+        pending
+        work = MattPuchlerz::Work.make
+        work.should_recieve(:image_thumbnail).and_return(nil)
+        work.should_not be_viewable
       end
 
       it "should be viewable when it has a slug, title, description, and 1 or more images" do
-        @work = MattPuchlerz::Work.make
-        @work.should be_viewable
+        work = MattPuchlerz::Work.make
+        work.should be_viewable
       end
 
     end
