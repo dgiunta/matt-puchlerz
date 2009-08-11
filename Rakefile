@@ -8,6 +8,8 @@ require 'vlad/passenger'
 require 'vlad/apache'
 require 'vlad/git'
 
+set(:latest_release) { deploy_timestamped ? current_release : release_path }
+
 set :repository,  'ssh://puchlerz@lira.dreamhost.com/~/git.puchlerz.com/matt.puchlerz.com.git'
 set :revision,    'origin/staging'
 
