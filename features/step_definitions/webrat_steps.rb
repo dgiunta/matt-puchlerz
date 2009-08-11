@@ -151,3 +151,10 @@ end
 Then /^I should get a (\d+) response code$/ do |code|
   response.status.should == code.to_i
 end
+
+Then /^I (should|should not) see the following images:$/ do |boolean, table|
+  boolean = (boolean == 'should') ? :should : :should_not
+  table.hashes.each do |row|
+    response.send boolean, have_tag( 'img', { :src => row['image'] } )
+  end
+end
