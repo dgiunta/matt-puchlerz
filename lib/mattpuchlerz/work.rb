@@ -24,7 +24,7 @@ module MattPuchlerz
     
     is :list
     
-    # default order
+    # Set default order
     default_scope(:default).update :order => [ :position ]
     
     def image_thumbnail
@@ -41,7 +41,11 @@ module MattPuchlerz
     end
     
     def viewable?
-      not slug.blank? and not title.blank? and not description.blank? and not images.blank?
+      not slug.blank? and 
+      not title.blank? and 
+      not description.blank? and 
+      not images.blank? and 
+      not image_thumbnail.blank?
     end
     
     def self.viewable

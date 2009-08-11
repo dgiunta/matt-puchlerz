@@ -149,9 +149,8 @@ describe MattPuchlerz::Work do
       end
 
       it "should not be viewable when it has no thumbnail image" do
-        pending
         work = MattPuchlerz::Work.make
-        work.should_recieve(:image_thumbnail).and_return(nil)
+        work.should_receive(:image_thumbnail).and_return(nil)
         work.should_not be_viewable
       end
 
