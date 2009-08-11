@@ -61,22 +61,31 @@ module MattPuchlerz
         return @all_images
       end
       
-      # Find images that are within /public/images/works/slug-name/
-      pattern = File.expand_path( File.join( 
+      @all_images = self.class.find_images self.slug
+      @all_images = self.class.convert_to_relative_paths @all_images
+      @all_images.sort!
+    end
+    
+    # Find images that are within /public/images/works/slug-name/
+    # 
+    def self.find_images(slug)
+      Dir.glob File.expand_path( File.join( 
         Sinatra::Application.public, 
         IMAGE_DIR, 
-        attribute_get(:slug), 
+        slug, 
         "*.{gif,jpg,png}" 
       ))
-      @all_images = Dir.glob(pattern)
-      
-      # Make the image paths relative from the public directory
-      @all_images = @all_images.map do |path| 
+    end
+    
+    # Make the image paths relative from the public directory
+    # 
+    def self.convert_to_relative_paths(paths)
+      paths.map do |path| 
         path = path.sub Sinatra::Application.public, ''
         path = Rack::Utils.escape(path)
         path = path.gsub '%2F', '/'
         path
-      end.sort
+      end      
     end
         
   end
