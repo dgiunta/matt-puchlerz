@@ -34,14 +34,20 @@ module MattPuchlerz
         return @images
       end
       
+      # Find images that are within /public/images/works/slug-name/
       pattern = File.expand_path( File.join( 
         Sinatra::Application.public, 
         IMAGE_DIR, 
         attribute_get(:slug), 
         "*.{gif,jpg,png}" 
       ))
+      @images = Dir.glob(pattern)
       
-      @images = Dir.glob(pattern).map do |path| 
+      # Get rid of any images that begin with an underscore
+      @images.reject! { |path| path =~ /\/_/ }
+      
+      # Make the image paths relative from the public directory
+      @images.map do |path| 
         path.sub! Sinatra::Application.public, ''
         path = Rack::Utils.escape(path)
         path.gsub! '%2F', '/'
