@@ -90,7 +90,23 @@ describe MattPuchlerz::Work do
       end
 
       it "should be able to find images after setting the slug" do
-        @work.slug = "test1"
+        @work.slug = 'test1'
+        @work.images.should == [ 
+          '/images/works/test1/Avatar.png', 
+          '/images/works/test1/ScreenClean.jpg', 
+          '/images/works/test1/The+Optical+Illusion+Kid.gif' 
+        ]
+      end
+
+      it "should cache the images after finding them on the first call" do
+        Dir.should_receive(:glob).once.and_return([
+          '/Users/mattpuchlerz/Sites/matt.puchlerz.com/public/images/works/test1/Avatar.png',
+          '/Users/mattpuchlerz/Sites/matt.puchlerz.com/public/images/works/test1/ScreenClean.jpg',
+          '/Users/mattpuchlerz/Sites/matt.puchlerz.com/public/images/works/test1/The Optical Illusion Kid.gif',
+        ])
+        
+        @work.slug = 'test1'
+        @work.images
         @work.images.should == [ 
           '/images/works/test1/Avatar.png', 
           '/images/works/test1/ScreenClean.jpg', 
@@ -99,7 +115,7 @@ describe MattPuchlerz::Work do
       end
 
       it "should be able to find the thumbnail image after setting the slug" do
-        @work.slug = "test1"
+        @work.slug = 'test1'
         @work.image_thumbnail.should == '/images/works/test1/_thumb.png'
       end
 

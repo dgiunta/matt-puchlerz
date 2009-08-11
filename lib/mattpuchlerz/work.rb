@@ -71,10 +71,10 @@ module MattPuchlerz
       @all_images = Dir.glob(pattern)
       
       # Make the image paths relative from the public directory
-      @all_images.map do |path| 
-        path.sub! Sinatra::Application.public, ''
+      @all_images = @all_images.map do |path| 
+        path = path.sub Sinatra::Application.public, ''
         path = Rack::Utils.escape(path)
-        path.gsub! '%2F', '/'
+        path = path.gsub '%2F', '/'
         path
       end.sort
     end
