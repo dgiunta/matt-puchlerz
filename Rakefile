@@ -11,6 +11,7 @@ set :repository, 'ssh://puchlerz@lira.dreamhost.com/~/git.puchlerz.com/matt.puch
 set :revision,   'origin/staging'
 
 set :domain,     '67.23.1.68'
+set :ssh_flags,  [ '-p 30022' ]
 set :deploy_to,  "/home/mattpuchlerz/Sites/staging.matt.puchlerz.com"
 
 
