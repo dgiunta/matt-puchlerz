@@ -42,7 +42,7 @@ Feature: Portfolio
   Scenario: Accessing the work details page
     Given the following works exist:
       | title        | slug  | description                                       |
-      | Awesome Work | test2 | This was something I did back when I was awesome. |
+      | Awesome Work | test1 | This was something I did back when I was awesome. |
     And I am a user
     And I am on the works index page
     When I follow "Awesome Work"
@@ -51,7 +51,7 @@ Feature: Portfolio
   Scenario: Viewing the details of a single work
     Given the following works exist:
       | title         | slug  | description                                       |
-      | Awesome Title | test2 | This was something I did back when I was awesome. |
+      | Awesome Title | test1 | This was something I did back when I was awesome. |
     And I am a user
     And I am on the work show page
     Then the title should be "Awesome Title — A Work by Matt Puchlerz"
@@ -59,7 +59,11 @@ Feature: Portfolio
       | elements                                          |
       | Awesome Title                                     |
       | This was something I did back when I was awesome. |
-      # | one of more images of the work     |
+    And I should see the following images:
+      | src                                              |
+      | /images/works/test1/Avatar.png                   |
+      | /images/works/test1/ScreenClean.jpg              |
+      | /images/works/test1/The+Optical+Illusion+Kid.gif |
 
   Scenario: Viewing a non-viewable work
     Given the following works exist:
