@@ -30,11 +30,11 @@ describe MattPuchlerz::Work do
   
   context "instance behavior" do
     
-    before(:each) do
-      @work = MattPuchlerz::Work.new
-    end
-
     context "when initialized" do
+
+      before :each do
+        @work = MattPuchlerz::Work.new
+      end
 
       it "should have an #id method" do
         @work.should respond_to(:id)
@@ -54,6 +54,10 @@ describe MattPuchlerz::Work do
 
       it "should have an #images method" do
         @work.should respond_to(:images)
+      end
+      
+      it "should have a #image_thumbnail method" do
+        @work.should respond_to(:image_thumbnail)
       end
       
       it "should have a #position method" do
@@ -76,6 +80,10 @@ describe MattPuchlerz::Work do
 
     context "when setting attributes of the work" do
 
+      before :each do
+        @work = MattPuchlerz::Work.new
+      end
+
       it "should be able to set a slug, which converts/strips any non-alphanumerics, underscores, or hyphens" do
         @work.slug = %Q{ Who do I 'look' like 2-U, an "awesome" slug!? }
         @work.slug.should == 'who_do_i_look_like_2-u_an_awesome_slug'
@@ -88,6 +96,11 @@ describe MattPuchlerz::Work do
           '/images/works/test1/ScreenClean.jpg', 
           '/images/works/test1/The+Optical+Illusion+Kid.gif' 
         ]
+      end
+
+      it "should be able to find the thumbnail image after setting the slug" do
+        @work.slug = "test1"
+        @work.image_thumbnail.should == '/images/works/test1/_thumb.png'
       end
 
       it "should be able to set a title" do
@@ -113,39 +126,29 @@ describe MattPuchlerz::Work do
     end
 
     context "determining readiness for viewing" do
-
+      
       it "should not be viewable when its slug is blank" do
-        @work.slug = ''
-        @work.title = 'This is the title.'
-        @work.description = 'This is the description.'
+        @work = MattPuchlerz::Work.make :slug => ''
         @work.should_not be_viewable
       end
 
       it "should not be viewable when its title is blank" do
-        @work.slug = 'test1'
-        @work.title = ''
-        @work.description = 'This is the description.'
+        @work = MattPuchlerz::Work.make :title => ''
         @work.should_not be_viewable
       end
 
       it "should not be viewable when its description is blank" do
-        @work.slug = 'test1'
-        @work.title = 'This is the title.'
-        @work.description = ''
+        @work = MattPuchlerz::Work.make :description => ''
         @work.should_not be_viewable
       end
 
       it "should not be viewable when it has 0 images" do
-        @work.slug = 'There is no way that the work will have any images under this slug'
-        @work.title = 'This is the title.'
-        @work.description = 'This is the description.'
+        @work = MattPuchlerz::Work.make :slug => 'There is no way the work will have any images under this crazy slug'
         @work.should_not be_viewable
       end
 
       it "should be viewable when it has a slug, title, description, and 1 or more images" do
-        @work.slug = 'test1'
-        @work.title = 'This is the title.'
-        @work.description = 'This is the description.'
+        @work = MattPuchlerz::Work.make
         @work.should be_viewable
       end
 

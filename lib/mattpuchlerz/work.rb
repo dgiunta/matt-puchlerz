@@ -27,31 +27,13 @@ module MattPuchlerz
     # default order
     default_scope(:default).update :order => [ :position ]
     
+    def image_thumbnail
+      all_images.detect { |path| path =~ /\/_thumb./ }
+    end
+    
     def images
-      if slug.blank?
-        return []
-      elsif not @images.blank?
-        return @images
-      end
-      
-      # Find images that are within /public/images/works/slug-name/
-      pattern = File.expand_path( File.join( 
-        Sinatra::Application.public, 
-        IMAGE_DIR, 
-        attribute_get(:slug), 
-        "*.{gif,jpg,png}" 
-      ))
-      @images = Dir.glob(pattern)
-      
       # Get rid of any images that begin with an underscore
-      @images.reject! { |path| path =~ /\/_/ }
-      
-      # Make the image paths relative from the public directory
-      @images.map do |path| 
-        path.sub! Sinatra::Application.public, ''
-        path = Rack::Utils.escape(path)
-        path.gsub! '%2F', '/'
-      end.sort
+      all_images.reject { |path| path =~ /\/_/ }
     end
     
     def slug=(slug)
@@ -64,6 +46,32 @@ module MattPuchlerz
     
     def self.viewable
       all.select { |work| work.viewable? }
+    end
+    
+    private
+    
+    def all_images
+      if slug.blank?
+        return []
+      elsif not @all_images.blank?
+        return @all_images
+      end
+      
+      # Find images that are within /public/images/works/slug-name/
+      pattern = File.expand_path( File.join( 
+        Sinatra::Application.public, 
+        IMAGE_DIR, 
+        attribute_get(:slug), 
+        "*.{gif,jpg,png}" 
+      ))
+      @all_images = Dir.glob(pattern)
+      
+      # Make the image paths relative from the public directory
+      @all_images.map do |path| 
+        path.sub! Sinatra::Application.public, ''
+        path = Rack::Utils.escape(path)
+        path.gsub! '%2F', '/'
+      end.sort
     end
         
   end
