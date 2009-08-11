@@ -20,18 +20,13 @@ Feature: Portfolio
     And I am a user
     And I am on the works index page
     Then I should see "Works"
-    And I should see the following:
-      | title        |
-      | Awesome Work |
-      | Untitled     |
-      | $%*!         |
     And I should see the following images:
-      | image                         |
-      | /images/works/test1/thumb.png |
-      | /images/works/test2/thumb.jpg |
-      | /images/works/test3/thumb.jpg |
+      | src                            | alt          |
+      | /images/works/test1/_thumb.png | Awesome Work |
+      | /images/works/test2/_thumb.jpg | Untitled     |
+      | /images/works/test3/_thumb.jpg | $%*!         |
     And I should not see the following images:
-      | image                                            |
+      | src                                              |
       | /images/works/test1/Avatar.png                   |
       | /images/works/test1/ScreenClean.jpg              |
       | /images/works/test1/The+Optical+Illusion+Kid.gif |
