@@ -1,12 +1,16 @@
+puts defined?(Gem) ? 'defined!' : 'not defined'
+
 # Note the application's root directory for convenience
 ROOT = File.expand_path File.dirname(__FILE__) unless defined?(ROOT)
 
-require 'rubygems'
+# Add vendored gems to the load path
+Dir['vendor/*'].each { |g| $:.unshift File.join(ROOT, vendored_gem, 'lib') }
+
 require 'sinatra'
 require 'sinatra/rest'
 
 # Require everything in the lib directory
-Dir.glob("#{ ROOT }/lib/**/*.rb").each { |file| require file }
+Dir["#{ ROOT }/lib/**/*.rb"].each { |file| require file }
 
 # Make it easier to work within my namespace
 include MattPuchlerz
