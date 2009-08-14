@@ -50,3 +50,37 @@ namespace :db do
   end
 
 end
+
+namespace :gems do
+  
+  desc 'Unpacks all required gems into vendor directory'
+  task :unpack do
+    gems = [
+      { :version => '2.3.2',  :name => 'activesupport' },
+      { :version => '0.3.1',  :name => 'blindgaenger-sinatra-rest' },
+      { :version => '0.10.0', :name => 'dm-core' },
+      { :version => '0.10.0', :name => 'dm-migrations' },
+      { :version => '0.10.0', :name => 'dm-types' },
+      { :version => '0.10.0', :name => 'dm-is-list' },
+      { :version => '0.10.0', :name => 'do_sqlite3' },
+      { :version => '0.9.13', :name => 'extlib' },
+      { :version => '1.0.0',  :name => 'rack' },
+      { :version => '4.2.2',  :name => 'RedCloth' },
+      { :version => '0.9.4',  :name => 'sinatra' },
+    ]
+    
+    puts ''
+    puts "Unpacking #{ gems.length } gems:"
+    puts ''
+    
+    `mkdir vendor`
+    gems.each_with_index do |g, i|
+      puts "#{ i + 1 }. #{ g[:name] }-#{ g[:version] }"
+      `gem unpack --target vendor --version #{ g[:version] } #{ g[:name] }`
+    end
+
+    puts ''
+    puts 'Done!'
+  end
+  
+end
