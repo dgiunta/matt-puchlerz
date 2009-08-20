@@ -1,3 +1,12 @@
+@bc:              #ae4700;
+@bc-submit:       @bc;
+@bc-submit-hover: @bc + #222;
+@c:               #fff;
+@fs:              18px;
+@lh:              24px;
+
+
+
 /**
 * GLOBAL RESET
 */
@@ -63,9 +72,9 @@ textarea {
 
 body {
   color: #555;
-  font-size: 18px;
-  line-height: 24px;
-  padding: 48px;
+  font-size: @fs;
+  line-height: @lh;
+  padding: @lh * 2;
   text-align: left;
 }
 
@@ -101,9 +110,9 @@ sup {
   position: relative;
   top: -.35em;
 }
-/*
-input.text,
-input.password,
+
+input[type="text"],
+input[type="password"],
 select,
 textarea {
   background: #fff;
@@ -111,36 +120,35 @@ textarea {
   border-bottom-color: #ddd;
   border-top-color: #777;
   color: #000;
-  padding: <?= $css->em(3) ?> <?= $css->em(($css->get('fs-body') / 2)) ?>;
+  padding: 3px (@lh / 2);
 }
 
-input.text:focus,
-input.password:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
 textarea:focus {
-  background: url(../images/backgrounds/pulse.gif) repeat;
 }
 
-input.checkbox,
-input.radio {
+input[type="checkbox"],
+input[type="radio"] {
   vertical-align: middle;
 }
 
-input.submit {
-  background: <?= $css->get('bc-submit') ?>;
+input[type="submit"] {
+  background-color: @bc-submit;
   border: 0;
-  border-radius: <?= $css->em($css->get('lh-body') / 5) ?>;
-  -moz-border-radius: <?= $css->em($css->get('lh-body') / 5) ?>;
-  -webkit-border-radius: <?= $css->em($css->get('lh-body') / 5) ?>;
-  color: <?= $css->get('c-submit') ?>;
+  border-radius: @lh / 5;
+  -moz-border-radius: @lh / 5;
+  -webkit-border-radius: @lh / 5;
+  color: @c;
   cursor: pointer;
-  line-height: <?= $css->em('lh-body') ?> !important;
-  padding: <?= $css->em($css->get('lh-body') / 4) ?> <?= $css->em('lh-body') ?>;
+  line-height: @lh !important;
+  padding: (@lh / 4) @lh;
 }
 
-input.submit:hover {
-  background: <?= $css->get('bc-submit-hover') ?>;
+input[type="submit"]:hover {
+  background-color: @bc-submit-hover;
 }
-
+/*
 select {
   padding: <?= $css->em(2) ?>;
 }
