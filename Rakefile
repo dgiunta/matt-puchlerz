@@ -13,6 +13,13 @@ end
 
 namespace :gems do
   
+  desc 'Create a tar of all vendored gems'
+  task :tar do
+    puts ''
+    `tar -czf vendor.tar.gz vendor/`
+    puts 'Done!'
+  end
+  
   desc 'Unpacks all required gems into vendor directory'
   task :unpack do
     gems = [
