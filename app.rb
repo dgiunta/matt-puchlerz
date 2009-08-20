@@ -2,7 +2,7 @@
 ROOT = File.expand_path File.dirname(__FILE__) unless defined?(ROOT)
 
 # Add vendored gems to the load path
-Dir['vendor/*'].each { |g| $LOAD_PATH.unshift File.join(ROOT, g, 'lib') }
+Dir['vendor/*/lib'].each { |path| $LOAD_PATH.unshift File.join(ROOT, path) }
 
 require 'sinatra'
 require 'sinatra/rest'
