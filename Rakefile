@@ -86,7 +86,11 @@ namespace :gems do
     remote_task :extract_uploaded do
       puts ''
       puts 'Extracting uploaded vendor.tar.gz...'
-      run [ "cd #{ current_release }", "tar -xzf vendor.tar.gz" ].join(' && ')
+      run [ 
+        "cd #{ current_release }", 
+        "rm -rf vendor/", 
+        "tar -xzf vendor.tar.gz" 
+        ].join(' && ')
       puts 'Done!'
     end
   
@@ -114,6 +118,8 @@ namespace :gems do
       { :version => '2.3.2',  :name => 'activesupport' },
       { :version => '2.0.2',  :name => 'addressable' },
       { :version => '0.3.1',  :name => 'blindgaenger-sinatra-rest' },
+      { :version => '0.10.0', :name => 'data_objects' },
+      { :version => '0.10.0', :name => 'dm-adjust' },
       { :version => '0.10.0', :name => 'dm-core' },
       { :version => '0.10.0', :name => 'dm-migrations' },
       { :version => '0.10.0', :name => 'dm-types' },
@@ -125,6 +131,7 @@ namespace :gems do
       { :version => '1.0.0',  :name => 'rack' },
       { :version => '4.2.2',  :name => 'RedCloth' },
       { :version => '0.9.4',  :name => 'sinatra' },
+      { :version => '1.0.0',  :name => 'stringex' },
     ]
     
     puts ''
