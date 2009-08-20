@@ -1,5 +1,3 @@
-puts defined?(Gem) ? 'Gem defined!' : 'Gem not defined'
-
 # Note the application's root directory for convenience
 ROOT = File.expand_path File.dirname(__FILE__) unless defined?(ROOT)
 
@@ -7,7 +5,6 @@ ROOT = File.expand_path File.dirname(__FILE__) unless defined?(ROOT)
 Dir['vendor/*'].each { |g| $LOAD_PATH.unshift File.join(ROOT, vendored_gem, 'lib') }
 
 require 'sinatra'
-require 'sinatra/rest'
 
 # Require everything in the lib directory
 Dir["#{ ROOT }/lib/**/*.rb"].each { |file| require file }
@@ -87,6 +84,8 @@ end
 # 
 
 unless Sinatra::Application.environment == :production
+  
+  require 'sinatra/rest'
   
   get '/admin' do
     redirect '/admin/works'
