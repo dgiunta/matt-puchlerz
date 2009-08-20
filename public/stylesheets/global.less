@@ -1,0 +1,321 @@
+/**
+* GLOBAL RESET
+*/
+
+* { 
+  background: transparent;
+  border: 0;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+ol, 
+ul {
+  list-style: none;
+  list-style-position: outside;
+}
+
+h1, h2, h3, h4, h5, h6,
+input,
+select,
+textarea {
+  font-size: 1em;
+}
+
+blockquote, 
+q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+ins {
+  text-decoration: none;
+}
+
+del {
+  text-decoration: line-through;
+}
+
+
+
+/**
+* ELEMENTS
+*/
+
+body,
+input,
+select,
+textarea {
+  font-family: Georgia, serif;
+}
+
+body {
+  color: #555;
+  font-size: 18px;
+  line-height: 24px;
+  padding: 48px;
+  text-align: left;
+}
+
+a {
+  color: red;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+abbr,
+acronym {
+  border-bottom: 1px dotted #888;
+  cursor: help;
+}
+
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}
+
+sub {
+  vertical-align: sub;
+}
+
+sup {
+  font-size: .8em;
+  position: relative;
+  top: -.35em;
+}
+/*
+input.text,
+input.password,
+select,
+textarea {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-bottom-color: #ddd;
+  border-top-color: #777;
+  color: #000;
+  padding: <?= $css->em(3) ?> <?= $css->em(($css->get('fs-body') / 2)) ?>;
+}
+
+input.text:focus,
+input.password:focus,
+textarea:focus {
+  background: url(../images/backgrounds/pulse.gif) repeat;
+}
+
+input.checkbox,
+input.radio {
+  vertical-align: middle;
+}
+
+input.submit {
+  background: <?= $css->get('bc-submit') ?>;
+  border: 0;
+  border-radius: <?= $css->em($css->get('lh-body') / 5) ?>;
+  -moz-border-radius: <?= $css->em($css->get('lh-body') / 5) ?>;
+  -webkit-border-radius: <?= $css->em($css->get('lh-body') / 5) ?>;
+  color: <?= $css->get('c-submit') ?>;
+  cursor: pointer;
+  line-height: <?= $css->em('lh-body') ?> !important;
+  padding: <?= $css->em($css->get('lh-body') / 4) ?> <?= $css->em('lh-body') ?>;
+}
+
+input.submit:hover {
+  background: <?= $css->get('bc-submit-hover') ?>;
+}
+
+select {
+  padding: <?= $css->em(2) ?>;
+}
+
+select option {
+  padding: 0 20px 0 7px;
+}
+
+textarea {
+  line-height: <?= $css->em('lh-body') ?>;
+}
+
+blockquote, 
+dl, 
+fieldset, 
+form, 
+h1, h2, h3,
+ol, 
+p, 
+pre, 
+table, 
+ul { 
+  margin-bottom: <?= $css->em('lh-body') ?>;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: <?= $css->get('c-h1') ?>;
+  font-family: <?= $css->get('f-h1') ?>;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: <?= $css->em('fs-h1') ?>;
+  line-height: <?= $css->em('lh-h1', 'fs-h1') ?>;
+  margin-bottom: <?= $css->em('lh-body', 'fs-h1') ?>;
+}
+
+h2 {
+  font-size: <?= $css->em('fs-h2') ?>;
+  line-height: <?= $css->em('lh-h1', 'fs-h2') ?>;
+  margin-bottom: <?= $css->em('lh-body', 'fs-h2') ?>;
+}
+
+h3 {
+  font-size: <?= $css->em('fs-h3') ?>;
+  line-height: <?= $css->em('lh-body', 'fs-h3') ?>;
+  margin-bottom: <?= $css->em('lh-body', 'fs-h3') ?>;
+}
+
+h4, h5, h6 {
+  font-size: <?= $css->em('fs-h4') ?>;
+  line-height: <?= $css->em('lh-body', 'fs-h4') ?>;
+}
+
+h4 {
+  letter-spacing: <?= $css->em(1, 'fs-h4') ?>;
+  text-transform: uppercase;
+}
+
+h5, h6 {
+  font-style: italic;
+}
+
+h1 strong,
+h2 strong,
+h3 strong,
+h4 strong,
+h5 strong,
+h6 strong {
+  color: <?= $css->get('c-h1-strong') ?>;
+  text-transform: uppercase;
+}
+
+h1 strong {
+  font-size: <?= $css->em('fs-h1-strong', 'fs-h1') ?>;
+  line-height: <?= $css->em('lh-h1', 'fs-h1-strong') ?>;
+}
+
+h2 strong {
+  font-size: <?= $css->em('fs-h2-strong', 'fs-h2') ?>;
+  line-height: <?= $css->em('lh-h1', 'fs-h2-strong') ?>;
+  padding-left: <?= $css->em(1, 'fs-h2-strong') ?>;
+}
+
+h1 em, 
+h2 em, 
+h3 em, 
+h4 em, 
+h5 em, 
+h6 em {
+  color: <?= $css->get('c-h1-strong') ?>;
+}
+
+table {
+  width: 100%;
+}
+
+table th,
+table td {
+  line-height: <?= $css->em($css->get('lh-body') * .75) ?>;
+  padding: <?= $css->em(($css->get('lh-body') * .75) / 2) ?> <?= $css->em($css->get('lh-body') / 2) ?>;
+}
+
+table th {
+  vertical-align: bottom;
+}
+
+table td {
+  vertical-align: top;
+}
+
+table .number {
+  text-align: right;
+}
+
+ul, 
+ol {
+  padding-left: <?= $css->em($css->get('lh-body') * 2) ?>;
+}
+
+ul li,
+ol li {
+  margin-bottom: <?= $css->em($css->get('lh-body') / 2) ?>;
+}
+
+ul ul,
+ul ol,
+ol ul,
+ol ol {
+  margin-bottom: 0;
+}
+
+ul ul li,
+ul ol li,
+ol ul li,
+ol ol li {
+  margin-top: <?= $css->em(($css->get('lh-body') / 2)) ?>;;
+}
+
+ul li,
+ol ul li {
+  list-style-type: square;
+}
+
+ol li,
+ul ol li {
+  list-style-type: decimal;
+}
+
+dl {}
+
+dl dt {
+  font-weight: bold;
+}
+
+dl dt em {
+  font-weight: normal;
+}
+
+blockquote {
+  margin: 0 <?= $css->em('lh-body') ?> <?= $css->em('lh-body') ?>;
+  padding: <?= $css->em('lh-body') ?>;
+}
+
+blockquote p {
+  position: relative;
+}
+
+blockquote p.last {
+  margin-bottom: 0;
+}
+
+blockquote p span.ldquo {
+  left: -<?= $css->em(($css->get('fs-body') / 2)) ?>;
+  position: absolute;
+  top: 0;
+}
+*/

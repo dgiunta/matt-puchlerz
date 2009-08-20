@@ -78,6 +78,13 @@ get '/works/:slug' do |slug|
   haml :'works/show'
 end
 
+get '/stylesheets/:filename.css' do |filename|
+  content_type 'text/css', :charset => 'utf-8'
+  file = File.open("#{ Sinatra::Application.public }/stylesheets/#{ filename }.less")
+  require 'less'
+  Less.parse file
+end
+
 
 
 # 
