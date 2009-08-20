@@ -1,7 +1,8 @@
-@bc:              #ae4700;
-@bc-submit:       @bc;
-@bc-submit-hover: @bc + #222;
+@bc-submit:       #ae4700;
+@bc-submit-hover: @bc-submit + #333;
 @c:               #fff;
+@c-a:             @bc-submit;
+@c-a-hover:       @bc-submit-hover;
 @fs:              18px;
 @lh:              24px;
 
@@ -79,12 +80,13 @@ body {
 }
 
 a {
-  color: red;
+  color: @c-a;
   text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
+  
+  :hover {
+    color: @c-a-hover;
+    text-decoration: underline;
+  }
 }
 
 abbr,
