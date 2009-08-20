@@ -1,10 +1,10 @@
-puts defined?(Gem) ? 'defined!' : 'not defined'
+puts defined?(Gem) ? 'Gem defined!' : 'Gem not defined'
 
 # Note the application's root directory for convenience
 ROOT = File.expand_path File.dirname(__FILE__) unless defined?(ROOT)
 
 # Add vendored gems to the load path
-Dir['vendor/*'].each { |g| $:.unshift File.join(ROOT, vendored_gem, 'lib') }
+Dir['vendor/*'].each { |g| $LOAD_PATH.unshift File.join(ROOT, vendored_gem, 'lib') }
 
 require 'sinatra'
 require 'sinatra/rest'
@@ -23,7 +23,7 @@ include MattPuchlerz
 
 configure do
 
-  set :root, ROOT  
+  set :root, ROOT
   set :haml, { :attr_wrapper => '"', :format => :html5 }
   
   DataMapper.setup :default, "sqlite3://#{ ROOT }/db/#{ Sinatra::Application.environment }.sqlite3"
