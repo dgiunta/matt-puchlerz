@@ -1,60 +1,4 @@
 # 
-# App specific tasks
-# 
-
-namespace :db do
-
-  desc 'Overwrite production database with staging database'
-  task :staging_to_production do
-    `cp db/staging.sqlite3 db/production.sqlite3`
-  end
-
-end
-
-namespace :gems do
-  
-  desc 'Create a tar of all vendored gems'
-  task :tar do
-    puts ''
-    `tar -czf vendor.tar.gz vendor/`
-    puts 'Done!'
-  end
-  
-  desc 'Unpacks all required gems into vendor directory'
-  task :unpack do
-    gems = [
-      { :version => '2.3.2',  :name => 'activesupport' },
-      { :version => '0.3.1',  :name => 'blindgaenger-sinatra-rest' },
-      { :version => '0.10.0', :name => 'dm-core' },
-      { :version => '0.10.0', :name => 'dm-migrations' },
-      { :version => '0.10.0', :name => 'dm-types' },
-      { :version => '0.10.0', :name => 'dm-is-list' },
-      { :version => '0.10.0', :name => 'do_sqlite3' },
-      { :version => '0.9.13', :name => 'extlib' },
-      { :version => '1.0.0',  :name => 'rack' },
-      { :version => '4.2.2',  :name => 'RedCloth' },
-      { :version => '0.9.4',  :name => 'sinatra' },
-    ]
-    
-    puts ''
-    puts "Unpacking #{ gems.length } gems:"
-    puts ''
-    
-    `mkdir vendor`
-    gems.each_with_index do |g, i|
-      puts "#{ i + 1 }. #{ g[:name] }-#{ g[:version] }"
-      `gem unpack --target vendor --version #{ g[:version] } #{ g[:name] }`
-    end
-
-    puts ''
-    puts 'Done!'
-  end
-  
-end
-
-
-
-# 
 # Vlad the Deployer
 # 
 
@@ -74,7 +18,7 @@ set :sudo_prompt, /^.*password for .*:/
 
 set :domain,      '67.23.1.68'
 set :ssh_flags,   [ '-p 30022' ]
-set :deploy_to,   "/home/mattpuchlerz/Sites/staging.matt.puchlerz.com"
+set :deploy_to,   '/home/mattpuchlerz/Sites/staging.matt.puchlerz.com'
 
 namespace :vlad do
 
@@ -90,4 +34,112 @@ namespace :vlad do
     run "sudo #{ web_command } stop"
   end
 
+  desc 'Relink current release'
+  remote_task :relink_current do
+    run [
+      "rm -f #{ current_path } && ln -s #{ latest_release } #{ current_path }",
+      "mkdir -p #{ latest_release }/db #{ latest_release }/tmp"
+    ].join('&&')
+  end
+
+end
+
+
+
+# 
+# App specific tasks
+# 
+
+namespace :db do
+
+  desc 'Overwrite production database with staging database'
+  task :staging_to_production do
+    `cp db/staging.sqlite3 db/production.sqlite3`
+  end
+
+end
+
+namespace :gems do
+  
+  desc 'Syncs all necessary gems to the application server.'
+  task :sync do
+    %w[ 
+      unpack
+      tar:create 
+      tar:upload 
+      tar:extract_uploaded 
+      tar:delete_uploaded 
+    ].each { |t| Rake::Task["gems:#{ t }"].invoke }
+  end
+  
+  namespace :tar do
+  
+    desc 'Create a tar of all vendored gems.'
+    task :create do
+      puts ''
+      puts 'Creating vendor.tar.gz...'
+      `tar -czf vendor.tar.gz vendor/`
+      puts 'Done!'
+    end
+    
+    desc 'Extract the uploaded tar file.'
+    remote_task :extract_uploaded do
+      puts ''
+      puts 'Extracting uploaded vendor.tar.gz...'
+      run [ "cd #{ current_release }", "tar -xzf vendor.tar.gz" ].join(' && ')
+      puts 'Done!'
+    end
+  
+    desc 'Delete the uploaded tar file.'
+    remote_task :delete_uploaded do
+      puts ''
+      puts 'Deleting uploaded vendor.tar.gz...'
+      run "rm #{ current_release }/vendor.tar.gz"
+      puts 'Done!'
+    end
+  
+    desc 'Upload the tar file.'
+    remote_task :upload do
+      puts ''
+      puts 'Uploading vendor.tar.gz...'
+      `scp vendor.tar.gz slicehost:#{ current_release }/vendor.tar.gz`
+      puts 'Done!'
+    end
+  
+  end
+  
+  desc 'Unpacks all required gems into vendor directory.'
+  task :unpack do
+    gems = [
+      { :version => '2.3.2',  :name => 'activesupport' },
+      { :version => '2.0.2',  :name => 'addressable' },
+      { :version => '0.3.1',  :name => 'blindgaenger-sinatra-rest' },
+      { :version => '0.10.0', :name => 'dm-core' },
+      { :version => '0.10.0', :name => 'dm-migrations' },
+      { :version => '0.10.0', :name => 'dm-types' },
+      { :version => '0.10.0', :name => 'dm-is-list' },
+      { :version => '0.10.0', :name => 'do_sqlite3' },
+      { :version => '0.3.1',  :name => 'english' },
+      { :version => '0.9.13', :name => 'extlib' },
+      { :version => '2.2.2',  :name => 'haml' },
+      { :version => '1.0.0',  :name => 'rack' },
+      { :version => '4.2.2',  :name => 'RedCloth' },
+      { :version => '0.9.4',  :name => 'sinatra' },
+    ]
+    
+    puts ''
+    puts "Unpacking #{ gems.length } gems:"
+    puts ''
+    
+    `rm -rf vendor/`
+    `mkdir vendor`
+    gems.each_with_index do |g, i|
+      puts "#{ i + 1 }. #{ g[:name] }-#{ g[:version] }"
+      `gem unpack --target vendor --version #{ g[:version] } #{ g[:name] }`
+    end
+
+    puts ''
+    puts 'Done!'
+  end
+  
 end
