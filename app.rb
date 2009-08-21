@@ -85,6 +85,10 @@ get '/stylesheets/:filename.css' do |filename|
   Less.parse file
 end
 
+get '/stylesheets/test' do
+  haml :html_elements
+end
+
 
 
 # 
