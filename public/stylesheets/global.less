@@ -119,12 +119,13 @@ input[type="text"],
 input[type="password"],
 select,
 textarea {
-  background: #fff;
+  background-color: #fff;
   border: 1px solid #ccc;
   border-bottom-color: #ddd;
   border-top-color: #777;
   color: #000;
-  padding: 3px (@lh / 2);
+  line-height: (@lh * .75) !important;
+  padding: @lh * .125;
 }
 
 input[type="text"]:focus,
@@ -146,21 +147,17 @@ input[type="submit"] {
   color: @c;
   cursor: pointer;
   line-height: @lh !important;
-  padding: (@lh / 4) @lh;
+  padding: (@lh * .125) @lh;
 }
 
 input[type="submit"]:hover {
   background-color: @bc-submit-hover;
 }
-/*
-select {
-  padding: <?= $css->em(2) ?>;
-}
 
 select option {
-  padding: 0 20px 0 7px;
+  padding: 0 20px 0 (@lh * .125 + 3);
 }
-
+/*
 textarea {
   line-height: <?= $css->em('lh-body') ?>;
 }
