@@ -3,8 +3,15 @@
 @c:               #fff;
 @c-a:             @bc-submit;
 @c-a-hover:       @bc-submit-hover;
+@ff:              Georgia, serif;
+@ff-h1:           @ff;
 @fs:              18px;
+@fs-h1:           @lh * 2;
+@fs-h2:           @lh * 1.5;
+@fs-h3:           @lh;
+@fs-h4:           @fs - 1;
 @lh:              24px;
+@lh-h1:           @lh * 2;
 
 
 
@@ -68,7 +75,7 @@ body,
 input,
 select,
 textarea {
-  font-family: Georgia, serif;
+  font-family: @ff;
 }
 
 body {
@@ -177,38 +184,29 @@ ul {
   margin-bottom: @lh;
 }
 
-/*
 h1, h2, h3, h4, h5, h6 {
-  color: <?= $css->get('c-h1') ?>;
-  font-family: <?= $css->get('f-h1') ?>;
+  font-family: @ff-h1;
   font-weight: bold;
 }
 
 h1 {
-  font-size: <?= $css->em('fs-h1') ?>;
-  line-height: <?= $css->em('lh-h1', 'fs-h1') ?>;
-  margin-bottom: <?= $css->em('lh-body', 'fs-h1') ?>;
+  font-size: @fs-h1;
+  line-height: @lh-h1;
 }
 
 h2 {
-  font-size: <?= $css->em('fs-h2') ?>;
-  line-height: <?= $css->em('lh-h1', 'fs-h2') ?>;
-  margin-bottom: <?= $css->em('lh-body', 'fs-h2') ?>;
+  font-size: @fs-h2;
+	font-weight: normal;
+  line-height: @lh-h1;
 }
 
 h3 {
-  font-size: <?= $css->em('fs-h3') ?>;
-  line-height: <?= $css->em('lh-body', 'fs-h3') ?>;
-  margin-bottom: <?= $css->em('lh-body', 'fs-h3') ?>;
-}
-
-h4, h5, h6 {
-  font-size: <?= $css->em('fs-h4') ?>;
-  line-height: <?= $css->em('lh-body', 'fs-h4') ?>;
+  font-size: @fs-h3;
 }
 
 h4 {
-  letter-spacing: <?= $css->em(1, 'fs-h4') ?>;
+	font-size: @fs-h4;
+  letter-spacing: .025em;
   text-transform: uppercase;
 }
 
@@ -216,25 +214,26 @@ h5, h6 {
   font-style: italic;
 }
 
+/*
 h1 strong,
 h2 strong,
 h3 strong,
 h4 strong,
 h5 strong,
 h6 strong {
-  color: <?= $css->get('c-h1-strong') ?>;
+  color: <?= $css->get('c-h1-strong;
   text-transform: uppercase;
 }
 
 h1 strong {
-  font-size: <?= $css->em('fs-h1-strong', 'fs-h1') ?>;
-  line-height: <?= $css->em('lh-h1', 'fs-h1-strong') ?>;
+  font-size: @fs-h1-strong', 'fs-h1;
+  line-height: @lh-h1', 'fs-h1-strong;
 }
 
 h2 strong {
-  font-size: <?= $css->em('fs-h2-strong', 'fs-h2') ?>;
-  line-height: <?= $css->em('lh-h1', 'fs-h2-strong') ?>;
-  padding-left: <?= $css->em(1, 'fs-h2-strong') ?>;
+  font-size: @fs-h2-strong', 'fs-h2;
+  line-height: @lh-h1', 'fs-h2-strong;
+  padding-left: <?= $css->em(1, 'fs-h2-strong;
 }
 
 h1 em, 
@@ -243,7 +242,7 @@ h3 em,
 h4 em, 
 h5 em, 
 h6 em {
-  color: <?= $css->get('c-h1-strong') ?>;
+  color: <?= $css->get('c-h1-strong;
 }
 
 table {
@@ -252,8 +251,8 @@ table {
 
 table th,
 table td {
-  line-height: <?= $css->em($css->get('lh-body') * .75) ?>;
-  padding: <?= $css->em(($css->get('lh-body') * .75) / 2) ?> <?= $css->em($css->get('lh-body') / 2) ?>;
+  line-height: <?= $css->em($css->get('lh') * .75) ?>;
+  padding: <?= $css->em(($css->get('lh') * .75) / 2) ?> <?= $css->em($css->get('lh') / 2) ?>;
 }
 
 table th {
@@ -270,12 +269,12 @@ table .number {
 
 ul, 
 ol {
-  padding-left: <?= $css->em($css->get('lh-body') * 2) ?>;
+  padding-left: <?= $css->em($css->get('lh') * 2) ?>;
 }
 
 ul li,
 ol li {
-  margin-bottom: <?= $css->em($css->get('lh-body') / 2) ?>;
+  margin-bottom: <?= $css->em($css->get('lh') / 2) ?>;
 }
 
 ul ul,
@@ -289,7 +288,7 @@ ul ul li,
 ul ol li,
 ol ul li,
 ol ol li {
-  margin-top: <?= $css->em(($css->get('lh-body') / 2)) ?>;;
+  margin-top: <?= $css->em(($css->get('lh') / 2)) ?>;;
 }
 
 ul li,
@@ -313,8 +312,8 @@ dl dt em {
 }
 
 blockquote {
-  margin: 0 <?= $css->em('lh-body') ?> <?= $css->em('lh-body') ?>;
-  padding: <?= $css->em('lh-body') ?>;
+  margin: 0 @lh @lh;
+  padding: @lh;
 }
 
 blockquote p {
@@ -326,7 +325,7 @@ blockquote p.last {
 }
 
 blockquote p span.ldquo {
-  left: -<?= $css->em(($css->get('fs-body') / 2)) ?>;
+  left: -<?= $css->em(($css->get('fs') / 2)) ?>;
   position: absolute;
   top: 0;
 }
