@@ -86,6 +86,14 @@ get '/stylesheets/:filename.css' do |filename|
 end
 
 get '/stylesheets/test' do
+  @table_rows = [
+    { :id => 1123, :price => 4.99, :qty => 1, :name => 'Peanut Butter' },
+    { :id => 4563, :price => 1.49, :qty => 2, :name => 'Dozen Eggs'    },
+    { :id => 2345, :price => 2.95, :qty => 4, :name => 'Cereal'        },
+    { :id => 8358, :price => 3.43, :qty => 1, :name => 'Dish Soap'     },
+    { :id => 9432, :price => 0.99, :qty => 3, :name => 'Bananas'       },
+    { :id => 1456, :price => 2.19, :qty => 1, :name => 'Quaker Oats'   },
+  ]
   haml :html_elements
 end
 
