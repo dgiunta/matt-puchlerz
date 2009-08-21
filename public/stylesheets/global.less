@@ -244,6 +244,7 @@ h5 em,
 h6 em {
   color: <?= $css->get('c-h1-strong;
 }
+*/
 
 table {
   width: 100%;
@@ -251,8 +252,8 @@ table {
 
 table th,
 table td {
-  line-height: <?= $css->em($css->get('lh') * .75) ?>;
-  padding: <?= $css->em(($css->get('lh') * .75) / 2) ?> <?= $css->em($css->get('lh') / 2) ?>;
+  line-height: @lh * .75;
+  padding: (@lh * .75 / 2) (@lh / 2);
 }
 
 table th {
@@ -263,10 +264,11 @@ table td {
   vertical-align: top;
 }
 
-table .number {
+table .numeric {
   text-align: right;
 }
 
+/*
 ul, 
 ol {
   padding-left: <?= $css->em($css->get('lh') * 2) ?>;
