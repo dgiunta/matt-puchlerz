@@ -5,7 +5,7 @@
 # $stdout.reopen(log)
 # $stderr.reopen(log)
 
-ENV['RACK_ENV'] ||= 'production'
+# ENV['RACK_ENV'] ||= 'production'
 
 require 'app'
 run Sinatra::Application

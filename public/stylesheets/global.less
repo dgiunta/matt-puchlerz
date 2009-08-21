@@ -124,7 +124,7 @@ textarea {
   border-bottom-color: #ddd;
   border-top-color: #777;
   color: #000;
-  line-height: (@lh * .75) !important;
+  line-height: (@lh * .75);
   padding: @lh * .125;
 }
 
@@ -148,33 +148,36 @@ input[type="submit"] {
   cursor: pointer;
   line-height: @lh !important;
   padding: (@lh * .125) @lh;
-}
-
-input[type="submit"]:hover {
-  background-color: @bc-submit-hover;
+  
+  :hover {
+    background-color: @bc-submit-hover;    
+  }
 }
 
 select option {
   padding: 0 20px 0 (@lh * .125 + 3);
 }
-/*
+
 textarea {
-  line-height: <?= $css->em('lh-body') ?>;
+  line-height: @lh;
 }
 
-blockquote, 
-dl, 
-fieldset, 
-form, 
-h1, h2, h3,
-ol, 
-p, 
-pre, 
-table, 
-ul { 
-  margin-bottom: <?= $css->em('lh-body') ?>;
+blockquote,
+dl,
+fieldset,
+form,
+h1,
+h2,
+h3,
+ol,
+p,
+pre,
+table,
+ul {
+  margin-bottom: @lh;
 }
 
+/*
 h1, h2, h3, h4, h5, h6 {
   color: <?= $css->get('c-h1') ?>;
   font-family: <?= $css->get('f-h1') ?>;
