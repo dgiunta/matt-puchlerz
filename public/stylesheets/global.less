@@ -185,20 +185,37 @@ ul {
   margin-bottom: @lh;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6 {
   font-family: @ff-h1;
   font-weight: bold;
+
+	strong {
+	  text-transform: uppercase;
+	}
 }
 
 h1 {
   font-size: @fs-h1;
   line-height: @lh-h1;
+
+	strong {
+	  font-size: @fs-h1 * .9375;
+	}
 }
 
 h2 {
   font-size: @fs-h2;
 	font-weight: normal;
   line-height: @lh-h1;
+
+	strong {
+		text-transform: none;
+	}
 }
 
 h3 {
@@ -214,38 +231,6 @@ h4 {
 h5, h6 {
   font-style: italic;
 }
-
-/*
-h1 strong,
-h2 strong,
-h3 strong,
-h4 strong,
-h5 strong,
-h6 strong {
-  color: <?= $css->get('c-h1-strong;
-  text-transform: uppercase;
-}
-
-h1 strong {
-  font-size: @fs-h1-strong', 'fs-h1;
-  line-height: @lh-h1', 'fs-h1-strong;
-}
-
-h2 strong {
-  font-size: @fs-h2-strong', 'fs-h2;
-  line-height: @lh-h1', 'fs-h2-strong;
-  padding-left: <?= $css->em(1, 'fs-h2-strong;
-}
-
-h1 em, 
-h2 em, 
-h3 em, 
-h4 em, 
-h5 em, 
-h6 em {
-  color: <?= $css->get('c-h1-strong;
-}
-*/
 
 table {
   width: 100%;
