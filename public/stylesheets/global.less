@@ -268,15 +268,14 @@ table .numeric {
   text-align: right;
 }
 
-/*
 ul, 
 ol {
-  padding-left: <?= $css->em($css->get('lh') * 2) ?>;
+  padding-left: @lh * 2;
 }
 
 ul li,
 ol li {
-  margin-bottom: <?= $css->em($css->get('lh') / 2) ?>;
+  margin-bottom: @lh / 2;
 }
 
 ul ul,
@@ -290,7 +289,7 @@ ul ul li,
 ul ol li,
 ol ul li,
 ol ol li {
-  margin-top: <?= $css->em(($css->get('lh') / 2)) ?>;;
+  margin-top: @lh / 2;
 }
 
 ul li,
@@ -303,6 +302,7 @@ ul ol li {
   list-style-type: decimal;
 }
 
+/*
 dl {}
 
 dl dt {
