@@ -271,25 +271,19 @@ table .numeric {
 ul, 
 ol {
   padding-left: @lh * 2;
-}
 
-ul li,
-ol li {
-  margin-bottom: @lh / 2;
-}
-
-ul ul,
-ul ol,
-ol ul,
-ol ol {
-  margin-bottom: 0;
-}
-
-ul ul li,
-ul ol li,
-ol ul li,
-ol ol li {
-  margin-top: @lh / 2;
+	li {
+		margin-bottom: @lh / 2;
+	}
+	
+	ul,
+	ol {
+		margin-bottom: 0;
+		
+		li {
+			margin-top: @lh / 2;
+		}
+	}
 }
 
 ul li,
@@ -302,17 +296,11 @@ ul ol li {
   list-style-type: decimal;
 }
 
-/*
-dl {}
-
 dl dt {
   font-weight: bold;
 }
 
-dl dt em {
-  font-weight: normal;
-}
-
+/*
 blockquote {
   margin: 0 @lh @lh;
   padding: @lh;
