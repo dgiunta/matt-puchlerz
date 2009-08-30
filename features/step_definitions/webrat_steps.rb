@@ -160,3 +160,10 @@ Then /^I (should|should not) see the following images:$/ do |boolean, table|
     response.send boolean, have_tag('img', attributes)
   end
 end
+
+Then /^the source should contain "([^\"]*)"/ do |content|
+  body = response.body
+  body = body.gsub /\>\s+([^\s])/, '>\1'
+  body = body.gsub /([^\s])\s+\</, '\1<'
+  body.should =~ /.*#{ content }.*/
+end

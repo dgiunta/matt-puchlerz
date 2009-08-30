@@ -48,17 +48,16 @@ Feature: Portfolio
     When I follow "Awesome Work"
     Then I should be on the work show page
 
+  @current
   Scenario: Viewing the details of a single work
     Given the following works exist:
-      | title         | slug  | description                                       |
-      | Awesome Title | test1 | This was something I did back when I was awesome. |
+      | title         | slug  | description                                                   |
+      | Awesome Title | test1 | This is the first paragraph.\n\nThis is the second paragraph. |
     And I am a user
     And I am on the work show page
     Then the title should be "Awesome Title — A Work by Matt Puchlerz"
-    Then I should see the following:
-      | elements                                          |
-      | Awesome Title                                     |
-      | This was something I did back when I was awesome. |
+    Then I should see "Awesome Title"
+    And the source should contain "<p>This is the first paragraph.</p><p>This is the second paragraph.</p>"
     And I should see the following images:
       | src                                              |
       | /images/works/test1/Avatar.png                   |
