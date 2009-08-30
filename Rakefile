@@ -92,7 +92,7 @@ namespace :gems do
     
     gems.each_with_index do |g, i|
       puts ''
-      puts "[#{ i + 1 } of #{ gems.length }] #{ g[:name] }-#{ g[:version] }"
+      puts "[ #{ i + 1 } of #{ gems.length } ]"
       run "sudo gem install --version #{ g[:version] } --include-dependencies --no-rdoc --no-ri --no-test #{ g[:name] }"
     end
 
