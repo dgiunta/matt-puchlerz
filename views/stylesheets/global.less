@@ -2,9 +2,7 @@
 
 
 
-/**
-* GLOBAL RESET
-*/
+/*** RESET ***/
 
 * { 
   background: transparent;
@@ -66,9 +64,7 @@ section {
 
 
 
-/**
-* ELEMENTS
-*/
+/*** ELEMENTS ***/
 
 body,
 input,
@@ -78,11 +74,13 @@ textarea {
 }
 
 body {
-  color: #555;
+	background: @bc;
+  color: @c;
   font-size: @fs;
   line-height: @lh;
   padding: @lh * 2;
   text-align: left;
+	text-shadow: rgba(0, 0, 0, .1) 0 0 1px;
 }
 
 a {
@@ -150,7 +148,7 @@ input[type="submit"] {
   border-radius: @lh / 5;
   -moz-border-radius: @lh / 5;
   -webkit-border-radius: @lh / 5;
-  color: @c;
+  color: @c-submit;
   cursor: pointer;
   line-height: @lh !important;
   padding: (@lh * .125) @lh;
