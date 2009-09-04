@@ -30,6 +30,12 @@ configure do
   
 end
 
+configure :development do
+   
+  use Sinatra::Reloader
+  
+end
+
 
 
 # 
