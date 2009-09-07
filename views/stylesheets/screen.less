@@ -8,9 +8,34 @@ body {
 	padding: 0;
 }
 
+
+
+/*** CLASSES ***/
+
+.clear:after {
+	clear: both; 
+	content: "."; 
+	display: block; 
+	height: 0; 
+	visibility: hidden;
+}
+
+.hide-text {
+	left: -9999px;
+	position: absolute;
+}
+
+
+
+/*** COMMON ELEMENTS ***/
+
 #document_container {
 	margin: 0 auto;
 	max-width: @w-container;
+}
+
+#document_footer {
+	clear: both;
 }
 
 
@@ -26,5 +51,45 @@ body {
 	
 	a {
 		color: @orange-dark;
+	}
+	
+	#biography,
+	#works {
+		header {
+			.hide-text;
+		}
+	}
+	
+	#biography {
+		float: left;
+		margin-right: @lh * 2;
+		width: @lh * 18;
+	}
+	
+	#works {
+		.clear;
+		
+		float: left;
+		
+		ul {
+			padding: 0;
+		
+			.work {
+				float: left;
+				line-height: 0;
+				list-style: none;
+				margin: 0 (@lh / 2) (@lh / 2) 0;
+				
+				a {
+					:hover {
+						border-bottom: 1px solid white;
+					}
+					
+					img {
+						width: @lh * 4;
+					}					
+				}
+			}
+		}
 	}
 }
