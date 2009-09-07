@@ -9,10 +9,14 @@
     %meta{ :'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8' }
     %link{ :rel => 'shortcut icon', :href => '/images/favicon.ico', :type => 'image/x-icon' }
     /[if IE]
-      %script{ :src => 'http://html5shiv.googlecode.com/svn/trunk/html5.js' }
+      %script{ :type => 'text/javascript', :src => 'http://html5shiv.googlecode.com/svn/trunk/html5.js' }
+    
     %link{ :rel => 'stylesheet', :href => '/stylesheets/global.css', :type => 'text/css' }
     %link{ :rel => 'stylesheet', :href => '/stylesheets/screen.css', :type => 'text/css', :media => 'screen, projection' }
-
+    
+    - %w[ mootools/mootools-1.2.3-core-yc.js cufon/cufon-yui.js cufon/LHF_Egyptian_400.font.js app.js ].each do |src|
+      %script{ :type => 'text/javascript', :src => "/javascript/#{src}" }<
+      
   %body{ :id => @current_page }
   
     %section#document_container
