@@ -12,6 +12,7 @@ require 'spec/expectations'
 # Webrat configuration
 # 
 
+gem 'webrat', '0.4.4'
 require 'webrat'
 require File.join( File.dirname(__FILE__), *%w[ . paths ] )
 
