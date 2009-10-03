@@ -1,5 +1,4 @@
 require 'dm-core'
-require 'dm-migrations'
 require 'dm-types'
 require 'dm-is-list'
 require 'active_support/core_ext/blank'
