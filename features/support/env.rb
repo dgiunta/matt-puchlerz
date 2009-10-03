@@ -29,6 +29,7 @@ module NeedsThisStuff
   include Rack::Test::Methods
   include Webrat::Methods
   include Webrat::Matchers
+  include Webrat::HaveTagMatcher
   
   def app
     Sinatra::Application
