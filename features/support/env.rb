@@ -18,6 +18,9 @@ Webrat.configure do |config|
   config.mode = :rack
 end
 
+# Disable Webrat logging
+module Webrat::Logging; def debug_log(message); end; end
+
 
 
 # 
