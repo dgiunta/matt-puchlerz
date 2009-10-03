@@ -7,12 +7,10 @@ require File.join( File.dirname(__FILE__), *%w[ .. .. app ] )
 require 'spec/expectations'
 
 
-
 # 
 # Webrat configuration
 # 
 
-gem 'webrat', '0.4.4'
 require 'webrat'
 require File.join( File.dirname(__FILE__), *%w[ . paths ] )
 
@@ -26,7 +24,7 @@ require File.join( File.dirname(__FILE__), *%w[ . paths ] )
 # end
 
 Webrat.configure do |config|
-  config.mode = :sinatra
+  config.mode = :rack
 end
 
 
@@ -35,12 +33,21 @@ end
 # Cucumber configuration
 # 
 
-World do
-  session = Webrat::SinatraSession.new
-  session.extend(Webrat::Matchers)
-  session.extend(Webrat::HaveTagMatcher)
-  session
+module NeedsThisStuff
+
+  include Rack::Test::Methods
+  include Webrat::Methods
+  include Webrat::Matchers
+  
+  def app
+    Sinatra::Application
+  end
+
+  Webrat::Methods.delegate_to_session :response
+
 end
+
+World NeedsThisStuff
 
 Before do
   DataMapper.auto_migrate!
