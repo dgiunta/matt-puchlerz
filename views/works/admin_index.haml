@@ -62,7 +62,7 @@
                   %div
                     %input{ :type => :hidden, :name => '_method', :value => 'put' }
                     %input{ :type => :hidden, :name => 'position', :value => button[:position] }
-                    - if i == button[:if]
-                      %input{ :type => :submit, :value => button[:text], :disabled => true }
+                    - if i == button[:disable_if]
+                      %input{ :type => :submit, :value => button[:text], :disabled => 'disabled' }
                     - else
                       %input{ :type => :submit, :value => button[:text] }

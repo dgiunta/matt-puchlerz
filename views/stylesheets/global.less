@@ -168,6 +168,16 @@ input[type="submit"] {
   :hover {
     background-color: @bc-submit-hover;    
   }
+
+  [disabled="disabled"] {
+    background-color: red !important;
+  }
+}
+
+input[type="submit"][disabled="disabled"] {
+  background-color: @grey-dark;
+  color: @grey;
+  cursor: default;
 }
 
 select option {
