@@ -50,10 +50,10 @@ helpers do
   
   def list_position_buttons(arr)
     [
-      { :position => 'top',    :text => 'Move to Top',    :if => 0              },
-      { :position => 'up',     :text => 'Move Up',        :if => 0              },
-      { :position => 'down',   :text => 'Move Down',      :if => arr.length - 1 },
-      { :position => 'bottom', :text => 'Move to Bottom', :if => arr.length - 1 }
+      { :position => 'top',    :text => 'Move to Top',    :disable_if => 0              },
+      { :position => 'up',     :text => 'Move Up',        :disable_if => 0              },
+      { :position => 'down',   :text => 'Move Down',      :disable_if => arr.length - 1 },
+      { :position => 'bottom', :text => 'Move to Bottom', :disable_if => arr.length - 1 }
     ]
   end
   
@@ -115,26 +115,42 @@ unless Sinatra::Application.environment == :production
     redirect '/admin/works'
   end
   
-  rest Work, :layout => :admin, :namespace => '/admin' do
-
-    before do |route|
-      @position = params.delete 'position'
-      super
-    end
-    
-    after do |route|
-      super
-      if @position
-        case @position
-          when 'top';    @work.move :top
-          when 'up';     @work.move :up
-          when 'down';   @work.move :down
-          when 'bottom'; @work.move :bottom
-        end
-        redirect url_for_works_index
-      end
-    end
-    
+  get '/admin/works' do
+    @works = Work.all
+    haml :'works/admin_index'
   end
+  
+  get '/admin/works/new' do
+    @work = Work.new
+    haml :'works/admin_new'
+  end
+  
+  post '/admin/works' do
+    @work = Work.new params
+    @work.save
+    redirect '/admin/works'
+  end
+  
+  get '/admin/works/:id/edit' do
+    @work = Work.get params[:id]
+    haml :'works/admin_edit'
+  end
+  
+  put '/admin/works/:id' do
+    @work = Work.get params[:id]
+    params.delete '_method'
+    position = params.delete('position').to_sym
+    @work.update_attributes params
+    @work.move position if position
+    redirect '/admin/works'
+  end
+  
+  delete '/admin/works/:id' do
+    @work = Work.get params[:id]
+    @work.destroy!
+    redirect '/admin/works'
+  end
+  
+  rest Work, :layout => :admin, :namespace => '/admin'
     
 end
