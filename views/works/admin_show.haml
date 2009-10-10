@@ -3,13 +3,13 @@
 %nav
   %ul#crud_navigation
     %li
-      %a{ :href => url_for_works_index }
+      %a{ :href => '/admin/works' }
         Works
     %li
       %strong
         Show Work
     %li
-      %a{ :href => url_for_works_edit(@work) }
+      %a{ :href => "/admin/works/#{ @work.id }/edit" }
         Edit Work
 
 %dl

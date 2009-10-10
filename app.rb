@@ -5,7 +5,6 @@ ROOT = File.expand_path File.dirname(__FILE__) unless defined?(ROOT)
 Dir['vendor/*/lib'].each { |path| $LOAD_PATH.unshift File.join(ROOT, path) }
 
 require 'sinatra'
-require 'sinatra/rest'
 require 'less'
 
 # Require everything in the lib directory
@@ -139,9 +138,9 @@ unless Sinatra::Application.environment == :production
   put '/admin/works/:id' do
     @work = Work.get params[:id]
     params.delete '_method'
-    position = params.delete('position').to_sym
+    position = params.delete 'position'
     @work.update_attributes params
-    @work.move position if position
+    @work.move position.to_sym if position
     redirect '/admin/works'
   end
   
@@ -150,7 +149,5 @@ unless Sinatra::Application.environment == :production
     @work.destroy!
     redirect '/admin/works'
   end
-  
-  rest Work, :layout => :admin, :namespace => '/admin'
-    
+      
 end
