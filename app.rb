@@ -116,12 +116,12 @@ unless Sinatra::Application.environment == :production
   
   get '/admin/works' do
     @works = Work.all
-    haml :'works/admin_index', :layout => :admin
+    haml :'works/admin_index', :layout => :layout_admin
   end
   
   get '/admin/works/new' do
     @work = Work.new
-    haml :'works/admin_new', :layout => :admin
+    haml :'works/admin_new', :layout => :layout_admin
   end
   
   post '/admin/works' do
@@ -132,7 +132,7 @@ unless Sinatra::Application.environment == :production
   
   get '/admin/works/:id/edit' do
     @work = Work.get params[:id]
-    haml :'works/admin_edit', :layout => :admin
+    haml :'works/admin_edit', :layout => :layout_admin
   end
   
   put '/admin/works/:id' do
