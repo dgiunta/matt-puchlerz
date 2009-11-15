@@ -12,8 +12,8 @@
     %link{ :rel => 'stylesheet', :href => '/stylesheets/global.css', :type => 'text/css' }
     %link{ :rel => 'stylesheet', :href => '/stylesheets/screen.css', :type => 'text/css', :media => 'screen, projection' }
     
-    - %w[ mootools/mootools-1.2.3-core-yc.js cufon/cufon-yui.js cufon/LHF_Egyptian_400.font.js app.js ].each do |src|
-      %script{ :type => 'text/javascript', :src => "/javascript/#{src}" }<
+    - %w[ mootools/mootools-1.2.3-core-yc.js app.js ].each do |src|
+      %script{ :type => 'text/javascript', :src => "/javascript/#{ src }" }<
       
   %body{ :id => @current_page }
   
