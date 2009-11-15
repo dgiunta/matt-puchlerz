@@ -3,8 +3,7 @@
 
   %head
     %title
-      :textileinline
-        #{ page_title } 
+      = page_title
       = " (#{ Sinatra::Application.environment })" unless Sinatra::Application.environment == :production
     %meta{ :'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8' }
     %link{ :rel => 'shortcut icon', :href => '/images/favicon.ico', :type => 'image/x-icon' }
@@ -24,12 +23,10 @@
       %header#document_header
         - if @current_page == :index
           %h1#document_title
-            :textileinline
-              #{ page_title }
+            = page_title
         - else
           %p#document_title
-            :textileinline
-              #{ site_name }
+            = site_name
   
       %nav
         %ul#site_navigation
