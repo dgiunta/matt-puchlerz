@@ -4,7 +4,6 @@
   %head
     %title
       = "Admin for #{ page_title }"
-      = " (#{ Sinatra::Application.environment })" unless Sinatra::Application.environment == :production
     %meta{ :'http-equiv' => "Content-Type", :content => "text/html; charset=utf-8" }
     %link{ :rel => "shortcut icon", :href => "/images/favicon.ico", :type => "image/x-icon" }
     / %link{ :rel => 'stylesheet', :href => '/stylesheets/screen.css', :type => 'text/css', :media => 'screen, projection' }

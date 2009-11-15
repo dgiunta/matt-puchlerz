@@ -58,10 +58,11 @@ helpers do
   
   def page_title
     @page_title ||= site_name
+    @page_title + " (#{ Sinatra::Application.environment })" unless Sinatra::Application.environment == :production
   end
   
   def site_name
-    'Matt Puchlerz -- Designer & Web Developer'
+    'Matt Puchlerz &mdash; Designer & Web Developer'
   end
   
 end
@@ -80,7 +81,7 @@ end
 get '/works/:slug' do |slug|
   @work = Work.first :slug => slug
   halt 404 if @work.nil? or not @work.viewable?
-  @page_title = "#{ @work.title } -- A Work by Matt Puchlerz"
+  @page_title = "#{ @work.title } &mdash; A Work by Matt Puchlerz"
   haml :'works/show'
 end
 
