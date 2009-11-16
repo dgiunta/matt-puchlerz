@@ -43,11 +43,11 @@ end
 
 helpers do
   
-  def boolean_html(bool)
+  def boolean_html bool
     bool ? '<span class="true">Yes</span>' : '<span class="false">No</span>'
   end
   
-  def list_position_buttons(arr)
+  def list_position_buttons arr
     [
       { :position => 'top',    :text => 'Move to Top',    :disable_if => 0              },
       { :position => 'up',     :text => 'Move Up',        :disable_if => 0              },

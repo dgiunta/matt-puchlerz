@@ -25,32 +25,21 @@ body {
 	position: absolute;
 }
 
-.cufon-active {
-	strong {
-		font-size: @fs + 10;
-		letter-spacing: .05em;
-		margin-left: 3px;
-		margin-right: -2px;
-		position: relative;
-		top: -1px;
-	}
-}
-
 
 
 /*** COMMON ELEMENTS ***/
 
-#document_container {
+#page_container {
 	.clear;
 	margin: 0 auto;
 	max-width: @w-container;
 }
 
-#document_content {
+#page_content {
 	.clear;
 }
 
-#document_footer {
+#page_footer {
 	color: @orange - #222;
 }
 
@@ -67,6 +56,11 @@ body {
 	
 	a {
 		color: @orange-light;
+	}
+	
+	strong,
+	em {
+	  color: inherit;
 	}
 	
 	#biography,
