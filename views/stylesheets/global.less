@@ -44,6 +44,12 @@ q {
 
 ins {
   text-decoration: none;
+  
+  :before,
+  :after {
+    content: '++';
+    font-weight: bold;
+  }
 }
 
 del {
@@ -98,6 +104,11 @@ abbr,
 acronym {
   border-bottom: 1px dotted #888;
   cursor: help;
+}
+
+strong,
+em {
+  color: @c-strong;
 }
 
 strong {
@@ -269,7 +280,13 @@ h4 {
   text-transform: uppercase;
 }
 
-h5, h6 {
+h4 sup,
+h4 sub {
+  text-transform: none;
+}
+
+h5, 
+h6 {
   font-style: italic;
 }
 
