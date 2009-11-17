@@ -5,6 +5,7 @@ ROOT = File.expand_path File.dirname(__FILE__) unless defined?(ROOT)
 Dir['vendor/*/lib'].each { |path| $LOAD_PATH.unshift File.join(ROOT, path) }
 
 require 'sinatra'
+require 'haml'
 require 'less'
 
 # Require everything in the lib directory
