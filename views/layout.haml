@@ -23,7 +23,7 @@
       %header#page_header
         - if @current_page == :index
           %h1#page_title
-            = page_title
+            = site_name
         - else
           %a#page_title{ :href => '/' }
             = site_name
