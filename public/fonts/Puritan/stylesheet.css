@@ -16,29 +16,25 @@
  */
 
 @font-face {
-	font-family: 'Puritan';
+	font-family: 'Puritan 2.0 Normal';
 	src: url('Puritan_Regular.eot');
 	src: local('Puritan 2.0 Normal'), local('Puritan2'), url('Puritan_Regular.woff') format('woff'), url('Puritan_Regular.otf') format('opentype'), url('Puritan_Regular.svg#Puritan2') format('svg');
 }
 
 @font-face {
-	font-family: 'Puritan';
-	font-style: italic;
+	font-family: 'Puritan 2.0 Italic';
 	src: url('Puritan_Italic.eot');
 	src: local('Puritan 2.0 Italic'), local('Puritan2Italic'), url('Puritan_Italic.woff') format('woff'), url('Puritan_Italic.otf') format('opentype'), url('Puritan_Italic.svg#Puritan2Italic') format('svg');
 }
 
 @font-face {
-	font-family: 'Puritan';
-	font-weight: bold;
+	font-family: 'Puritan 2.0 Bold';
 	src: url('Puritan_Bold.eot');
 	src: local('Puritan 2.0 Bold'), local('Puritan2Bold'), url('Puritan_Bold.woff') format('woff'), url('Puritan_Bold.otf') format('opentype'), url('Puritan_Bold.svg#Puritan2Bold') format('svg');
 }
 
 @font-face {
-	font-family: 'Puritan';
-	font-style: italic;
-	font-weight: bold;
+	font-family: 'Puritan 2.0 BoldItalic';
 	src: url('Puritan_Bold_Italic.eot');
 	src: local('Puritan 2.0 BoldItalic'), local('Puritan2BoldItalic'), url('Puritan_Bold_Italic.woff') format('woff'), url('Puritan_Bold_Italic.otf') format('opentype'), url('Puritan_Bold_Italic.svg#Puritan2BoldItalic') format('svg');
 }

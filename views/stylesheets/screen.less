@@ -27,7 +27,7 @@ body {
 
 
 
-/*** COMMON ELEMENTS ***/
+/*** COMMON STUFF ***/
 
 #page_container {
 	.clear;
@@ -37,6 +37,10 @@ body {
 
 #page_content {
 	.clear;
+}
+
+#contact {
+  display: none;
 }
 
 #page_footer {
@@ -67,8 +71,17 @@ body {
 	  background-color: @bc-submit-hover;
 	}
 	
+	#page_title {
+	  background: url(../images/logo_large.png) no-repeat left top;
+	  height: 244px;
+	  text-indent: -9999px;
+	  width: 720px;
+	}
+	
 	#biography,
 	#works {
+		width: @lh * 18;
+
 		header {
 			.hide-text;
 		}
@@ -77,7 +90,6 @@ body {
 	#biography {
 		float: left;
 		margin-right: @lh * 2;
-		width: @lh * 18;
 	}
 	
 	#works {

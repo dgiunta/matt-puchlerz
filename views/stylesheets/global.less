@@ -47,6 +47,7 @@ ins {
   
   :before,
   :after {
+    .bold;
     content: '++';
     font-weight: bold;
   }
@@ -112,11 +113,18 @@ em {
 }
 
 strong {
+  .bold;
   font-weight: bold;
 }
 
 em {
+  .italic;
   font-style: italic;
+}
+
+em strong,
+strong em {
+  .bolditalic;
 }
 
 code {
@@ -240,7 +248,7 @@ h3,
 h4, 
 h5, 
 h6 {
-  font-family: @ff-h1;
+  .bold;
   font-weight: bold;
 
 	strong {
@@ -258,6 +266,7 @@ h1 {
 }
 
 h2 {
+  .regular;
   font-size: @fs-h2;
 	font-weight: normal;
   line-height: @lh-h1;
@@ -284,6 +293,7 @@ h4 sub {
 
 h5, 
 h6 {
+  .bolditalic;
   font-style: italic;
 }
 
@@ -338,6 +348,7 @@ ul ol li {
 }
 
 dl dt {
+  .bold;
   font-weight: bold;
 }
 
@@ -347,6 +358,7 @@ blockquote {
   padding: @lh;
 
 	:before {
+	  .bold;
 		color: #ddd;
 		content: open-quote;
 		font-size: @fs-h1;
