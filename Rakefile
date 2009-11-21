@@ -42,15 +42,6 @@ namespace :vlad do
     ].join('&&')
   end
   
-  namespace :gems do
-    
-    desc 'Installs all necessary gems on the server.'
-    remote_task :install do
-      Rake::Task['gems:install'].invoke
-    end
-
-  end
-  
 end
 
 
@@ -66,42 +57,4 @@ namespace :db do
     `cp db/staging.sqlite3 db/production.sqlite3`
   end
 
-end
-
-namespace :gems do
-  
-  desc 'Installs all necessary gems.'
-  task :install do
-    gems = [
-      { :version => '2.3.2',  :name => 'activesupport' },
-      { :version => '0.3.1',  :name => 'blindgaenger-sinatra-rest' },
-      { :version => '0.10.0', :name => 'dm-adjust' },
-      { :version => '0.10.0', :name => 'dm-core' },
-      { :version => '0.10.0', :name => 'dm-migrations' },
-      { :version => '0.10.0', :name => 'dm-types' },
-      { :version => '0.10.0', :name => 'dm-is-list' },
-      { :version => '0.10.0', :name => 'do_sqlite3' },
-      { :version => '2.2.2',  :name => 'haml' },
-      { :version => '1.1.13', :name => 'less' },
-      { :version => '1.0.0',  :name => 'rack' },
-      { :version => '4.2.2',  :name => 'RedCloth' },
-      { :version => '0.9.4',  :name => 'sinatra' },
-      { :version => '1.0.3',  :name => 'stringex' },
-    ]
-    
-    puts ''
-    puts "Installing #{ gems.length } gems and their dependencies:"
-    puts ''
-    
-    gems.each_with_index do |g, i|
-      puts ''
-      puts "[ #{ i + 1 } of #{ gems.length } ]"
-      # run "sudo gem install --version #{ g[:version] } --include-dependencies --no-rdoc --no-ri --no-test #{ g[:name] }"
-      `sudo gem install --version #{ g[:version] } --include-dependencies --no-rdoc --no-ri --no-test #{ g[:name] }`
-    end
-
-    puts ''
-    puts 'Done!'
-  end
-  
 end
