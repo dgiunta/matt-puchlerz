@@ -4,6 +4,11 @@
 
 /*** ELEMENTS ***/
 
+html {
+  height: 100%;
+  overflow-y: scroll;
+}
+
 body {
 	padding: 0;
 }
@@ -20,7 +25,7 @@ body {
 	visibility: hidden;
 }
 
-.hide-text {
+.hide_element {
 	left: -9999px;
 	position: absolute;
 }
@@ -55,8 +60,12 @@ body {
 /** INDEX **/
 
 #index {
-	background: @orange url(../images/noise.png);
+  background: @orange url(../images/noise.png);
+/*  background: @orange;*/
+/*  background-image: -webkit-gradient( linear, left top, right bottom, from( rgba(255, 255, 255, .1) ), to( transparent ) );*/
 	color: white;
+  padding: (@lh * 2) @lh;
+  text-shadow: rgba(0, 0, 0, .3) 0 1px 1px;
 	
 	a {
 		color: @orange-light;
@@ -71,30 +80,37 @@ body {
 	  background-color: @bc-submit-hover;
 	}
 	
+	#page_container {
+	  margin: 0;
+	  max-width: none;
+	}
+	
 	#page_title {
 	  background: url(../images/logo_large.png) no-repeat left top;
-	  height: 244px;
+	  height: 139px;
 	  text-indent: -9999px;
-	  width: 720px;
+	  width: 432px;
+	}
+	
+	#site_navigation {
+	  .hide_element;
 	}
 	
 	#biography,
-	#works {
-		width: @lh * 18;
-
+	#works {	  
 		header {
-			.hide-text;
+			.hide_element;
 		}
 	}
 	
 	#biography {
 		float: left;
-		margin-right: @lh * 2;
+	  margin: 0 (@lh * 4.5) @lh 0;
+		width: @lh * 18;
 	}
 	
 	#works {
-		.clear;
-		float: left;
+    .clear;
 		
 		ul {
 			padding: 0;
