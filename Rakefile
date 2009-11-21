@@ -37,9 +37,10 @@ namespace :vlad do
   desc 'Relink current release'
   remote_task :relink_current do
     run [
-      "rm -f #{ current_path } && ln -s #{ latest_release } #{ current_path }",
+      "rm -f #{ current_path }",
+      "ln -s #{ latest_release } #{ current_path }",
       "mkdir -p #{ latest_release }/db #{ latest_release }/tmp"
-    ].join('&&')
+    ].join(' && ')
   end
   
 end
