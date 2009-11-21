@@ -1,12 +1,13 @@
 # Note the application's root directory for convenience
 ROOT = File.expand_path File.dirname(__FILE__) unless defined?(ROOT)
 
-# Add vendored gems to the load path
-Dir['vendor/*/lib'].each { |path| $LOAD_PATH.unshift File.join(ROOT, path) }
+# Add bundled gems to the load path, and require them
+require "#{ ROOT }/vendor/gems/environment"
+Bundler.require_env
 
-require 'sinatra'
-require 'haml'
-require 'less'
+# require 'sinatra'
+# require 'haml'
+# require 'less'
 
 # Require everything in the lib directory
 Dir["#{ ROOT }/lib/**/*.rb"].each { |file| require file }
