@@ -1,7 +1,7 @@
 source 'http://gemcutter.org'
 source 'http://gems.github.com'
 
-gem 'activesupport'
+gem 'activesupport',  :lib => false
 gem 'dm-core'
 gem 'dm-types'
 gem 'dm-is-list'
@@ -12,8 +12,8 @@ gem 'sinatra'
 only :test do
   gem 'cucumber'
   gem 'faker'
-  gem 'jspec',      :lib => false
+  gem 'jspec',        :lib => false
   gem 'machinist'
-  gem 'rspec',      :lib => 'spec'
+  gem 'rspec',        :lib => 'spec'
   gem 'webrat'
 end
