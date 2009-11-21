@@ -5,6 +5,7 @@ gem 'activesupport',  :lib => false
 gem 'dm-core'
 gem 'dm-types'
 gem 'dm-is-list'
+gem 'do_sqlite3',     :lib => false
 gem 'haml'
 gem 'less'
 gem 'sinatra'
