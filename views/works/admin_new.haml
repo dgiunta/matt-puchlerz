@@ -10,21 +10,4 @@
         %strong
           New
 
-%form{ :action => '/admin/works', :method => :post }
-  %dl
-    %dt
-      Title
-    %dd
-      %input{ :type => 'text', :name => 'title' }
-  %dl
-    %dt
-      Slug
-    %dd
-      %input{ :type => 'text', :name => 'slug' }
-  %dl
-    %dt
-      Description
-    %dd
-      %textarea{ :name => 'description', :cols => 45, :rows => 15 }
-  %p.submit
-    %input{ :type => 'submit', :value => 'Save Work' }
+= partial 'works/form'
