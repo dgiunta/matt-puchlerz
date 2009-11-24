@@ -1,0 +1,70 @@
+@import 'global';
+
+table.works {
+  
+  .position,
+  .slug,
+  .viewable {
+    width: 10%;
+  }
+  
+  .description {
+    .one_line;
+  }
+  
+  .actions {
+    
+    * {
+      display: inline;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      width: auto;
+    }
+    
+    a,
+    input[type="submit"] {
+      background: url(../images/arrow_top.png) no-repeat center center;
+      display: inline-block;
+      height: 24px;
+      padding: 0;
+      text-indent: -9999px;
+      width: 24px;
+    }
+    
+    input[disabled] {
+      opacity: .3;
+    }
+    
+    li.edit {
+      a {
+        background-image: url(../images/arrow_circle.png);
+        vertical-align: top;
+      }
+    }
+    
+    li.delete {
+      input[type="submit"] {
+        background-image: url(../images/minus_circle.png);
+      }
+    }
+    
+    li.up {
+      input[type="submit"] {
+        background-image: url(../images/arrow_up.png);
+      }
+    }
+    
+    li.down {
+      input[type="submit"] {
+        background-image: url(../images/arrow_down.png);
+      }
+    }
+    
+    li.bottom {
+      input[type="submit"] {
+        background-image: url(../images/arrow_bottom.png);
+      }
+    }
+  }
+}

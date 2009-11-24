@@ -16,6 +16,8 @@
 table {
   border-collapse: collapse;
   border-spacing: 0;
+  table-layout: fixed;
+  width: 100%;
 }
 
 ol, 
@@ -297,10 +299,6 @@ h6 {
   font-style: italic;
 }
 
-table {
-  width: 100%;
-}
-
 table th,
 table td {
   line-height: @lh * .75;
@@ -381,4 +379,14 @@ blockquote {
 			top: 0;
 		}
 	}
+}
+
+
+
+/*** CLASSES ***/
+
+.one_line {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

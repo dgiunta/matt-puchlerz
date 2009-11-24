@@ -4,60 +4,57 @@
   %ul#crud_navigation
     %li
       %strong
-        Works
+        List
     %li
       %a{ :href => '/admin/works/new' }
-        New Work
+        New
 
 %p.count
   %strong
     = @works.length
   Total
 
-%table{ :border => 1 }
+%table.works{ :border => 1 }
   %thead
     %tr
-      %th
+      %th.position
         Position
-      %th
+      %th.title
         Title
-      %th
+      %th.slug
         Slug
-      %th
+      %th.description
         Description
-      %th
+      %th.viewable
         Viewable
-      %th
+      %th.actions
         Actions
   %tbody
     - @works.each_with_index do |work, i|
       %tr
-        %td
+        %td.position
           = work.position
-        %td
+        %td.title
           = work.title
-        %td
+        %td.slug
           = work.slug
-        %td
-          = "#{ work.description[0..50] }&hellip;"
-        %td
+        %td.description
+          = work.description
+        %td.viewable
           = boolean_html work.viewable?
-        %td
+        %td.actions
           %ul
-            %li
-              %a{ :href => "/admin/works/#{ work.id }" }
-                Show
-            %li
+            %li.edit
               %a{ :href => "/admin/works/#{ work.id }/edit" }
                 Edit
-            %li
-              %form{ :action => "/admin/works/#{ work.id }", :method => :post }
+            %li.delete
+              %form{ :action => "/admin/works/#{ work.id }", :method => :post, :onsubmit => 'return confirm("Are you sure?")' }
                 %div
                   %input{ :type => :hidden, :name => '_method', :value => 'delete' }
                   %input{ :type => :submit, :value => 'Delete' }
           %ul.position
             - list_position_buttons(@works).each do |button|
-              %li
+              %li{ :class => button[:position] }
                 %form{ :action => "/admin/works/#{ work.id }", :method => :post }
                   %div
                     %input{ :type => :hidden, :name => '_method', :value => 'put' }

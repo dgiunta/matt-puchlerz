@@ -4,13 +4,18 @@
   %ul#crud_navigation
     %li
       %a{ :href => '/admin/works' }
-        Works
+        List
     %li
-      %a{ :href => "/admin/works/#{ @work.id }" }
-        Show Work
+      %a{ :href => '/admin/works/new' }
+        New
     %li
       %strong
-        Edit Work
+        Edit
+    %li.delete
+      %form{ :action => "/admin/works/#{ @work.id }", :method => :post, :onsubmit => 'return confirm("Are you sure?")' }
+        %div
+          %input{ :type => :hidden, :name => '_method', :value => 'delete' }
+          %input{ :type => :submit, :value => 'Delete' }
 
 %form{ :action => "/admin/works/#{ @work.id }", :method => :post }
   %dl
