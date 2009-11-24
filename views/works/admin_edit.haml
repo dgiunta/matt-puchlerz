@@ -1,21 +1,22 @@
-%h1 Edit Work
-
-%nav
-  %ul#crud_navigation
-    %li
-      %a{ :href => '/admin/works' }
-        List
-    %li
-      %a{ :href => '/admin/works/new' }
-        New
-    %li
-      %strong
-        Edit
-    %li.delete
-      %form{ :action => "/admin/works/#{ @work.id }", :method => :post, :onsubmit => 'return confirm("Are you sure?")' }
-        %div
-          %input{ :type => :hidden, :name => '_method', :value => 'delete' }
-          %input{ :type => :submit, :value => 'Delete' }
+%header
+  %h1 
+    Edit Work
+  %nav
+    %ul#crud_navigation
+      %li
+        %a{ :href => '/admin/works' }
+          List
+      %li
+        %a{ :href => '/admin/works/new' }
+          New
+      %li
+        %strong
+          Edit
+      %li.delete
+        %form{ :action => "/admin/works/#{ @work.id }", :method => :post, :onsubmit => 'return confirm("Are you sure?")' }
+          %div
+            %input{ :type => :hidden, :name => '_method', :value => 'delete' }
+            %input{ :type => :submit, :value => 'Delete' }
 
 %form{ :action => "/admin/works/#{ @work.id }", :method => :post }
   %dl

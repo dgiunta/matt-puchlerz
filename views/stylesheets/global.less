@@ -1,4 +1,4 @@
-@import 'variables';
+@import 'classes';
 
 
 
@@ -97,9 +97,19 @@ a {
   color: @c-a;
   text-decoration: none;
   
+  strong,
+  em {
+    color: @c-a;
+  }
+  
   :hover {
     color: @c-a-hover;
     text-decoration: underline;
+  
+    strong,
+    em {
+      color: @c-a-hover;
+    }
   }
 }
 

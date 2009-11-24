@@ -1,18 +1,16 @@
-%h1 Works
-
-%nav
-  %ul#crud_navigation
-    %li
-      %strong
-        List
-    %li
-      %a{ :href => '/admin/works/new' }
-        New
-
-%p.count
-  %strong
-    = @works.length
-  Total
+%header
+  %h1
+    Works
+    %em.qty
+      = @works.length
+  %nav
+    %ul#crud_navigation
+      %li
+        %strong
+          List
+      %li
+        %a{ :href => '/admin/works/new' }
+          New
 
 %table.works{ :border => 1 }
   %thead
