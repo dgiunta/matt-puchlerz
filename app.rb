@@ -63,6 +63,10 @@ helpers do
     'Matt Puchlerz &mdash; Designer & Web Developer'
   end
   
+  def site_name_pronunciation
+    'Matt&bull;Puch&bull;lerz |mat po&#0333;ch l&#0601;rz|'
+  end
+  
 end
 
 

@@ -22,10 +22,10 @@
   
       %header#page_header
         - if @current_page == :index
-          %h1#page_title
+          %h1#page_title{ :title => site_name_pronunciation }
             = site_name
         - else
-          %a#page_title{ :href => '/' }
+          %a#page_title{ :href => '/', :title => site_name_pronunciation }
             = site_name
   
       %nav
