@@ -3,13 +3,15 @@
     %h2
       Biography
   :textile
-    Hello, my name is *Matt*. I live just outside of Chicago, and work remotely as a _user interface developer_ for "Datatel (Software and services for higher education)":http://www.datatel.com. I'm an advocate of _web standards_ and prefer to use _Ruby frameworks_ for website build-out.
+    Hello, my name is *Matt*. I live just outside of Chicago, and work remotely as a _user interface developer_ for "Datatel (Software and services for higher education)":http://www.datatel.com. I'm an advocate of _web standards_ and prefer to use _Ruby frameworks_ for development.
 
-    A few friends and I are working on "Refresh Chicago (Promoting design, technology, usability, and standards)":http://refreshchi.org, a meetup group for the advancement of the city's designers and developers. With any luck, I will set aside time to paint again--maybe even go fly-fishing.
+    A few friends and I are working on "Refresh Chicago (Promoting design, technology, usability, and standards)":http://refreshchi.org, a meetup group for the advancement of the city's designers and developers. With any luck, I will set aside time to paint and go fly-fishing. !/images/fly.png!
+    
+    You can contact me on "Twitter":http://twitter.com/mattpuchlerz, "LinkedIn":http://www.linkedin.com/in/mattpuchlerz, "Github":http://github.com/mattpuchlerz, or just "send me an email":/#contact.
 
 %section#works
   %header
     %h2
       Works
   %ul
-    = partial :'works/work', :collection => @works
+    = partial :'works/work', :collection => (@works * 3).sort_by { rand }

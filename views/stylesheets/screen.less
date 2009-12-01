@@ -9,17 +9,12 @@ html {
   overflow-y: scroll;
 }
 
-body {
-	padding: 0;
-}
-
 
 
 /*** COMMON STUFF ***/
 
 #page_container {
 	.clear;
-	margin: 0 auto;
 	max-width: @w-container;
 }
 
@@ -47,7 +42,6 @@ body {
 /*  background: @orange;*/
 /*  background-image: -webkit-gradient( linear, left top, right bottom, from( rgba(255, 255, 255, .1) ), to( transparent ) );*/
 	color: white;
-  padding: (@lh * 2) @lh;
   text-shadow: rgba(0, 0, 0, .3) 0 1px 1px;
 	
 	a {
@@ -61,11 +55,6 @@ body {
 	
 	input[type="submit"] {
 	  background-color: @bc-submit-hover;
-	}
-	
-	#page_container {
-	  margin: 0;
-	  max-width: none;
 	}
 	
 	#page_title {
@@ -87,13 +76,20 @@ body {
 	}
 	
 	#biography {
-		float: left;
-	  margin: 0 (@lh * 4.5) @lh 0;
-		width: @lh * 18;
+	  border-left: 1px solid @orange-light;
+	  border-right: 1px solid transparent;
+		float: right;
+    padding: @lh (@lh - 1) 0;
+		width: @lh * 13;
+		
+		img {
+		  vertical-align: top;
+	  }
 	}
 	
 	#works {
     .clear;
+    padding-top: @lh;
 		
 		ul {
 			padding: 0;
@@ -102,11 +98,15 @@ body {
 				float: left;
 				line-height: 0;
 				list-style: none;
-				margin: 0 (@lh / 2) (@lh / 2) 0;
+				margin: 0 (@lh / 1) (@lh / 1) 0;
 				
 				a {
 					:hover {
 						border-bottom: 1px solid white;
+						
+						img {
+						  border-color: white;
+					  }
 					}
 					
 					img {
