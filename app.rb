@@ -83,6 +83,8 @@ end
 get '/works/:slug' do |slug|
   @work = Work.first :slug => slug
   halt 404 if @work.nil? or not @work.viewable?
+  @previous_item = @work.previous_item
+  @next_item = @work.next_item
   @page_title = "#{ @work.title } &mdash; A Work by Matt Puchlerz"
   haml :'works/show'
 end
