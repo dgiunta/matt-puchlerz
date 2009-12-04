@@ -129,6 +129,14 @@ describe MattPuchlerz::Work do
         @work.description.should == 'I am the description'
       end
       
+    end
+    
+    context "functioning as a list" do
+      
+      before :each do
+        DataMapper.auto_migrate!
+      end
+      
       it "should be able to move its position within the list" do
         work1 = MattPuchlerz::Work.make
         work2 = MattPuchlerz::Work.make
@@ -137,6 +145,36 @@ describe MattPuchlerz::Work do
         work1.move(:down)
         work2.reload
         work1.position.should > work2.position
+      end
+      
+      it "should find the next viewable work" do
+        work1 = MattPuchlerz::Work.make
+        work2 = MattPuchlerz::Work.make :slug => 'no way that this will be a valid slug 1'
+        work3 = MattPuchlerz::Work.make :slug => 'no way that this will be a valid slug 2'
+        work4 = MattPuchlerz::Work.make
+        work1.next_item.should == work4
+      end
+
+      it "should still return nil if there are no proceeding viewable works" do
+        work1 = MattPuchlerz::Work.make
+        work2 = MattPuchlerz::Work.make :slug => 'no way that this will be a valid slug 1'
+        work3 = MattPuchlerz::Work.make :slug => 'no way that this will be a valid slug 2'
+        work1.next_item.should == nil
+      end
+
+      it "should find the previous viewable work" do
+        work1 = MattPuchlerz::Work.make
+        work2 = MattPuchlerz::Work.make :slug => 'no way that this will be a valid slug 1'
+        work3 = MattPuchlerz::Work.make :slug => 'no way that this will be a valid slug 2'
+        work4 = MattPuchlerz::Work.make
+        work4.previous_item.should == work1
+      end
+
+      it "should still return nil if there are no proceeding viewable works" do
+        work1 = MattPuchlerz::Work.make :slug => 'no way that this will be a valid slug 1'
+        work2 = MattPuchlerz::Work.make :slug => 'no way that this will be a valid slug 2'
+        work3 = MattPuchlerz::Work.make
+        work3.previous_item.should == nil
       end
 
     end

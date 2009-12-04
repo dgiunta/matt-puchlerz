@@ -35,6 +35,20 @@ module MattPuchlerz
       all_images.reject { |path| path =~ /\/_/ }
     end
     
+    # Overriding to ensure that it only returns viewable works
+    def next_item
+      item = super
+      item = item.next_item until item.nil? or item.viewable?
+      item
+    end
+    
+    # Overriding to ensure that it only returns viewable works
+    def previous_item
+      item = super
+      item = item.previous_item until item.nil? or item.viewable?
+      item
+    end
+    
     def slug=(slug)
       attribute_set :slug, slug.to_s.strip.downcase.gsub(/[^\w\-\ ]/, '').gsub(' ', '_')
     end
