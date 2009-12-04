@@ -68,11 +68,8 @@ module MattPuchlerz
     private
     
     def all_images
-      if slug.blank?
-        return []
-      elsif not @all_images.blank?
-        return @all_images
-      end
+      return [] if slug.blank?
+      return @all_images unless @all_images.blank?
       
       @all_images = self.class.find_images self.slug
       @all_images = self.class.convert_to_relative_paths @all_images
