@@ -1,21 +1,27 @@
+# disable_rubygems
+disable_system_gems
+
+clear_sources
 source 'http://gemcutter.org'
 source 'http://gems.github.com'
 
-gem 'activesupport',  :lib => false
-gem 'dm-aggregates'
+gem 'activesupport',  :require_as => 'active_support'
 gem 'dm-core'
 gem 'dm-types'
+gem 'dm-aggregates'
 gem 'dm-is-list'
-gem 'do_sqlite3',     :lib => false
+gem 'do_sqlite3'
 gem 'haml'
 gem 'less'
+gem 'RedCloth'
 gem 'sinatra'
+gem 'stringex'        # dm-types should list this as a dependency
 
 only :test do
   gem 'cucumber'
   gem 'faker'
-  gem 'jspec',        :lib => false
+  gem 'jspec'
   gem 'machinist'
-  gem 'rspec',        :lib => 'spec'
+  gem 'rspec',        :require_as => 'spec'
   gem 'webrat'
 end
