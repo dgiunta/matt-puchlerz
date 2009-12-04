@@ -14,4 +14,4 @@
     %h2
       Works
   %ul
-    = partial :'works/work', :collection => (@works * 3).sort_by { rand }
+    = partial :'works/work', :collection => @works
