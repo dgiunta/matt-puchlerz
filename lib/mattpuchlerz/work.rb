@@ -1,7 +1,7 @@
 require 'dm-core'
 require 'dm-types'
 require 'dm-is-list'
-require 'active_support/core_ext/blank'
+require 'active_support/core_ext/object/blank'
 require 'rack/utils'
 
 module MattPuchlerz
