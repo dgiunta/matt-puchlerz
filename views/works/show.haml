@@ -3,8 +3,7 @@
     %h1
       = @work.title
   .description
-    :textile
-      #{ @work.description }
+    = @work.description
 %section#work_images
   %ul
     = partial :'works/work_image', :collection => @work.images
