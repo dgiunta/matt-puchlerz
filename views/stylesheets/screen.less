@@ -15,7 +15,10 @@ html {
 
 #page_container {
 	.clear;
+/*  background: url(../images/grid.png);*/
+	margin: 0 auto;
 	max-width: @w-container;
+	min-width: @lh * 15;
 }
 
 #page_content {
@@ -34,15 +37,9 @@ html {
 
 /*** PAGE-SPECIFIC ***/
 
-
-/** INDEX **/
-
 #index {
-  background: @orange url(../images/noise.png);
-/*  background: @orange;*/
-/*  background-image: -webkit-gradient( linear, left top, right bottom, from( rgba(255, 255, 255, .1) ), to( transparent ) );*/
+  background: @orange url(../images/noise.png) center top;
 	color: white;
-  padding: @lh;
   text-shadow: rgba(0, 0, 0, .3) 0 1px 1px;
 	
 	a {
@@ -58,27 +55,31 @@ html {
 	  background-color: @bc-submit-hover;
 	}
 	
-	#page_container {
-	  margin: 0 0 0 auto;
-	  min-width: 360px;
-	}
-	
 	#page_header,
 	#biography,
 	#page_footer {
 	  border-left: 1px solid (@orange + #222);
 	  border-right: 1px solid transparent;
-    margin: 0 0 0 auto;
-    padding: @lh (@lh - 1) 0;
+    margin: @lh 0 0 auto;
+    padding: 0 (@lh - 1);
 		width: @lh * 13;
+	}
+	
+	#page_header,
+	#page_footer {
+	  border-color: transparent;
+	}
+	
+	#page_header {
+	  margin-top: 0;
 	}
 	
 	#page_title {
 	  background: url(../images/logo_medium.png) no-repeat left top;
-	  height: 100px;
+	  height: @lh * 4;
 	  margin: 0;
 	  text-indent: -9999px;
-	  width: 312px;
+	  width: @lh * 13;
 	}
 	
 	#site_navigation {
@@ -136,9 +137,58 @@ html {
 	}
 
   #page_footer {
-    border-color: transparent;
     font-size: @fs-blockquote;
     text-indent: 2px;
     text-shadow: rgba(0, 0, 0, .1) 0 0 1px;
+  }
+}
+
+
+
+#works_show {
+  
+	#page_title {
+    background: url(../images/logo_small_grey.png) no-repeat right top;
+	  display: block;
+	  float: right;
+	  height: @lh * 3;
+	  margin: (@lh * -0.5) 0 0 auto;
+	  text-indent: -9999px;
+	  width: @lh * 9;
+	}
+	
+	#site_navigation {
+	  .hide_element;
+	}
+  
+  #work_details {
+    
+    .description {
+      column-count: 2;
+      -moz-column-count: 2;
+      -webkit-column-count: 2;
+      column-gap: @lh * 2;
+      -moz-column-gap: @lh * 2;
+      -webkit-column-gap: @lh * 2;
+      column-rule: 1px solid @grey-light;
+      -moz-column-rule: 1px solid @grey-light;
+      -webkit-column-rule: 1px solid @grey-light;
+      font-size: @fs-blockquote;
+      margin-bottom: @lh * 2;
+      width: @lh * 30;
+    }
+  }
+
+  #work_images {
+    
+    ul {
+      padding-left: 0;
+    
+      li {
+        line-height: 0;
+        list-style: none;
+        margin-bottom: @lh;
+      }
+    }
   }
 }
