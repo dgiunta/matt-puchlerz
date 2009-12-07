@@ -34,7 +34,7 @@
             = site_name
         - else
           %p#page_title
-            %a{ :href => '/', :title => '&larr; Back to home page' }
+            %a{ :href => '/', :title => 'Back to home page' }
               = site_name
   
         %nav
@@ -48,13 +48,24 @@
           - if @current_page == :'works/show'
             %ul#work_navigation.works
               - if @previous_item
-                %li.work.previous_item
-                  %a{ :href => "/works/#{ @previous_item.slug }", :title => "&larr; #{ @previous_item.title }" }
+                %li.previous_item.work
+                  %a{ :href => "/works/#{ @previous_item.slug }", :title => @previous_item.title }
                     %img{ :src => @previous_item.image_thumbnail, :alt => @previous_item.title }
+              - else
+                %li.first_item
+                  This is the first work
+              - if false
+                %li.current_item.work{ :title => @work.title }
+                  %span
+                    %img{ :src => @work.image_thumbnail, :alt => @work.title }
               - if @next_item
-                %li.work.next_item
-                  %a{ :href => "/works/#{ @next_item.slug }", :title => "#{ @next_item.title } &rarr;" }
+                %li.next_item.work
+                  %a{ :href => "/works/#{ @next_item.slug }", :title => @next_item.title }
                     %img{ :src => @next_item.image_thumbnail }
+              - else
+                %li.last_item.contact
+                  %a{ :href => '#contact', :title => 'Contact Me &rarr;' }
+                    Contact Me
   
       %section#page_content
         = yield
