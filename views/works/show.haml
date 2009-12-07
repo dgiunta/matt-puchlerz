@@ -7,14 +7,3 @@
 %section#work_images
   %ul
     = partial :'works/work_image', :collection => @work.images
-
-%nav#work_navigation
-  %ul
-    - if @previous_item
-      %li.previous_item
-        %a{ :href => "/works/#{ @previous_item.slug }", :title => "&larr; #{ @previous_item.title }" }
-          %img{ :src => @previous_item.image_thumbnail, :alt => @previous_item.title }
-    - if @next_item
-      %li.next_item
-        %a{ :href => "/works/#{ @next_item.slug }", :title => "#{ @next_item.title } &rarr;" }
-          %img{ :src => @next_item.image_thumbnail }

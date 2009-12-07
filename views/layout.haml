@@ -33,22 +33,36 @@
           %h1#page_title{ :title => site_name_pronunciation }
             = site_name
         - else
-          %a#page_title{ :href => '/', :title => '&larr; Back to home page' }
-            = site_name
+          %p#page_title
+            %a{ :href => '/', :title => '&larr; Back to home page' }
+              = site_name
   
-      %nav
-        %ul#site_navigation
-          %li
-            %a{ :href => '/#works' } 
-              Works
-          %li
-            %a{ :href => '#contact' } 
-              Contact          
+        %nav
+          %ul#site_navigation
+            %li
+              %a{ :href => '/#works' } 
+                Works
+            %li
+              %a{ :href => '#contact' } 
+                Contact
+          - if @current_page == :'works/show'
+            %ul#work_navigation.works
+              - if @previous_item
+                %li.work.previous_item
+                  %a{ :href => "/works/#{ @previous_item.slug }", :title => "&larr; #{ @previous_item.title }" }
+                    %img{ :src => @previous_item.image_thumbnail, :alt => @previous_item.title }
+              - if @next_item
+                %li.work.next_item
+                  %a{ :href => "/works/#{ @next_item.slug }", :title => "#{ @next_item.title } &rarr;" }
+                    %img{ :src => @next_item.image_thumbnail }
   
       %section#page_content
         = yield
   
       %section#contact
+        %header
+          %h2 
+            Contact Me
         %form{ :id => 'contact_form', :action => '/contact', :method => :post }
           %dl.name.required
             %dt
