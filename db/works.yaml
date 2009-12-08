@@ -1,0 +1,69 @@
+--- 
+- slug: shortcts
+  title: Shortcts
+  description: |
+    <p>This site was originally built in 24 hours by myself and three friends 
+    (Jon Buda, Matt Puchlerz and Mike Laurence) from November 7th-8th as a 
+    Hackathon submission at Social Dev Camp, Chicago.</p>
+    
+    <p>The idea for it came when Jon went searching for a hotkey he couldn&rsquo;t remember. The 
+    sites he came across were infested with Google Ads everywhere, and the 
+    content was buried deep within completely unusuable pages. Shortcts.in 
+    attempts to solve that problem by focusing solely on the experience.</p>
+    
+    <p>It&rsquo;s still a work-in-progress, and remains the most fun product 
+    I&rsquo;ve worked on to-date.</p>
+
+- slug: dean-college
+  title: Dean College
+  description: |
+    <p>This site I did something on. It was okay for a while, but now 
+    I&rsquo;m &ldquo;configuring&rdquo; it, which means I want to shoot 
+    myself again.</p>
+
+- slug: test2
+  title: My Second Work
+  description: |
+    <p>This is my second work&mdash;which has been edited! These ladies 
+    near me are laughing hysterically. I bet they will pee their pants. This is 
+    my second work. These ladies near me are laughing hysterically. I bet they 
+    will pee their pants. This is my second work.</p>
+    
+    <p>These ladies near me are laughing 
+    hysterically. I bet they will pee their pants. This is my second work. These 
+    ladies near me are laughing hysterically. I bet they will pee their pants. 
+    This is my second work. These ladies near me are laughing hysterically. I bet 
+    they will pee their pants.</p>
+
+- slug: test3
+  title: Third Work is the Best
+  description: |
+    <p>The seats in this plane are uncomfortable. My ass is not happy. 
+    The seats in this plane are uncomfortable. My ass is not happy. The seats in 
+    this plane are uncomfortable. My ass is not happy. The seats in this plane 
+    are uncomfortable. My ass is not happy.</p>
+
+- slug: tinybutstrong
+  title: TinyButStrong
+  description: |
+    <p>The open source <a href="http://tinybutstrong.com">TinyButStrong</a> project 
+    is quite lacking in a strong unifying design element. I felt in order to be 
+    more effective in it's adoption, new users need to see a coherent look that 
+    was fresh, sleek, and encompassed all that TBS is.</p>
+
+- slug: refresh-buffalo
+  title: Refresh Buffalo
+  description: |
+    <p>Jumping on the <a href="http://refreshingcities.org">Refreshing Cities</a> 
+    bandwagon, I picked up the domain of my locale and threw up a temporary page. 
+    The idea behind this site is promotion of design, technology, usability, and 
+    standards. More is to come as time allows.</p>
+
+- slug: st-pauls-ucc
+  title: "St. Paul&rsquo;s UCC <em>at</em> Shawnee"
+  description: |
+    <p>This was a pro bono project for a church in order to get them a presence on 
+    the Internet. The pastor can post messages and add upcoming events through 
+    WordPress and Google Calendar respectively. This was one of the first sites 
+    that I created attempting to use web standards.</p>
+  
