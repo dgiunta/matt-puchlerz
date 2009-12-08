@@ -49,18 +49,18 @@
             %ul#work_navigation.works
               - if @previous_item
                 %li.previous_item.work
-                  %a{ :href => "/works/#{ @previous_item.slug }", :title => @previous_item.title }
-                    %img{ :src => @previous_item.image_thumbnail, :alt => @previous_item.title }
+                  %a{ :href => "/works/#{ @previous_item.slug }", :title => strip_tags(@previous_item.title) }
+                    %img{ :src => @previous_item.image_thumbnail, :alt => strip_tags(@previous_item.title) }
               - else
                 %li.first_item
                   This is the first work
               - if false
-                %li.current_item.work{ :title => @work.title }
+                %li.current_item.work{ :title => strip_tags(@work.title) }
                   %span
-                    %img{ :src => @work.image_thumbnail, :alt => @work.title }
+                    %img{ :src => @work.image_thumbnail, :alt => strip_tags(@work.title) }
               - if @next_item
                 %li.next_item.work
-                  %a{ :href => "/works/#{ @next_item.slug }", :title => @next_item.title }
+                  %a{ :href => "/works/#{ @next_item.slug }", :title => strip_tags(@next_item.title) }
                     %img{ :src => @next_item.image_thumbnail }
               - else
                 %li.last_item.contact

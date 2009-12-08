@@ -37,7 +37,7 @@
         %td.slug
           = work.slug
         %td.description
-          = work.description
+          = strip_tags work.description
         %td.viewable
           = boolean_html work.viewable?
         %td.actions

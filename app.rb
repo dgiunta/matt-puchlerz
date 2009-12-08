@@ -5,6 +5,8 @@ ROOT = File.expand_path File.dirname(__FILE__) unless defined?(ROOT)
 require "#{ ROOT }/vendor/gems/environment"
 Bundler.require_env
 
+require 'action_controller/vendor/html-scanner'
+
 # Require everything in the lib directory
 Dir["#{ ROOT }/lib/**/*.rb"].each { |file| require file }
 
@@ -56,15 +58,21 @@ helpers do
   
   def page_title
     @page_title ||= site_name
+    @page_title = strip_tags @page_title
     @page_title + " (#{ Sinatra::Application.environment })" unless Sinatra::Application.environment == :production
   end
   
   def site_name
-    'Matt Puchlerz &mdash; Designer & Web Developer'
+    'Matt Puchlerz: Designer &amp; Web Developer'
   end
   
   def site_name_pronunciation
     'Matt&bull;Puch&bull;lerz |mat po&#0333;ch l&#0601;rz|'
+  end
+  
+  def strip_tags html
+    @sanitizer ||= HTML::FullSanitizer.new
+    @sanitizer.sanitize html
   end
   
 end

@@ -5,6 +5,7 @@ clear_sources
 source 'http://gemcutter.org'
 source 'http://gems.github.com'
 
+gem 'actionpack',     :require_as => 'action_pack'
 gem 'activesupport',  :require_as => 'active_support'
 gem 'dm-core'
 gem 'dm-types'
