@@ -5,8 +5,6 @@ ROOT = File.expand_path File.dirname(__FILE__) unless defined?(ROOT)
 require "#{ ROOT }/vendor/gems/environment"
 Bundler.require_env
 
-require 'action_controller/vendor/html-scanner'
-
 # Require everything in the lib directory
 Dir["#{ ROOT }/lib/**/*.rb"].each { |file| require file }
 
@@ -43,19 +41,6 @@ end
 # 
 
 helpers do
-  
-  def boolean_html bool
-    bool ? '<span class="true">Yes</span>' : '<span class="false">No</span>'
-  end
-  
-  def list_position_buttons arr
-    [
-      { :position => 'top',    :text => 'Move to Top',    :disable_if => 0              },
-      { :position => 'up',     :text => 'Move Up',        :disable_if => 0              },
-      { :position => 'down',   :text => 'Move Down',      :disable_if => arr.length - 1 },
-      { :position => 'bottom', :text => 'Move to Bottom', :disable_if => arr.length - 1 }
-    ]
-  end
   
   def page_title
     @page_title ||= site_name
@@ -118,45 +103,5 @@ unless Sinatra::Application.environment == :production
     ]
     haml :html_elements
   end
-  
-  get '/admin' do
-    redirect '/admin/works'
-  end
-  
-  get '/admin/works' do
-    @works = Work.all
-    haml :'works/admin_index', :layout => :layout_admin
-  end
-  
-  get '/admin/works/new' do
-    @work = Work.new
-    haml :'works/admin_new', :layout => :layout_admin
-  end
-  
-  post '/admin/works' do
-    @work = Work.new params
-    @work.save
-    redirect '/admin/works'
-  end
-  
-  get '/admin/works/:id/edit' do
-    @work = Work.get params[:id]
-    haml :'works/admin_edit', :layout => :layout_admin
-  end
-  
-  put '/admin/works/:id' do
-    @work = Work.get params[:id]
-    params.delete '_method'
-    position = params.delete 'position'
-    @work.update_attributes params
-    @work.move position.to_sym if position
-    redirect '/admin/works'
-  end
-  
-  delete '/admin/works/:id' do
-    @work = Work.get params[:id]
-    @work.destroy!
-    redirect '/admin/works'
-  end
-      
+        
 end
