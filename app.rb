@@ -71,11 +71,6 @@ helpers do
     'Matt&bull;Puch&bull;lerz |mat po&#0333;ch l&#0601;rz|'
   end
   
-  def strip_tags html
-    @sanitizer ||= HTML::FullSanitizer.new
-    @sanitizer.sanitize html
-  end
-  
 end
 
 
