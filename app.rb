@@ -22,7 +22,7 @@ configure do
   set :root, ROOT
   set :haml, { :attr_wrapper => '"', :format => :html5 }
   
-  DataMapper.setup :default, "sqlite3::memory:"
+  DataMapper.setup :default, 'sqlite3::memory:'
   DataMapper.auto_migrate!
   YAML.load_file("#{ ROOT }/db/works.yaml").each { |attributes| Work.new(attributes).save }
   
