@@ -1,0 +1,13 @@
+.clear:after {
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+.hide_element {
+  left: -9999px;
+  position: absolute;
+}
+body { -webkit-text-stroke: 0; }
+#index #works ul .work { margin-right: 22px; }

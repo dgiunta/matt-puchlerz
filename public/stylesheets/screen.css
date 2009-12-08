@@ -1,0 +1,199 @@
+.clear:after {
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+.hide_element {
+  left: -9999px;
+  position: absolute;
+}
+html {
+  height: 100%;
+  overflow-y: scroll;
+}
+ul.works {
+  margin: 0;
+  padding: 0;
+}
+ul.works:after {
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+ul.works li {
+  float: left;
+  line-height: 0;
+  list-style: none;
+  margin: 24px 24px 0 0;
+}
+ul.works li img {
+  border: 1px solid #e97222;
+  width: 94px;
+}
+ul.works li.current_item span { border-bottom: 1px solid white; }
+ul.works a:hover { border-bottom: 1px solid white; }
+ul.works a:hover img { border-color: white; }
+#page_container {
+  margin: 0 auto;
+  max-width: 960px;
+  min-width: 360px;
+}
+#page_container:after {
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+#page_content:after {
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+#contact { display: none; }
+#page_footer { color: #a52e00; }
+#index {
+  background: #c75000 url(../images/noise.png) center top;
+  color: white;
+  padding: 24px;
+  text-shadow: rgba(0, 0, 0, 0.3) 0 1px 1px;
+}
+#index a { color: #ffb666; }
+#index strong { color: inherit; }
+#index em { color: inherit; }
+#index input[type="submit"] { background-color: #fa8333; }
+#index #page_header {
+  border-left: 1px solid #e97222;
+  border-right: 1px solid transparent;
+  margin: 24px 0 0 auto;
+  padding: 0 23px;
+  width: 312px;
+}
+#index #biography {
+  border-left: 1px solid #e97222;
+  border-right: 1px solid transparent;
+  margin: 24px 0 0 auto;
+  padding: 0 23px;
+  width: 312px;
+}
+#index #page_footer {
+  border-left: 1px solid #e97222;
+  border-right: 1px solid transparent;
+  margin: 24px 0 0 auto;
+  padding: 0 23px;
+  width: 312px;
+}
+#index #page_header { border-color: transparent; }
+#index #page_footer { border-color: transparent; }
+#index #page_header { margin-top: 0; }
+#index #page_title {
+  background: url(../images/logo_medium.png) no-repeat left top;
+  height: 96px;
+  margin: 0;
+  text-indent: -9999px;
+  width: 312px;
+}
+#index #site_navigation {
+  left: -9999px;
+  position: absolute;
+}
+#index #biography header {
+  left: -9999px;
+  position: absolute;
+}
+#index #works header {
+  left: -9999px;
+  position: absolute;
+}
+#index #biography { float: right; }
+#index #biography p:last-child { margin-bottom: 0; }
+#index #biography img { vertical-align: top; }
+#index #page_footer {
+  font-size: 16px;
+  text-indent: 2px;
+  text-shadow: rgba(0, 0, 0, 0.1) 0 0 1px;
+}
+#works_show {
+  background: #eeeeee url(../images/noise.png) center top;
+  padding: 0;
+}
+#works_show #page_container { max-width: none; }
+#works_show #page_header #page_title {
+  margin: 0 auto;
+  width: 960px;
+}
+#works_show #page_header nav {
+  margin: 0 auto;
+  width: 960px;
+}
+#works_show #page_content {
+  margin: 0 auto;
+  width: 960px;
+}
+#works_show #page_footer {
+  margin: 0 auto;
+  width: 960px;
+}
+#works_show #page_header {
+  background: #c75000 url(../images/noise.png) center top;
+  margin-bottom: 48px;
+  min-width: 960px;
+  padding: 24px 0;
+}
+#works_show #page_header #page_title { position: relative; }
+#works_show #page_header #page_title a {
+  background: url(../images/logo_medium.png) no-repeat left top;
+  display: block;
+  height: 96px;
+  position: absolute;
+  right: 24px;
+  text-indent: -9999px;
+  top: 0;
+  width: 312px;
+}
+#works_show #page_header nav #site_navigation {
+  left: -9999px;
+  position: absolute;
+}
+#works_show #page_header nav #work_navigation li { margin-top: 0; }
+#works_show #page_header nav #work_navigation li.previous_item a:hover {
+  border-bottom-width: 5px;
+  -webkit-border-image: url(../images/arrow_thin_left.png) 0 0 5 0;
+}
+#works_show #page_header nav #work_navigation li.next_item a:hover {
+  border-bottom-width: 5px;
+  -webkit-border-image: url(../images/arrow_thin_right.png) 0 0 5 0;
+}
+#works_show #page_header nav #work_navigation li.first_item {
+  border: 1px solid #e97222;
+  color: #fa8333;
+  font-size: 16px;
+  height: 70px;
+  line-height: 24px;
+  padding-top: 24px;
+  text-align: center;
+  text-shadow: rgba(0, 0, 0, 0.3) 0 1px 1px;
+  width: 94px;
+}
+#works_show #work_details {
+  float: right;
+  margin: 24px 24px 0;
+  width: 312px;
+}
+#works_show #work_details h1 {
+  font-size: 24px;
+  line-height: 24px;
+}
+#works_show #work_images ul { padding-left: 0; }
+#works_show #work_images ul li {
+  line-height: 0;
+  list-style: none;
+  margin-bottom: 24px;
+}
+#works_show #work_images ul li img { max-width: 576px; }
