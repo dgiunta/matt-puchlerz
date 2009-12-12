@@ -13,14 +13,14 @@
       %script{ :type => 'text/javascript', :src => 'http://html5shiv.googlecode.com/svn/trunk/html5.js' }
       
     - unless request.user_agent =~ /iPhone/
-      %link{ :rel => 'stylesheet', :type => 'text/css', :href => '/fonts/Puritan/stylesheet.css' }
+      %link{ :rel => 'stylesheet', :type => 'text/css', :href => mtime('/fonts/Puritan/stylesheet.css') }
     
-    %link{ :rel => 'stylesheet', :type => 'text/css', :href => '/stylesheets/global.css' }
-    %link{ :rel => 'stylesheet', :type => 'text/css', :href => '/stylesheets/screen.css', :media => 'screen, projection' }
-    %link{ :rel => 'stylesheet', :type => 'text/css', :href => '/stylesheets/iphone.css', :media => 'only screen and (max-device-width: 480px)' }
+    %link{ :rel => 'stylesheet', :type => 'text/css', :href => mtime('/stylesheets/global.css') }
+    %link{ :rel => 'stylesheet', :type => 'text/css', :href => mtime('/stylesheets/screen.css'), :media => 'screen, projection' }
+    %link{ :rel => 'stylesheet', :type => 'text/css', :href => mtime('/stylesheets/iphone.css'), :media => 'only screen and (max-device-width: 480px)' }
     
     -# %w[ mootools/mootools-1.2.3-core-yc.js app.js ].each do |src|
-      %script{ :type => 'text/javascript', :src => "/javascript/#{ src }" }<
+      %script{ :type => 'text/javascript', :src => mtime("/javascript/#{ src }") }<
           
     %link{ :rel => 'shortcut icon', :href => '/images/favicon.ico', :type => 'image/x-icon' }
 
