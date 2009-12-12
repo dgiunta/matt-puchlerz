@@ -69,16 +69,20 @@ end
 # Routes
 # 
 
+before do
+  response['Cache-Control'] = 'public, max-age=3600' 
+end
+
 get '/' do
   @works = Work.viewable
+  etag @works
   haml :index
 end
 
 get '/works/:slug' do |slug|
   @work = Work.first :slug => slug
   halt 404 if @work.nil? or not @work.viewable?
-  @previous_item = @work.previous_item
-  @next_item = @work.next_item
+  etag @work
   @page_title = "#{ @work.title } &mdash; A Work by Matt Puchlerz"
   haml :'works/show'
 end
