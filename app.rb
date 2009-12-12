@@ -44,8 +44,7 @@ helpers do
   
   def mtime public_file
     path = Sinatra::Application.public + public_file
-    return unless File.exist? path
-    "#{ public_file }?#{ File.mtime(path).to_i.to_s }"
+    "#{ public_file }?#{ File.mtime(path).to_i.to_s }" rescue public_file
   end
   
   def page_title
