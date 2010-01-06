@@ -5,25 +5,24 @@ clear_sources
 source 'http://gemcutter.org'
 source 'http://gems.github.com'
 
-gem 'actionpack',     :require_as => 'action_pack'
-gem 'activesupport',  :require_as => 'active_support'
+gem 'sinatra'
 gem 'dm-core'
 gem 'dm-types'
 gem 'dm-aggregates'
 gem 'dm-is-list'
 gem 'dm-serializer'
 gem 'do_sqlite3'
+gem 'stringex' # dm-types should list this as a dependency
 gem 'haml'
-gem 'less'
 gem 'RedCloth'
-gem 'sinatra'
-gem 'stringex'        # dm-types should list this as a dependency
+gem 'actionpack', '2.3.5', :require_as => 'action_pack' # was downloading 1.4.0 for some reason
+gem 'activesupport', :require_as => 'active_support'
 
 only :test do
   gem 'cucumber'
   gem 'faker'
   gem 'jspec'
   gem 'machinist'
-  gem 'rspec',        :require_as => 'spec'
+  gem 'rspec', :require_as => 'spec'
   gem 'webrat'
 end

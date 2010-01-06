@@ -3,8 +3,6 @@ ENV['RACK_ENV'] = 'test'
 # Sinatra app
 require File.join( File.dirname(__FILE__), *%w[ .. .. app ] )
 
-# RSpec matchers
-require 'spec/expectations'
 
 
 # 
@@ -27,7 +25,10 @@ module Webrat::Logging; def debug_log(message); end; end
 # Cucumber configuration
 # 
 
-module NeedsThisStuff
+require 'spec/expectations'
+require 'rack/test'
+
+module WillNeedThisStuff
 
   include Rack::Test::Methods
   include Webrat::Methods
@@ -42,8 +43,4 @@ module NeedsThisStuff
 
 end
 
-World NeedsThisStuff
-
-Before do
-  DataMapper.auto_migrate!
-end
+World WillNeedThisStuff

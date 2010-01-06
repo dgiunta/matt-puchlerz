@@ -1,5 +1,5 @@
 tmp/*
-vendor/gems/doc
-vendor/gems/environment.rb
-vendor/gems/gems
-vendor/gems/specifications
+vendor/gems/ruby/1.8/doc
+vendor/gems/ruby/1.8/environment.rb
+vendor/gems/ruby/1.8/gems
+vendor/gems/ruby/1.8/specifications
