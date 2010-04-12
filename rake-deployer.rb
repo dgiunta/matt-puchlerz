@@ -19,10 +19,6 @@ module Rake
       "\e[#{ code }m#{ string }\e[0m"
     end
     
-    def self.settings
-      @settings
-    end
-    
     def self.setup settings
       [ :host, :username, :deploy_path, :repository ].each do |key|
         if not settings[key] or settings[key].strip.empty?
@@ -41,7 +37,7 @@ module Rake
       cmd = args.join ' && '
       puts cmd 
       
-      Net::SSH.start(settings[:host], settings[:username]) do |ssh|
+      Net::SSH.start(@settings[:host], @settings[:username]) do |ssh|
         output = ssh.exec!(cmd)
         puts output if output
         ssh.loop
@@ -56,38 +52,40 @@ module Rake
     # Rake Tasks
     # 
     
-    task :pretend do
-      @pretend = true
+    desc 'Deploy the latest revision of the app'
+    task :deploy, :revision do |t, args|
+      Rake::Task['deploy:update'].invoke args[:revision]
+      Rake::Task['deploy:bundle_gems'].invoke
+      Rake::Task['deploy:restart'].invoke
     end
     
-    desc 'Deploy the latest revision of the app'
-    task :deploy => [ :'deploy:update', :'deploy:bundle_gems', :'deploy:restart' ]
     namespace :deploy do
 
       desc 'Bundle gems for the checked out branch'
       task :bundle_gems do
         ssh_desc 'Bundling gems'
-        ssh_exec "cd #{ settings[:deploy_path] }/current/",
+        ssh_exec "cd #{ @settings[:deploy_path] }/current/",
                  "bundle install"
       end
 
       desc 'Restart Passenger'
       task :restart do
         ssh_desc 'Restarting Passenger'
-        ssh_exec "cd #{ settings[:deploy_path] }/current/",
+        ssh_exec "cd #{ @settings[:deploy_path] }/current/",
                  "mkdir -p tmp/",
                  "touch tmp/restart.txt"
       end
 
       desc 'Initial setup of your server'
-      task :setup => [ :'setup:directories', :'setup:app' ]
+      task :setup => [ 'setup:directories', 'setup:app' ]
+      
       namespace :setup do
 
         desc 'Create the directory structure'
         task :directories do
           ssh_desc 'Creating directory structure'
-          ssh_exec "mkdir -p #{ settings[:deploy_path] }",
-                   "cd #{ settings[:deploy_path] }",
+          ssh_exec "mkdir -p #{ @settings[:deploy_path] }",
+                   "cd #{ @settings[:deploy_path] }",
                    "mkdir -p shared/log",
                    "mkdir -p shared/system"
         end
@@ -95,21 +93,23 @@ module Rake
         desc 'Create the app by cloning the source from Git'
         task :app do
           ssh_desc 'Cloning the source from Git'
-          ssh_exec "cd #{ settings[:deploy_path] }",
-                   "git clone #{ settings[:repository] } current"
+          ssh_exec "cd #{ @settings[:deploy_path] }",
+                   "git clone #{ @settings[:repository] } current"
         end
 
       end
 
       desc 'Update to the latest source from Git'
-      task :update do
-        ssh_desc "Updating your code to the #{ settings[:revision] } revision"
-        ssh_exec "cd #{ settings[:deploy_path] }/current/",
-                 "git checkout #{ settings[:branch] }",
+      task :update, :revision do |t, args|
+        revision = args[:revision] || @settings[:revision]
+        
+        ssh_desc "Updating your code to the '#{ revision }' revision"
+        ssh_exec "cd #{ @settings[:deploy_path] }/current/",
+                 "git checkout #{ @settings[:branch] }",
                  "git pull",
-                 "git reset --hard #{ settings[:revision] }",
+                 "git reset --hard #{ revision }",
                  # "git submodule update --init",
-                 "git checkout -b deployed-#{ settings[:date_string] }"
+                 "git checkout -b deployed-#{ @settings[:date_string] }"
       end
 
       # TODO: Cleanup deployment branches
@@ -118,5 +118,9 @@ module Rake
 
     end
       
-  end # Deployer
-end # Rake
+    task :pretend do
+      @pretend = true
+    end
+    
+  end
+end
