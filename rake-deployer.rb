@@ -34,13 +34,12 @@ module Rake
     end
 
     def self.ssh_exec *args
-      commands = args
-      commands = commands.shift.split("\n").map { |c| c.strip }.reject { |c| c == '' } + commands
-      cmd = commands.join ' && '
-      puts cmd 
+      commands = args.shift.split("\n").map { |c| c.strip }.reject { |c| c == '' } + args
+      command  = commands.join ' && '
+      puts command 
       
       Net::SSH.start(@settings[:host], @settings[:username]) do |ssh|
-        output = ssh.exec!(cmd)
+        output = ssh.exec!(command)
         puts output if output
         ssh.loop
       end unless @pretend
