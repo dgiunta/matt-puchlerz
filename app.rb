@@ -1,9 +1,10 @@
 # Note the application's root directory for convenience
 ROOT = File.expand_path File.dirname(__FILE__) unless defined?(ROOT)
 
-# Add bundled gems to the load path, and require them
-require "#{ ROOT }/vendor/gems/environment"
-Bundler.require_env
+# Require bundled gems
+require 'rubygems'
+require 'bundler'
+Bundler.require :default, ENV['RACK_ENV'].to_sym
 
 # Require everything in the lib directory
 Dir["#{ ROOT }/lib/**/*.rb"].each { |file| require file }
