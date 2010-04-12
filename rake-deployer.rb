@@ -15,6 +15,14 @@ module Rake
       :username    => nil,
     }
     
+    def self.color code, string
+      "\e[#{ code }m#{ string }\e[0m"
+    end
+    
+    def self.settings
+      @settings
+    end
+    
     def self.setup settings
       [ :host, :username, :deploy_path, :repository ].each do |key|
         if not settings[key] or settings[key].strip.empty?
@@ -25,27 +33,28 @@ module Rake
       @settings.merge! settings
     end
     
-    def self.settings
-      @settings
-    end
-    
     def self.ssh_desc str
-      puts "\n#{ str }..."
+      puts color(32, "\n#{ str }...")
     end
 
     def self.ssh_exec *args
       cmd = args.join ' && '
       puts cmd 
-      return if @pretend
       
       Net::SSH.start(settings[:host], settings[:username]) do |ssh|
         output = ssh.exec!(cmd)
         puts output if output
         ssh.loop
-      end
+      end unless @pretend
       
-      puts 'Done.'
+      puts color(1, 'Done.')
     end
+    
+    
+    
+    # 
+    # Rake Tasks
+    # 
     
     task :pretend do
       @pretend = true
