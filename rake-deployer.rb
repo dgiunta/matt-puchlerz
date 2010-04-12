@@ -34,7 +34,9 @@ module Rake
     end
 
     def self.ssh_exec *args
-      cmd = args.join ' && '
+      commands = args
+      commands = commands.shift.split("\n").map { |c| c.strip }.reject { |c| c == '' } + commands
+      cmd = commands.join ' && '
       puts cmd 
       
       Net::SSH.start(@settings[:host], @settings[:username]) do |ssh|
@@ -64,16 +66,20 @@ module Rake
       desc 'Bundle gems for the checked out branch'
       task :bundle_gems do
         ssh_desc 'Bundling gems'
-        ssh_exec "cd #{ @settings[:deploy_path] }/current/",
-                 "bundle install"
+        ssh_exec "
+          cd #{ @settings[:deploy_path] }/current/
+          bundle install
+        "
       end
 
       desc 'Restart Passenger'
       task :restart do
         ssh_desc 'Restarting Passenger'
-        ssh_exec "cd #{ @settings[:deploy_path] }/current/",
-                 "mkdir -p tmp/",
-                 "touch tmp/restart.txt"
+        ssh_exec "
+          cd #{ @settings[:deploy_path] }/current/
+          mkdir -p tmp/
+          touch tmp/restart.txt
+        "
       end
 
       desc 'Initial setup of your server'
@@ -84,17 +90,21 @@ module Rake
         desc 'Create the directory structure'
         task :directories do
           ssh_desc 'Creating directory structure'
-          ssh_exec "mkdir -p #{ @settings[:deploy_path] }",
-                   "cd #{ @settings[:deploy_path] }",
-                   "mkdir -p shared/log",
-                   "mkdir -p shared/system"
+          ssh_exec "
+            mkdir -p #{ @settings[:deploy_path] }
+            cd #{ @settings[:deploy_path] }
+            mkdir -p shared/log
+            mkdir -p shared/system
+          "
         end
 
         desc 'Create the app by cloning the source from Git'
         task :app do
           ssh_desc 'Cloning the source from Git'
-          ssh_exec "cd #{ @settings[:deploy_path] }",
-                   "git clone #{ @settings[:repository] } current"
+          ssh_exec "
+            cd #{ @settings[:deploy_path] }
+            git clone #{ @settings[:repository] } current
+          "
         end
 
       end
@@ -104,12 +114,13 @@ module Rake
         revision = args[:revision] || @settings[:revision]
         
         ssh_desc "Updating your code to the '#{ revision }' revision"
-        ssh_exec "cd #{ @settings[:deploy_path] }/current/",
-                 "git checkout #{ @settings[:branch] }",
-                 "git pull",
-                 "git reset --hard #{ revision }",
-                 # "git submodule update --init",
-                 "git checkout -b deployed-#{ @settings[:date_string] }"
+        ssh_exec "
+          cd #{ @settings[:deploy_path] }/current/
+          git checkout #{ @settings[:branch] }
+          git pull
+          git reset --hard #{ revision }
+          git checkout -b deployed-#{ @settings[:date_string] }
+        "
       end
 
       # TODO: Cleanup deployment branches
