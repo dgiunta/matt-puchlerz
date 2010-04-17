@@ -1,30 +1,44 @@
-require 'dm-core'
-require 'dm-types'
-require 'dm-is-list'
 require 'active_support/core_ext/object/blank'
 require 'rack/utils'
 
 module MattPuchlerz
   class Work
     
-    include DataMapper::Resource
-    
-    # The dm-is-list gem utilizes transactions, and 
-    # for some reason, the transaction code isn't 
-    # being included into Resource automatically.
-    include DataMapper::Transaction::Resource
+    attr_accessor :description, :slug, :title
     
     IMAGE_DIR = File.join('images', 'works') unless defined?(IMAGE_DIR)
     
-    property :id,          Serial
-    property :description, Text
-    property :slug,        Slug
-    property :title,       String
+    @@instances = []
+  
+    # 
+    # Class methods
+    # 
     
-    is :list
+    def self.all
+      @@instances
+    end
     
-    # Set default order
-    default_scope(:default).update :order => [ :position ]
+    def self.create attributes = {}
+      instance = new attributes
+      instance.save
+      instance
+    end
+    
+    def self.first
+      new
+    end
+    
+    def self.viewable
+      all.select { |work| work.viewable? }
+    end
+    
+    # 
+    # Instance methods
+    # 
+    
+    def initialize attributes = {}
+      attributes.each_pair { |key, val| self.send "#{ key }=", val }
+    end
     
     def image_thumbnail
       all_images.detect { |path| path =~ /\/_thumb./ }
@@ -35,22 +49,26 @@ module MattPuchlerz
       all_images.reject { |path| path =~ /\/_/ }
     end
     
-    # Overriding to ensure that it only returns viewable works
     def next_item
-      item = super
-      item = item.next_item until item.nil? or item.viewable?
+      i    = @@instances.index self
+      item = @@instances[++i] until item.nil? or item.viewable?
       item
     end
     
-    # Overriding to ensure that it only returns viewable works
-    def previous_item
-      item = super
-      item = item.previous_item until item.nil? or item.viewable?
-      item
+    # # Overriding to ensure that it only returns viewable works
+    # def previous_item
+    #   item = super
+    #   item = item.previous_item until item.nil? or item.viewable?
+    #   item
+    # end
+    
+    def save
+      @@instances << self
+      true
     end
     
-    def slug=(slug)
-      attribute_set :slug, slug.to_s.strip.downcase.gsub(/[^\w\-\ ]/, '').gsub(' ', '_')
+    def slug= slug
+      @slug = slug.to_s.strip.downcase.gsub(/[^\w\-\ ]/, '').gsub(' ', '_')
     end
     
     def viewable?
@@ -59,10 +77,6 @@ module MattPuchlerz
       not description.blank? and 
       not images.blank? and 
       not image_thumbnail.blank?
-    end
-    
-    def self.viewable
-      all.select { |work| work.viewable? }
     end
     
     private
@@ -77,7 +91,6 @@ module MattPuchlerz
     end
     
     # Find images that are within /public/images/works/slug-name/
-    # 
     def self.find_images(slug)
       Dir.glob File.expand_path( File.join( 
         Sinatra::Application.public, 
@@ -88,7 +101,6 @@ module MattPuchlerz
     end
     
     # Make the image paths relative from the public directory
-    # 
     def self.convert_to_relative_paths(paths)
       paths.map do |path| 
         path = path.sub Sinatra::Application.public, ''

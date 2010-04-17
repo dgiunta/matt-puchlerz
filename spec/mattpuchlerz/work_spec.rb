@@ -2,70 +2,55 @@ require File.join( File.dirname(__FILE__), *%w[ .. spec_helper ] )
 
 describe MattPuchlerz::Work do
   
+  before :each do
+    MattPuchlerz::Work.send :class_variable_set, '@@instances', []
+  end
+  
   context "class behavior" do
     
-    context "setting up" do
-      
-      it "should have a #viewable method" do
-        MattPuchlerz::Work.should respond_to(:viewable)
-      end
-      
+    it "can retain work instances in memory" do
+      MattPuchlerz::Work.send(:class_variable_get, '@@instances').should == []
     end
     
-    context "finding works" do
-      
-      before :all do
-        @work1 = MattPuchlerz::Work.make
-        @work2 = MattPuchlerz::Work.make
-        @work3 = MattPuchlerz::Work.make :slug => 'no way that this is going to exist or be viewable'
-      end
-      
-      it "should be able to find viewable works" do
-        MattPuchlerz::Work.viewable.length.should == 2
-      end
-      
+    it "finds all works within memory" do
+      MattPuchlerz::Work.send(:class_variable_set, '@@instances', [ :one, :two, :three ])
+      MattPuchlerz::Work.all.should == [ :one, :two, :three ]
     end
     
+    it "creates works" do
+      work = MattPuchlerz::Work.create :slug => 'slug',
+                                       :title => 'Title',
+                                       :description => 'Description'
+      
+      work.should be_instance_of(MattPuchlerz::Work)
+      MattPuchlerz::Work.all.should == [ work ]
+    end
+    
+    it "should be able to find viewable works" do
+      MattPuchlerz::Work.make
+      MattPuchlerz::Work.make
+      MattPuchlerz::Work.make :slug => 'there is no way that this could be a valid slug'
+      MattPuchlerz::Work.viewable.length.should == 2
+    end
+      
   end
   
   context "instance behavior" do
     
-    context "when initialized" do
+    context "when saving" do
+      
+      it "should save" do
+        work = MattPuchlerz::Work.new 
+        work.save
+        MattPuchlerz::Work.all.should include(work)
+      end
+      
+    end
+    
+    context "when initialized with no attributes" do
 
       before :each do
         @work = MattPuchlerz::Work.new
-      end
-
-      it "should have an #id method" do
-        @work.should respond_to(:id)
-      end
-
-      it "should have #slug method" do
-        @work.should respond_to(:slug)
-      end
-
-      it "should have a #title method" do
-        @work.should respond_to(:title)
-      end
-
-      it "should have a #description method" do
-        @work.should respond_to(:description)
-      end
-
-      it "should have an #images method" do
-        @work.should respond_to(:images)
-      end
-      
-      it "should have a #image_thumbnail method" do
-        @work.should respond_to(:image_thumbnail)
-      end
-      
-      it "should have a #position method" do
-        @work.should respond_to(:position)
-      end
-
-      it "should have a #move method" do
-        @work.should respond_to(:move)
       end
 
       it "should have 0 images" do
@@ -78,12 +63,36 @@ describe MattPuchlerz::Work do
 
     end
 
+    context "when initialized with attributes" do
+      
+      it "should set attributes passed in via a hash" do
+        @work = MattPuchlerz::Work.new :slug => 'slug', 
+                                       :title => 'Title', 
+                                       :description => 'Description'
+                                       
+        @work.slug.should == 'slug'
+        @work.title.should == 'Title'
+        @work.description.should == 'Description'
+      end
+      
+    end
+    
     context "when setting attributes of the work" do
 
       before :each do
         @work = MattPuchlerz::Work.new
       end
 
+      it "should be able to set a title" do
+        @work.title = 'I am the title'
+        @work.title.should == 'I am the title'
+      end
+
+      it "should be able to set a description" do
+        @work.description = 'I am the description'
+        @work.description.should == 'I am the description'
+      end
+      
       it "should be able to set a slug, which converts/strips any non-alphanumerics, underscores, or hyphens" do
         @work.slug = %Q{ Who do I 'look' like 2-U, an "awesome" slug!? }
         @work.slug.should == 'who_do_i_look_like_2-u_an_awesome_slug'
@@ -119,35 +128,12 @@ describe MattPuchlerz::Work do
         @work.image_thumbnail.should == '/images/works/test1/_thumb.png'
       end
 
-      it "should be able to set a title" do
-        @work.title = 'I am the title'
-        @work.title.should == 'I am the title'
-      end
-
-      it "should be able to set a description" do
-        @work.description = 'I am the description'
-        @work.description.should == 'I am the description'
-      end
-      
     end
     
     context "functioning as a list" do
       
-      before :each do
-        DataMapper.auto_migrate!
-      end
-      
-      it "should be able to move its position within the list" do
-        work1 = MattPuchlerz::Work.make
-        work2 = MattPuchlerz::Work.make
-        work1.position.should < work2.position
-
-        work1.move(:down)
-        work2.reload
-        work1.position.should > work2.position
-      end
-      
       it "should find the next viewable work" do
+        pending
         work1 = MattPuchlerz::Work.make
         work2 = MattPuchlerz::Work.make :slug => 'no way that this will be a valid slug 1'
         work3 = MattPuchlerz::Work.make :slug => 'no way that this will be a valid slug 2'
@@ -156,6 +142,7 @@ describe MattPuchlerz::Work do
       end
 
       it "should still return nil if there are no proceeding viewable works" do
+        pending
         work1 = MattPuchlerz::Work.make
         work2 = MattPuchlerz::Work.make :slug => 'no way that this will be a valid slug 1'
         work3 = MattPuchlerz::Work.make :slug => 'no way that this will be a valid slug 2'
@@ -163,6 +150,7 @@ describe MattPuchlerz::Work do
       end
 
       it "should find the previous viewable work" do
+        pending
         work1 = MattPuchlerz::Work.make
         work2 = MattPuchlerz::Work.make :slug => 'no way that this will be a valid slug 1'
         work3 = MattPuchlerz::Work.make :slug => 'no way that this will be a valid slug 2'
@@ -171,6 +159,7 @@ describe MattPuchlerz::Work do
       end
 
       it "should still return nil if there are no proceeding viewable works" do
+        pending
         work1 = MattPuchlerz::Work.make :slug => 'no way that this will be a valid slug 1'
         work2 = MattPuchlerz::Work.make :slug => 'no way that this will be a valid slug 2'
         work3 = MattPuchlerz::Work.make

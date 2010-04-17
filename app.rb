@@ -4,7 +4,7 @@ ROOT = File.expand_path File.dirname(__FILE__) unless defined?(ROOT)
 # Require bundled gems
 require 'rubygems'
 require 'bundler'
-Bundler.require :default, ENV['RACK_ENV'].to_sym
+Bundler.require :default, (ENV['RACK_ENV'] || 'production').to_sym
 
 # Require everything in the lib directory
 Dir["#{ ROOT }/lib/**/*.rb"].each { |file| require file }
@@ -23,9 +23,7 @@ configure do
   set :root, ROOT
   set :haml, { :attr_wrapper => '"', :format => :html5 }
   
-  DataMapper.setup :default, 'sqlite3::memory:'
-  DataMapper.auto_migrate!
-  YAML.load_file("#{ ROOT }/db/works.yaml").each { |attributes| Work.new(attributes).save }
+  YAML.load_file("#{ ROOT }/db/works.yaml").each { |attributes| Work.create attributes }
   
 end
 
