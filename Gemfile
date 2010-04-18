@@ -1,12 +1,6 @@
 source 'http://rubygems.org'
 
 gem 'sinatra'
-# gem 'dm-core'
-# gem 'dm-types'
-# gem 'dm-aggregates'
-# gem 'dm-is-list'
-# gem 'dm-serializer'
-# gem 'do_sqlite3'
 gem 'haml'
 gem 'RedCloth'
 gem 'actionpack', '2.3.5', :require => 'action_pack' # was installing 1.4.0 for some reason
