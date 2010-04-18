@@ -24,8 +24,12 @@ module MattPuchlerz
       instance
     end
     
-    def self.first
-      new
+    def self.first conditions = {}
+      if conditions.empty?
+        @@instances.first
+      else
+        @@instances.detect { |i| i.slug == conditions[:slug] }
+      end
     end
     
     def self.viewable
@@ -50,17 +54,12 @@ module MattPuchlerz
     end
     
     def next_item
-      i    = @@instances.index self
-      item = @@instances[++i] until item.nil? or item.viewable?
-      item
+      next_viewable_item
     end
     
-    # # Overriding to ensure that it only returns viewable works
-    # def previous_item
-    #   item = super
-    #   item = item.previous_item until item.nil? or item.viewable?
-    #   item
-    # end
+    def previous_item
+      next_viewable_item @@instances.reverse
+    end
     
     def save
       @@instances << self
@@ -88,6 +87,12 @@ module MattPuchlerz
       @all_images = self.class.find_images self.slug
       @all_images = self.class.convert_to_relative_paths @all_images
       @all_images.sort!
+    end
+    
+    def next_viewable_item instances = nil
+      instances ||= @@instances
+      start = instances.index(self) + 1
+      instances[start..-1].detect { |i| i.viewable? }
     end
     
     # Find images that are within /public/images/works/slug-name/

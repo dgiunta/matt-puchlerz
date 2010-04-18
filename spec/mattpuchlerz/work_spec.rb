@@ -8,12 +8,8 @@ describe MattPuchlerz::Work do
   
   context "class behavior" do
     
-    it "can retain work instances in memory" do
-      MattPuchlerz::Work.send(:class_variable_get, '@@instances').should == []
-    end
-    
     it "finds all works within memory" do
-      MattPuchlerz::Work.send(:class_variable_set, '@@instances', [ :one, :two, :three ])
+      MattPuchlerz::Work.send :class_variable_set, '@@instances', [ :one, :two, :three ]
       MattPuchlerz::Work.all.should == [ :one, :two, :three ]
     end
     
@@ -26,11 +22,23 @@ describe MattPuchlerz::Work do
       MattPuchlerz::Work.all.should == [ work ]
     end
     
-    it "should be able to find viewable works" do
+    it "finds viewable works" do
       MattPuchlerz::Work.make
       MattPuchlerz::Work.make
       MattPuchlerz::Work.make :slug => 'there is no way that this could be a valid slug'
       MattPuchlerz::Work.viewable.length.should == 2
+    end
+    
+    it "finds the first work" do
+      work1 = MattPuchlerz::Work.make
+      work2 = MattPuchlerz::Work.make
+      MattPuchlerz::Work.first.should == work1
+    end
+    
+    it "finds the first work that matches the slug passed" do
+      work1 = MattPuchlerz::Work.make :slug => 'work1'
+      work2 = MattPuchlerz::Work.make :slug => 'work2'
+      MattPuchlerz::Work.first(:slug => 'work2').should == work2
     end
       
   end
@@ -133,7 +141,6 @@ describe MattPuchlerz::Work do
     context "functioning as a list" do
       
       it "should find the next viewable work" do
-        pending
         work1 = MattPuchlerz::Work.make
         work2 = MattPuchlerz::Work.make :slug => 'no way that this will be a valid slug 1'
         work3 = MattPuchlerz::Work.make :slug => 'no way that this will be a valid slug 2'
@@ -142,7 +149,6 @@ describe MattPuchlerz::Work do
       end
 
       it "should still return nil if there are no proceeding viewable works" do
-        pending
         work1 = MattPuchlerz::Work.make
         work2 = MattPuchlerz::Work.make :slug => 'no way that this will be a valid slug 1'
         work3 = MattPuchlerz::Work.make :slug => 'no way that this will be a valid slug 2'
@@ -150,7 +156,6 @@ describe MattPuchlerz::Work do
       end
 
       it "should find the previous viewable work" do
-        pending
         work1 = MattPuchlerz::Work.make
         work2 = MattPuchlerz::Work.make :slug => 'no way that this will be a valid slug 1'
         work3 = MattPuchlerz::Work.make :slug => 'no way that this will be a valid slug 2'
@@ -159,7 +164,6 @@ describe MattPuchlerz::Work do
       end
 
       it "should still return nil if there are no proceeding viewable works" do
-        pending
         work1 = MattPuchlerz::Work.make :slug => 'no way that this will be a valid slug 1'
         work2 = MattPuchlerz::Work.make :slug => 'no way that this will be a valid slug 2'
         work3 = MattPuchlerz::Work.make
